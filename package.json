@@ -1,0 +1,9 @@
+{
+  "name": "sanserif.be",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "pnpm -r dev",
+    "build": "pnpm -r build"
+  }
+}
