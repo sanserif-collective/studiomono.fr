@@ -1,8 +1,7 @@
 {
-  "name": "strapi",
+  "name": "sanserif.be/strapi",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.1.0",
-  "description": "A Strapi application",
   "scripts": {
     "dev": "strapi develop",
     "start": "strapi start",
@@ -16,15 +15,12 @@
     "@strapi/plugin-i18n": "4.3.0-beta.1",
     "pg": "8.6.0"
   },
-  "author": {
-    "name": "A Strapi developer"
-  },
   "strapi": {
     "uuid": "c7927236-843a-47d7-8ead-54d1042c729b"
   },
+  "telemetryDisabled": true,
   "engines": {
-    "node": ">=12.x.x <=16.x.x",
+    "node": "14.x.x",
     "npm": ">=6.0.0"
-  },
-  "license": "MIT"
+  }
 }
