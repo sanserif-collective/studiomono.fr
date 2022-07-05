@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_external_links",
+  "info": {
+    "displayName": "External Link",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

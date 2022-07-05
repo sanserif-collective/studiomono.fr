@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_shared_internal_links",
+  "info": {
+    "displayName": "Internal Link",
+    "icon": "align-justify",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "enumeration",
+      "enum": [
+        "index",
+        "about",
+        "contact"
+      ],
+      "required": true
+    }
+  }
+}

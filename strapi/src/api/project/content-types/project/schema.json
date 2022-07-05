@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Project",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "header": {
+      "displayName": "Header",
+      "type": "component",
+      "repeatable": false,
+      "component": "project.header",
+      "required": true
+    },
+    "introduction": {
+      "displayName": "Introduction",
+      "type": "component",
+      "repeatable": false,
+      "component": "project.introduction"
+    },
+    "subject": {
+      "type": "dynamiczone",
+      "components": [
+        "project.centered-image",
+        "project.fullscreen-image",
+        "project.image-and-text",
+        "project.three-images",
+        "project.two-images-and-one-text",
+        "project.two-images"
+      ],
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "required": true
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service"
+    },
+    "color": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

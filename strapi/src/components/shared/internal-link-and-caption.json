@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_internal_link_and_captions",
+  "info": {
+    "displayName": "Internal Link & Caption",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.internal-link"
+    },
+    "caption": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

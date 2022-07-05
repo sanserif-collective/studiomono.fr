@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_home_two_projects",
+  "info": {
+    "displayName": "Two Projects",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "project1": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project"
+    },
+    "project2": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project"
+    }
+  }
+}

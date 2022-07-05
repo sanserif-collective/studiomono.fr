@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_project_fullscreen_images",
+  "info": {
+    "displayName": "Fullscreen Image",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

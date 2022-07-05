@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_about_services",
+  "info": {
+    "displayName": "Services",
+    "icon": "align-justify",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

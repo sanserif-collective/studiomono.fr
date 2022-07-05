@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_global_favicons",
+  "info": {
+    "displayName": "Favicon",
+    "icon": "align-justify",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "main": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

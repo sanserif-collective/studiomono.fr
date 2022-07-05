@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_project_centered_images",
+  "info": {
+    "displayName": "Centered Image",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

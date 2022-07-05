@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_home_one_projects",
+  "info": {
+    "displayName": "One Project",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "project": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project"
+    }
+  }
+}

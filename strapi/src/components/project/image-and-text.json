@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_project_image_and_texts",
+  "info": {
+    "displayName": "Image & Text",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
