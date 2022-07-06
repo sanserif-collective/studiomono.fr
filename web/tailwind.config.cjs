@@ -15,7 +15,7 @@ module.exports = {
       'white': '#FFF'
     },
     fontFamily: {
-      'body': ['Inter Variable', 'sans-serif']
+      'body': ['InterVariable', 'sans-serif']
     },
     fontSize: {
       'base': ['1rem', {
