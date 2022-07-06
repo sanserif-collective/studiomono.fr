@@ -1,0 +1,16 @@
+---
+import FontFace from 'components/FontFace.astro'
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Document</title>
+    <link rel="canonical" href={Astro.canonicalURL.href} />
+    <FontFace />
+  </head>
+  <body class="antialiased [text-rendering:optimizeLegibility] text-black bg-gray min-h-screen font-body uppercase">
+    <slot />
+  </body>
+</html>
