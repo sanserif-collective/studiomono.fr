@@ -32,8 +32,8 @@
         "project.fullscreen-image",
         "project.image-and-text",
         "project.three-images",
-        "project.two-images-and-one-text",
-        "project.two-images"
+        "project.two-images",
+        "project.two-images-and-one-text"
       ],
       "required": true
     },
@@ -57,6 +57,11 @@
     "color": {
       "type": "string",
       "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
     }
   }
 }
