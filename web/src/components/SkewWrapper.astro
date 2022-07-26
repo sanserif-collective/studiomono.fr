@@ -1,4 +1,6 @@
 ---
+import clsx from 'clsx'
+
 type Props = {
   class?: string
 }
@@ -6,7 +8,7 @@ type Props = {
 const { class: className } = Astro.props as Props
 ---
 
-<skew-wrapper class:list={['block', className]}>
+<skew-wrapper class={clsx('block', className)}>
   <slot />
 </skew-wrapper>
 
@@ -18,7 +20,6 @@ const { class: className } = Astro.props as Props
 
   class SkewWrapper extends HTMLElement {
     private skewXSet = gsap.quickSetter(this, 'skewX', 'deg')
-    private skewYSet = gsap.quickSetter(this, 'skewY', 'deg')
     private skew = () => this.skewXSet(mapper(app.globals.scrollVelocity))
 
     public async connectedCallback() {

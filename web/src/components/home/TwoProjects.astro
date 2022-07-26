@@ -33,10 +33,7 @@ const image2 = cloudinary.image(project2.cover.data.attributes.provider_metadata
 <ProjectWrapper
   slug={project2.slug}
   name={project2.name}
-  class={`
-    items-end row-start-6 row-end-13 pl-10 mb-10 portrait:col-start-3
-    portrait:col-end-12 portrait:pl-0 portrait:mb-0 portrait:justify-end
-  `}
+  class="items-end row-start-6 row-end-13 pl-10 mb-10 portrait:col-start-3 portrait:col-end-12 portrait:pl-0 portrait:mb-0 portrait:justify-end"
 >
   <Image
     src={image2.toURL()}

@@ -15,13 +15,7 @@ const { cover, ...rest } = projects.project.data.attributes
 const image = cloudinary.image(cover.data.attributes.provider_metadata.public_id)
 ---
 
-<ProjectWrapper
-  {...rest}
-  class={`
-    items-center row-start-5 row-end-12 px-custom-space portrait:col-start-2
-    portrait:col-end-12 portrait:px-0 portrait:justify-center
-  `}
->
+<ProjectWrapper class="items-center row-start-5 row-end-12 px-custom-space portrait:col-start-2 portrait:col-end-12 portrait:px-0 portrait:justify-center" {...rest}>
   <Image
     class="w-[69vh] max-w-5xl portrait:w-[80vw]"
     width={620}

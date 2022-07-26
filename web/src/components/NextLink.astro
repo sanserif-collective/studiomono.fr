@@ -1,6 +1,7 @@
 ---
 import Text from 'components/Text.astro'
 import Sprite from 'components/Sprite.astro'
+import clsx from 'clsx'
 
 type Props = {
   url: string
@@ -15,12 +16,12 @@ const { url, caption } = Astro.props as Props
     <Text
       as="strong"
       size="4xl"
-      class={`
-        relative font-normal before:absolute before:left-1/2 before:top-1/2
-        before:-translate-x-1/2 before:-translate-y-1/2 before:border
-        before:h-[180%] before:w-[110%] before:rounded-[100%]
-        portrait:before:h-full portrait:before:w-full
-      `}
+      class={clsx(
+        'relative font-normal before:absolute before:left-1/2 before:top-1/2',
+        'before:-translate-x-1/2 before:-translate-y-1/2 before:border',
+        'before:h-[180%] before:w-[110%] before:rounded-[100%]',
+        'portrait:before:h-full portrait:before:w-full'
+      )}
     >
       <div class="overflow-y-hidden grid">
         <div class="row-start-1 col-start-1 portrait:p-custom-space" data-split>

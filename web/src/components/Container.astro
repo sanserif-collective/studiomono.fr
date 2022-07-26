@@ -11,12 +11,7 @@ const { as: Tag = 'section', class: className, fullscreen } = Astro.props as Pro
 <Tag
   class:list={[
     'h-screen flex-shrink-0 grid grid-rows-[var(--grid)]',
-    fullscreen ? `
-      grid-cols-[var(--grid)]
-    ` : `
-      px-custom-space portrait:px-0 portrait:py-custom-space
-      portrait:grid-cols-[var(--grid)] portrait:grid-rows-none portrait:h-auto
-    `,
+    fullscreen ? 'grid-cols-[var(--grid)]' : 'px-custom-space portrait:px-0 portrait:py-custom-space portrait:grid-cols-[var(--grid)] portrait:grid-rows-none portrait:h-auto',
     className
   ]}
 >
