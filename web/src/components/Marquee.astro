@@ -1,0 +1,18 @@
+---
+type Props = {
+  class?: string
+  direction?: number
+  pauseOnHover?: boolean
+}
+
+const { class: className, ...rest } = Astro.props as Props
+---
+
+<marquee-carousel class:list={['flex', className]} {...rest}>
+  <slot />
+</marquee-carousel>
+
+<script>
+  import Marquee from 'scripts/components/Marquee'
+  window.customElements.define('marquee-carousel', Marquee)
+</script>

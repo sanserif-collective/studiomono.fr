@@ -1,0 +1,14 @@
+---
+import routes from 'utilities/routes'
+import Sprite from 'components/Sprite.astro'
+import MenuButton from './MenuButton.astro'
+import Menu from './Menu.astro'
+---
+
+<header class="z-50 fixed top-custom-space inset-x-custom-space text-[color:var(--header-color)] transition-colors duration-300">
+  <a href={`${routes.index}`} class="z-50 absolute left-0 w-20 h-4" title="Go to homepage">
+    <Sprite id="sanserif" class="w-full h-full" />
+  </a>
+  <MenuButton />
+  <Menu />
+</header>

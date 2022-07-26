@@ -1,0 +1,12 @@
+---
+type Props = {
+  id: string
+  class?: string
+}
+
+const { id, class: className } = Astro.props as Props
+---
+
+<svg class={className}>
+  <use href={`/sprite.svg#${id}`} />
+</svg>

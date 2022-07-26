@@ -1,0 +1,47 @@
+---
+import type { Home } from 'types/pages/home'
+import cloudinary from 'src/cloudinary'
+import Image from 'components/Image.astro'
+import ProjectWrapper from 'components/home/ProjectWrapper.astro'
+
+type Props = {
+  projects: Home.ComponentHomeTwoProjects
+}
+
+const { projects } = Astro.props as Props
+
+const project1 = projects.project1.data.attributes
+const project2 = projects.project2.data.attributes
+
+const image1 = cloudinary.image(project1.cover.data.attributes.provider_metadata.public_id)
+const image2 = cloudinary.image(project2.cover.data.attributes.provider_metadata.public_id)
+---
+
+<ProjectWrapper
+  slug={project1.slug}
+  name={project1.name}
+  class="row-start-1 row-end-6 portrait:col-span-6"
+>
+  <Image
+    src={image1.toURL()}
+    class="w-[25.5vh] max-w-sm"
+    width={230}
+    height={300}
+  />
+</ProjectWrapper>
+
+<ProjectWrapper
+  slug={project2.slug}
+  name={project2.name}
+  class={`
+    items-end row-start-6 row-end-13 pl-10 mb-10 portrait:col-start-3
+    portrait:col-end-12 portrait:pl-0 portrait:mb-0 portrait:justify-end
+  `}
+>
+  <Image
+    src={image2.toURL()}
+    class="w-[34.5vh] max-w-xl"
+    width={310}
+    height={410}
+  />
+</ProjectWrapper>

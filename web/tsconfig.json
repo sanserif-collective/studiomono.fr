@@ -15,6 +15,10 @@
     "paths": {
       "layouts/*": ["src/layouts/*"],
       "components/*": ["src/components/*"],
+      "sections/*": ["src/sections/*"],
+      "types/*": ["src/types/*"],
+      "scripts/*": ["src/scripts/*"],
+      "utilities/*": ["src/utilities/*"],
       "env": ["src/env"],
       "strapi": ["src/strapi"]
     }

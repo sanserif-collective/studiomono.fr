@@ -7,6 +7,11 @@ module.exports = {
     container: false
   },
   theme: {
+    screens: {
+      'md': { 'max': '1024px' },
+      'sm': { 'max': '768px' },
+      'portrait': { 'raw': '(orientation: portrait)' },
+    },
     colors:{
       'current': 'currentColor',
       'transparent': 'transparent',
@@ -37,7 +42,7 @@ module.exports = {
         letterSpacing: '-0.07em',
         lineHeight: '1.13'
       }],
-      '4xl': ['15rem', {
+      '4xl': ['15.625vw', {
         letterSpacing: '-0.07em',
         lineHeight: '0.9'
       }],
@@ -46,15 +51,79 @@ module.exports = {
         lineHeight: '1'
       }]
     },
-    extend: {}
+    fontVariation: {
+      'thin': "'wght' 100",
+      'extralight': "'wght' 200",
+      'light': "'wght' 300",
+      'normal': "'wght' 400",
+      'medium': "'wght' 500",
+      'semibold': "'wght' 600",
+      'bold': "'wght' 700",
+      'extrabold': "'wght' 800",
+      'black': "'wght' 900"
+    },
+    writingMode: {
+      'v-rl': 'vertical-rl',
+      'h-tb': 'horizontal-tb'
+    },
+    extend: {
+      gridRowStart: {
+        7: '7',
+        8: '8',
+        9: '9',
+        10: '10',
+        11: '11',
+        12: '12',
+        13: '13'
+      },
+      gridRowEnd: {
+        7: '7',
+        8: '8',
+        9: '9',
+        10: '10',
+        11: '11',
+        12: '12',
+        13: '13'
+      },
+      transitionDuration: {
+        DEFAULT: '500ms'
+      },
+      spacing: {
+        'custom-space': 'var(--custom-space)'
+      }
+    }
   },
   plugins: [
-    plugin(({ addBase }) => {
+    plugin(({ addBase, addVariant, matchUtilities, theme }) => {
       addBase({
+        ':root': {
+          '--custom-space': '6.099vw',
+          '--grid': 'var(--custom-space) repeat(10, 1fr) var(--custom-space)'
+        },
         'html': {
           'font-size': 'clamp(14px, 1.05vw, 18px)'
         }
       })
+
+      matchUtilities(
+        {
+          variation: value => ({
+            'font-variation-settings': value
+          })
+        },
+        { values: theme('fontVariation') }
+      )
+
+      matchUtilities(
+        {
+          writing: value => ({
+            'writing-mode': value
+          })
+        },
+        { values: theme('writingMode') }
+      )
+
+      addVariant('children', '& > *')
     })
   ]
 }

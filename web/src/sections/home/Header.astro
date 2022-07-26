@@ -1,0 +1,43 @@
+---
+import type { Home } from 'types/pages/home'
+import Container from 'components/Container.astro'
+import Text from 'components/Text.astro'
+import Sprite from 'components/Sprite.astro'
+
+type Props = {
+  content: Home.Header
+}
+
+const { content } = Astro.props as Props
+---
+
+<Container
+  as="header"
+  fullscreen={true}
+  class="w-screen portrait:py-custom-space portrait:children:col-start-2 portrait:children:col-end-12"
+>
+
+  <div class="flex items-end col-span-full row-span-full overflow-hidden portrait:row-end-11">
+    <Text
+      as="h1"
+      size="4xl"
+      class="translate-x-[-0.125em] translate-y-[0.125em] portrait:translate-x-0 portrait:translate-y-0"
+    >
+      {content.title}
+    </Text>
+  </div>
+
+  <div class="col-start-11 row-start-2 row-end-12 flex flex-col items-end justify-end portrait:row-start-12">
+    <div class="flex flex-col items-center portrait:w-full portrait:flex-row-reverse">
+      <Sprite id="arrow" class="mb-4 w-6 h-6 text-black portrait:mb-0 portrait:rotate-90" />
+      <Text
+        as="h2"
+        size="lg"
+        class="writing-v-rl -scale-100 portrait:scale-100 portrait:writing-h-tb portrait:mr-4"
+      >
+        {content.subtitle}
+      </Text>
+    </div>
+  </div>
+
+</Container>

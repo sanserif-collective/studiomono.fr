@@ -1,0 +1,20 @@
+---
+import SkewWrapper from 'components/SkewWrapper.astro'
+import routes from 'utilities/routes'
+
+type Props = {
+  class?: string
+  slug: string
+  name: string
+}
+
+const { slug, name, class: className } = Astro.props as Props
+---
+
+<article class={className}>
+  <a href={`${routes.projects}/${slug}`} aria-label={name}>
+    <SkewWrapper>
+      <slot />
+   </SkewWrapper>
+  </a>
+</article>

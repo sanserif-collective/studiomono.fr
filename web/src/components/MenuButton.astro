@@ -1,0 +1,53 @@
+<menu-button class="z-50 absolute right-0 group">
+  <button
+    class="h-6 w-6 relative children:block children:w-full children:h-[2px] children:bg-current children:absolute children:inset-x-0"
+    aria-label="Toggle button"
+  >
+    <span class="top-2 transform-gpu transition-transform group-open:rotate-45 group-open:translate-y-[0.19rem]"></span>
+    <span class="bottom-2 transform-gpu transition-transform group-open:-rotate-45 group-open:translate-y-[-0.19rem]"></span>
+  </button>
+</menu-button>
+
+<script>
+  import { gsap, ScrollTrigger } from 'gsap/all'
+  import type NavigationMenu from 'scripts/components/NavigationMenu'
+
+  const menu = document.querySelector<NavigationMenu>('navigation-menu')
+
+  class MenuButton extends HTMLElement {
+    private open() {
+      this.setAttribute('open', '')
+      menu.open()
+    }
+
+    private close() {
+      this.removeAttribute('open')
+      menu.close()
+    }
+
+    private onClick = () => this.hasAttribute('open') ? this.close() : this.open()
+
+    public connectedCallback() {
+      ScrollTrigger.matchMedia({
+        '(orientation: landscape)': () => {
+          const offset = gsap.to(this, {
+            x: `${-gsap.getProperty(document.documentElement, '--custom-space')}vw`,
+            paused: true
+          })
+
+          ScrollTrigger.create({
+            trigger: document.querySelector('[data-footer]'),
+            animation: offset,
+            scrub: 1,
+            start: 'left right',
+            end: 'right right'
+          })
+        }
+      })
+
+      this.addEventListener('click', this.onClick)
+    }
+  }
+
+  window.customElements.define('menu-button', MenuButton)
+</script>

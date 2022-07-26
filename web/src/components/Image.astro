@@ -1,0 +1,37 @@
+---
+type Props = {
+  width: number
+  height: number
+  as?: string
+  src?: string
+  alt?: string
+  class?: string
+  fit?: keyof typeof fits
+}
+
+const fits = {
+  'cover': 'object-cover',
+  'container': 'object-contain'
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  fit = 'cover',
+  as: Tag = 'div',
+  class: className
+} = Astro.props as Props
+---
+
+<Tag class:list={['relative', className]}>
+  <svg viewBox={`0 0 ${width} ${height}`}></svg>
+  <img
+    src={src}
+    alt={alt}
+    height={height}
+    width={width}
+    class:list={['absolute inset-0 h-full w-full', fits[fit]]}
+  >
+</Tag>

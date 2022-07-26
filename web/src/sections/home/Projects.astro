@@ -1,0 +1,37 @@
+---
+import type { Home } from 'types/pages/home'
+import Container from 'components/Container.astro'
+import Text from 'components/Text.astro'
+import OneProject from 'components/home/OneProject.astro'
+import TwoProjects from 'components/home/TwoProjects.astro'
+import ThreeProjects from 'components/home/ThreeProjects.astro'
+
+type Props = {
+  text: string
+  projects: Home.ProjectSet[]
+}
+
+const { text, projects } = Astro.props as Props
+---
+
+<Container class="gap-x-custom-space grid-flow-col children:flex portrait:grid-flow-row portrait:gap-x-0 portrait:gap-y-24 portrait:children:row-auto">
+
+  <header class="col-start-1 col-end-3 row-start-2 row-end-7 items-center portrait:col-start-2 portrait:col-end-12">
+    <Text class="max-w-md">{text}</Text>
+  </header>
+
+  {projects.map(({ __typename, ...projects }) => (
+    <>
+      {__typename === 'ComponentHomeOneProject' &&
+        <OneProject projects={(projects as Home.ComponentHomeOneProject)} />
+      }
+      {__typename === 'ComponentHomeTwoProjects' &&
+        <TwoProjects projects={projects as Home.ComponentHomeTwoProjects} />
+      }
+      {__typename === 'ComponentHomeThreeProjects' &&
+        <ThreeProjects projects={projects as Home.ComponentHomeThreeProjects} />
+      }
+    </>
+  ))}
+
+</Container>

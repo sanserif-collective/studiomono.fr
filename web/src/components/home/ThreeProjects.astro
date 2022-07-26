@@ -1,0 +1,59 @@
+---
+import type { Home } from 'types/pages/home'
+import cloudinary from 'src/cloudinary'
+import Image from 'components/Image.astro'
+import ProjectWrapper from 'components/home/ProjectWrapper.astro'
+
+type Props = {
+  projects: Home.ComponentHomeThreeProjects
+}
+
+const { projects } = Astro.props as Props
+
+const project1 = projects.project1.data.attributes
+const project2 = projects.project2.data.attributes
+const project3 = projects.project3.data.attributes
+
+const image1 = cloudinary.image(project1.cover.data.attributes.provider_metadata.public_id)
+const image2 = cloudinary.image(project2.cover.data.attributes.provider_metadata.public_id)
+const image3 = cloudinary.image(project3.cover.data.attributes.provider_metadata.public_id)
+---
+
+<ProjectWrapper
+  slug={project1.slug}
+  name={project1.name}
+  class="items-end row-start-8 row-end-13 portrait:items-start portrait:col-span-8"
+>
+  <Image
+    src={image1.toURL()}
+    class="w-[24.5vh] max-w-md"
+    width={220}
+    height={300}
+  />
+</ProjectWrapper>
+
+<ProjectWrapper
+  slug={project2.slug}
+  name={project2.name}
+  class="items-end row-start-9 row-end-13 pl-custom-space mb-10 portrait:pl-0 portrait:mb-0 portrait:col-start-2 portrait:col-span-6"
+>
+  <Image
+    src={image2.toURL()}
+    class="w-[16vh] max-w-xs"
+    width={142}
+    height={188}
+  />
+</ProjectWrapper>
+
+<ProjectWrapper
+  slug={project3.slug}
+  name={project2.name}
+  class="row-start-2 row-end-8 portrait:col-end-13 portrait:col-span-9 portrait:justify-end"
+>
+  <Image
+    src={image3.toURL()}
+    class="w-[34.5vh] max-w-xl"
+    width={310}
+    height={410}
+  />
+</ProjectWrapper>

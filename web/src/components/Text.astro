@@ -1,0 +1,23 @@
+---
+type Props = {
+  as?: string
+  class?: string
+  href?: string
+  size?: keyof typeof sizes
+}
+
+const sizes = {
+  'base': 'text-base',
+  'lg': 'text-lg variation-normal',
+  'xl': 'text-xl',
+  '2xl': 'text-2xl variation-light',
+  '3xl': 'text-3xl',
+  '4xl': 'text-4xl variation-light'
+}
+
+const { as: Tag = 'p', class: className, size = 'base', ...rest } = Astro.props as Props
+---
+
+<Tag class:list={[sizes[size], className]} {...rest}>
+  <slot />
+</Tag>

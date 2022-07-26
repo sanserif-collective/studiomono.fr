@@ -9,10 +9,17 @@
     "preview": "astro preview"
   },
   "devDependencies": {
+    "@astrojs/image": "^0.1.3",
     "@astrojs/tailwind": "^0.2.2",
     "@cloudinary/url-gen": "^1.8.0",
     "astro": "^1.0.0-beta.57",
+    "clsx": "^1.2.1",
     "env-var": "^7.1.1",
     "graphql-request": "^4.3.0"
+  },
+  "dependencies": {
+    "@ashthornton/asscroll": "^2.0.11",
+    "gsap": "^3.10.4",
+    "split-type": "^0.3.2"
   }
 }

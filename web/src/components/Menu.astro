@@ -1,0 +1,60 @@
+---
+import routes from 'utilities/routes'
+import clsx from 'clsx'
+import Marquee from './Marquee.astro'
+import Text from './Text.astro'
+
+const links = [
+  'Index',
+  'About',
+  'Contact'
+]
+---
+
+<navigation-menu class="grid place-content-center fixed bg-black text-gray inset-0">
+
+  <nav class="text-center max-w-xl">
+    {links.map((link, index) => (
+      <Text
+        as="a"
+        size="2xl"
+        class={clsx(
+          'transition-opacity block overflow-hidden',
+          routes[link.toLowerCase()] !== Astro.site.pathname && 'opacity-25 hover:opacity-50'
+        )}
+        href={routes[link.toLowerCase()]}
+      >
+        <Marquee
+          direction={index % 2 === 0 ? -100 : 100}
+          pauseOnHover={true}
+          class="justify-center"
+          data-nav-link
+        >
+          {[...new Array(10)].map(() => (
+            <div class="flex items-center whitespace-nowrap pl-4 before:mr-4 before:h-4 before:w-4 before:bg-current before:rounded-full">
+              {link}
+            </div>
+          ))}
+        </Marquee>
+      </Text>
+    ))}
+  </nav>
+
+  <div class="variation-normal absolute inset-x-custom-space bottom-custom-space flex space-x-4 justify-between sm:flex-col-reverse sm:items-center sm:space-x-0">
+    <Text class="overflow-y-hidden" size="base" as="small">
+      <div data-nav-small>Brussels, Belgium</div>
+    </Text>
+    <Text class="overflow-y-hidden" as="a">
+      <div data-nav-small>hello@sanserif.be</div>
+    </Text>
+    <Text class="overflow-y-hidden" as="a">
+      <div data-nav-small>+32 499 56 57 76</div>
+    </Text>
+  </div>
+
+</navigation-menu>
+
+<script>
+  import NavigationMenu from 'scripts/components/NavigationMenu'
+  window.customElements.define('navigation-menu', NavigationMenu)
+</script>

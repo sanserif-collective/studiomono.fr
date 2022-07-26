@@ -1,0 +1,76 @@
+---
+import Text from 'components/Text.astro'
+import Sprite from 'components/Sprite.astro'
+
+type Props = {
+  url: string
+  caption: string
+}
+
+const { url, caption } = Astro.props as Props
+---
+
+<next-link>
+  <a href={url} class="block">
+    <Text
+      as="strong"
+      size="4xl"
+      class={`
+        relative font-normal before:absolute before:left-1/2 before:top-1/2
+        before:-translate-x-1/2 before:-translate-y-1/2 before:border
+        before:h-[180%] before:w-[110%] before:rounded-[100%]
+        portrait:before:h-full portrait:before:w-full
+      `}
+    >
+      <div class="overflow-y-hidden grid">
+        <div class="row-start-1 col-start-1 portrait:p-custom-space" data-split>
+          <slot />
+        </div>
+        <div class="row-start-1 col-start-1" data-split>
+          <slot />
+        </div>
+      </div>
+    </Text>
+    <Text
+      as="small"
+      class="mt-8 transition-all duration-500 ease-in-out flex items-center portrait:justify-center">
+      {caption}
+      <Sprite id="arrow" class="h-4 w-4 ml-4" />
+    </Text>
+  </a>
+</next-link>
+
+<script>
+  import { gsap } from 'gsap/all'
+
+  class NextLink extends HTMLElement {
+    private topChars = this.querySelectorAll('[data-split]:first-of-type .char')
+    private bottomChars = this.querySelectorAll('[data-split]:last-of-type .char')
+
+    private timeline = gsap.timeline({ paused: true })
+      .to(this.topChars, {
+        stagger: 0.1,
+        rotateX: -90,
+        yPercent: -50,
+        duration: 0.75,
+        ease: 'power3.inOut'
+      })
+      .from(this.bottomChars, {
+        stagger: 0.1,
+        rotateX: 90,
+        yPercent: 50,
+        duration: 0.75,
+        ease: 'power3.inOut'
+      }, 0.125)
+
+    private onMouseEnter = () => this.timeline.play()
+    private onMouseLeave = () => this.timeline.reverse()
+
+    public connectedCallback() {
+      this.addEventListener('mouseenter', this.onMouseEnter)
+      this.addEventListener('mouseleave', this.onMouseLeave)
+    }
+  }
+
+  window.customElements.define('next-link', NextLink)
+</script>

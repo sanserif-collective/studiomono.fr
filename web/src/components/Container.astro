@@ -1,0 +1,24 @@
+---
+type Props = {
+  as?: string
+  class?: string
+  fullscreen?: boolean
+}
+
+const { as: Tag = 'section', class: className, fullscreen } = Astro.props as Props
+---
+
+<Tag
+  class:list={[
+    'h-screen flex-shrink-0 grid grid-rows-[var(--grid)]',
+    fullscreen ? `
+      grid-cols-[var(--grid)]
+    ` : `
+      px-custom-space portrait:px-0 portrait:py-custom-space
+      portrait:grid-cols-[var(--grid)] portrait:grid-rows-none portrait:h-auto
+    `,
+    className
+  ]}
+>
+  <slot />
+</Tag>
