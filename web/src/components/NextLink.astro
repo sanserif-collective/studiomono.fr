@@ -40,38 +40,3 @@ const { url, caption } = Astro.props as Props
     </Text>
   </a>
 </next-link>
-
-<script>
-  import { gsap } from 'gsap/all'
-
-  class NextLink extends HTMLElement {
-    private topChars = this.querySelectorAll('[data-split]:first-of-type .char')
-    private bottomChars = this.querySelectorAll('[data-split]:last-of-type .char')
-
-    private timeline = gsap.timeline({ paused: true })
-      .to(this.topChars, {
-        stagger: 0.1,
-        rotateX: -90,
-        yPercent: -50,
-        duration: 0.75,
-        ease: 'power3.inOut'
-      })
-      .from(this.bottomChars, {
-        stagger: 0.1,
-        rotateX: 90,
-        yPercent: 50,
-        duration: 0.75,
-        ease: 'power3.inOut'
-      }, 0.125)
-
-    private onMouseEnter = () => this.timeline.play()
-    private onMouseLeave = () => this.timeline.reverse()
-
-    public connectedCallback() {
-      this.addEventListener('mouseenter', this.onMouseEnter)
-      this.addEventListener('mouseleave', this.onMouseLeave)
-    }
-  }
-
-  window.customElements.define('next-link', NextLink)
-</script>

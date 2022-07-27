@@ -1,4 +1,5 @@
 import type ASScroll from '@ashthornton/asscroll'
+import type barba from '@barba/core'
 import type { Plugin as Portrait } from 'scripts/plugins/portrait'
 
 export namespace App {
@@ -16,6 +17,7 @@ export namespace App {
   export type Plugins = {
     scroll?: ASScroll
     portrait?: Portrait
+    barba?: typeof barba
   }
 
   export type Globals = {

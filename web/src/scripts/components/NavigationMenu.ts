@@ -1,4 +1,4 @@
-import gsap from 'gsap/all'
+import { gsap } from 'gsap/all'
 import type Marquee from './Marquee'
 
 export default class NavigationMenu extends HTMLElement {
