@@ -20,7 +20,7 @@ const links = [
         size="2xl"
         class={clsx(
           'transition-opacity block overflow-hidden',
-          routes[link.toLowerCase()] !== Astro.site.pathname && 'opacity-25 hover:opacity-50'
+          routes[link.toLowerCase()] !== Astro.url.pathname && 'opacity-25 hover:opacity-50'
         )}
         href={routes[link.toLowerCase()]}
       >
