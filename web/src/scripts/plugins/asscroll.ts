@@ -28,7 +28,8 @@ const asscroll: App.Plugin = {
       ease: 0.05,
       customScrollbar: false,
       limitLerpRate: false,
-      touchScrollType: 'transform'
+      touchScrollType: 'transform',
+      scrollElements: '[asscroll-element]'
     })
 
     const refresh = (isPortrait: boolean) => {
@@ -82,6 +83,14 @@ const asscroll: App.Plugin = {
     app.plugins.portrait.events.add(({ matches }) => refresh(matches))
 
     app.plugins.scroll = scroll
+
+    app.plugins.barba.hooks.before(() => scroll.disable())
+    app.plugins.barba.hooks.after(({ next }) => {
+      scroll.enable({
+        newScrollElements: next.container,
+        horizontalScroll: true
+      })
+    })
   }
 }
 

@@ -25,14 +25,15 @@ const { meta } = Astro.props as Props
   </head>
 
   <body class="antialiased [text-rendering:optimizeLegibility] text-black bg-gray font-body uppercase variation-medium text-base">
-    <Header />
-    <div asscroll-container>
-      <div class="flex portrait:flex-col">
+    <div asscroll-container data-barba="wrapper">
+      <Header />
+      <div asscroll-element data-barba="container" data-barba-namespace="base" class="flex portrait:flex-col">
         <main class="flex-shrink-0 flex portrait:flex-col">
           <slot />
         </main>
         <Footer />
       </div>
+      <progress-bar class="origin-left fixed h-2 bg-black inset-x-0 bottom-0" style="transform: scaleX(0)"></progress-bar>
     </div>
   </body>
 
@@ -42,8 +43,14 @@ const { meta } = Astro.props as Props
   import createApp from 'scripts/app'
   import asscroll from 'scripts/plugins/asscroll'
   import portrait from 'scripts/plugins/portrait'
-  import splitType from 'scripts/plugins/split-type'
+  import barba from 'scripts/plugins/barba'
   import { gsap, ScrollTrigger } from 'gsap/all'
+  import NavigationMenu from 'scripts/components/NavigationMenu'
+  import MenuButton from 'scripts/components/MenuButton'
+  import NextLink from 'scripts/components/NextLink'
+  import SkewWrapper from 'scripts/components/SkewWrapper'
+  import Marquee from 'scripts/components/Marquee'
+  import ProgressBar from 'scripts/components/ProgressBar'
 
   const app = createApp()
 
@@ -51,7 +58,14 @@ const { meta } = Astro.props as Props
   gsap.registerPlugin(ScrollTrigger)
 
   // App plugins
+  app.use(barba)
   app.use(portrait)
   app.use(asscroll)
-  app.use(splitType)
+
+  window.customElements.define('menu-button', MenuButton)
+  window.customElements.define('navigation-menu', NavigationMenu)
+  window.customElements.define('next-link', NextLink)
+  window.customElements.define('skew-wrapper', SkewWrapper)
+  window.customElements.define('marquee-carousel', Marquee)
+  window.customElements.define('progress-bar', ProgressBar)
 </script>
