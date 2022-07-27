@@ -51,6 +51,7 @@ const { meta } = Astro.props as Props
   import SkewWrapper from 'scripts/components/SkewWrapper'
   import Marquee from 'scripts/components/Marquee'
   import ProgressBar from 'scripts/components/ProgressBar'
+  import ParallaxWrapper from 'scripts/components/ParallaxWrapper'
 
   const app = createApp()
 
@@ -68,4 +69,5 @@ const { meta } = Astro.props as Props
   window.customElements.define('skew-wrapper', SkewWrapper)
   window.customElements.define('marquee-carousel', Marquee)
   window.customElements.define('progress-bar', ProgressBar)
+  window.customElements.define('parallax-wrapper', ParallaxWrapper)
 </script>

@@ -97,7 +97,7 @@ module.exports = {
     plugin(({ addBase, addVariant, matchUtilities, theme }) => {
       addBase({
         ':root': {
-          '--custom-space': '6.099vw',
+          '--custom-space': 'min(6.099vw, 5rem)',
           '--grid': 'var(--custom-space) repeat(10, 1fr) var(--custom-space)'
         },
         'html': {

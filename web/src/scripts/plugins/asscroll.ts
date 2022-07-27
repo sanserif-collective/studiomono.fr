@@ -25,7 +25,7 @@ const asscroll: App.Plugin = {
   install(app) {
     const scroll = new ASScroll({
       disableRaf: true,
-      ease: 0.05,
+      ease: 0.025,
       customScrollbar: false,
       limitLerpRate: false,
       touchScrollType: 'transform',

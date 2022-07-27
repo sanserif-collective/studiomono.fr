@@ -12,9 +12,11 @@ const { slug, name, class: className } = Astro.props as Props
 ---
 
 <article class={className}>
-  <a href={`${routes.projects}/${slug}`} aria-label={name}>
-    <SkewWrapper>
-      <slot />
-   </SkewWrapper>
-  </a>
+  <parallax-wrapper>
+    <a href={`${routes.projects}/${slug}`} aria-label={name}>
+      <SkewWrapper>
+        <slot />
+     </SkewWrapper>
+    </a>
+  </parallax-wrapper>
 </article>

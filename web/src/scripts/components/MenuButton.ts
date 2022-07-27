@@ -21,7 +21,7 @@ export default class MenuButton extends HTMLElement {
     ScrollTrigger.matchMedia({
       '(orientation: landscape)': () => {
         const offset = gsap.to(this, {
-          x: `${-gsap.getProperty(document.documentElement, '--custom-space')}vw`,
+          x: -document.querySelector<HTMLElement>('[data-footer]').offsetWidth,
           paused: true
         })
 
