@@ -38,9 +38,9 @@ module.exports = {
         letterSpacing: '-0.07em',
         lineHeight: '1.2'
       }],
-      '3xl': ['12rem', {
+      '3xl': ['10.4vw', {
         letterSpacing: '-0.07em',
-        lineHeight: '1.13'
+        lineHeight: '0.9'
       }],
       '4xl': ['15.625vw', {
         letterSpacing: '-0.07em',

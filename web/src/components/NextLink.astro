@@ -15,26 +15,22 @@ const { url, caption } = Astro.props as Props
   <a href={url} class="block">
     <Text
       as="strong"
-      size="4xl"
-      class={clsx(
-        'relative font-normal before:absolute before:left-1/2 before:top-1/2',
-        'before:-translate-x-1/2 before:-translate-y-1/2 before:border',
-        'before:h-[180%] before:w-[110%] before:rounded-[100%]',
-        'portrait:before:h-full portrait:before:w-full'
-      )}
+      size="3xl"
+      class="relative font-normal"
     >
-      <div class="overflow-y-hidden grid">
-        <div class="row-start-1 col-start-1 portrait:p-custom-space" data-split>
+      <div class="overflow-hidden grid">
+        <skew-wrapper class="row-start-1 col-start-1 portrait:p-custom-space" data-split>
           <slot />
-        </div>
-        <div class="row-start-1 col-start-1" data-split>
+        </skew-wrapper>
+        <skew-wrapper class="row-start-1 col-start-1" data-split>
           <slot />
-        </div>
+        </skew-wrapper>
       </div>
     </Text>
     <Text
       as="small"
-      class="mt-8 transition-all duration-500 ease-in-out flex items-center portrait:justify-center">
+      class="mt-8 transition-all duration-500 ease-in-out flex items-center justify-center"
+    >
       {caption}
       <Sprite id="arrow" class="h-4 w-4 ml-4" />
     </Text>
