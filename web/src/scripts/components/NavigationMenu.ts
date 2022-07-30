@@ -1,4 +1,5 @@
 import { gsap } from 'gsap/all'
+import { app } from 'scripts/app'
 import type Marquee from './Marquee'
 
 export default class NavigationMenu extends HTMLElement {
@@ -6,7 +7,7 @@ export default class NavigationMenu extends HTMLElement {
   private smalls = this.querySelectorAll('[data-nav-small]')
   private setAccent = gsap.quickSetter(document.body, '--header-color')
 
-  private timeline = gsap.timeline({ paused: true })
+  public timeline = gsap.timeline({ paused: true })
     .from(this, {
       yPercent: 100,
       duration: 2,
@@ -35,4 +36,8 @@ export default class NavigationMenu extends HTMLElement {
 
   public open = () => this.timeline.play()
   public close = () => this.timeline.reverse()
+
+  public connectedCallback() {
+    app.refs.menu = this
+  }
 }

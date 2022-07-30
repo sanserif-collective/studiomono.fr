@@ -3,7 +3,8 @@ import type { App } from 'scripts/app/types'
 export const app: App.Core = {
   use: (plugin) => plugin.install(app),
   plugins: {},
-  globals: {}
+  globals: {},
+  refs: {}
 }
 
 const start = (

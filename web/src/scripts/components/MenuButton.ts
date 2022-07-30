@@ -1,18 +1,15 @@
 import { gsap, ScrollTrigger } from 'gsap/all'
 import { app } from 'scripts/app'
-import type NavigationMenu from 'scripts/components/NavigationMenu'
-
-const menu = document.querySelector<NavigationMenu>('navigation-menu')
 
 export default class MenuButton extends HTMLElement {
   private open() {
     this.setAttribute('open', '')
-    menu.open()
+    app.refs.menu.open()
   }
 
   private close() {
     this.removeAttribute('open')
-    menu.close()
+    app.refs.menu.close()
   }
 
   private onClick = () => this.hasAttribute('open') ? this.close() : this.open()
@@ -20,17 +17,15 @@ export default class MenuButton extends HTMLElement {
   public connectedCallback() {
     ScrollTrigger.matchMedia({
       '(orientation: landscape)': () => {
-        const offset = gsap.to(this, {
+        gsap.to(this, {
           x: -document.querySelector<HTMLElement>('[data-footer]').offsetWidth,
-          paused: true
-        })
-
-        ScrollTrigger.create({
-          trigger: document.querySelector('[data-footer]'),
-          animation: offset,
-          scrub: 1,
-          start: 'left right',
-          end: 'right right'
+          paused: true,
+          scrollTrigger: {
+            trigger: document.querySelector('[data-footer]'),
+            scrub: 1,
+            start: 'left right',
+            end: 'right right'
+          }
         })
       }
     })
