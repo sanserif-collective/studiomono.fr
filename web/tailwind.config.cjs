@@ -46,7 +46,7 @@ module.exports = {
         letterSpacing: '-0.07em',
         lineHeight: '0.9'
       }],
-      '5xl': ['40rem', {
+      '5xl': ['50vh', {
         letterSpacing: '-0.07em',
         lineHeight: '1'
       }]
