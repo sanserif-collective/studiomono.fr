@@ -21,16 +21,49 @@ const velocity = () => {
   }
 }
 
+const proxyScroll = (scroll: ASScroll) => {
+  ScrollTrigger.defaults({
+    horizontal: true,
+    scroller: scroll.containerElement
+  })
+
+  ScrollTrigger.scrollerProxy(scroll.containerElement, {
+    scrollTop(value = 0) {
+      return (arguments.length && scroll)
+        ? scroll.currentPos = value
+        : scroll.currentPos
+    },
+    scrollLeft(value = 0) {
+      return (arguments.length && scroll)
+        ? scroll.currentPos = value
+        : scroll.currentPos
+    },
+    getBoundingClientRect() {
+      return {
+        top: 0,
+        left: 0,
+        width: window.innerWidth,
+        height: window.innerHeight
+      }
+    },
+    pinType: 'transform'
+  })
+
+  scroll.on('update', ScrollTrigger.update)
+  ScrollTrigger.addEventListener('refresh', scroll.resize)
+}
+
 const asscroll: App.Plugin = {
   install(app) {
     const scroll = new ASScroll({
       disableRaf: true,
-      ease: 0.025,
       customScrollbar: false,
       limitLerpRate: false,
       touchScrollType: 'transform',
       scrollElements: '[asscroll-element]'
     })
+
+    proxyScroll(scroll)
 
     const refresh = (isPortrait: boolean) => {
       if (isPortrait) {
@@ -49,48 +82,21 @@ const asscroll: App.Plugin = {
       app.globals.scrollVelocity = getVelocity(scroll)
     })
 
-    ScrollTrigger.defaults({
-      horizontal: true,
-      scroller: scroll.containerElement
-    })
-
-    ScrollTrigger.scrollerProxy(scroll.containerElement, {
-      scrollTop(value = 0) {
-        return (arguments.length && scroll)
-          ? scroll.currentPos = value
-          : scroll.currentPos
-      },
-      scrollLeft(value = 0) {
-        return (arguments.length && scroll)
-          ? scroll.currentPos = value
-          : scroll.currentPos
-      },
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight
-        }
-      },
-      pinType: 'transform'
-    })
-
-    scroll.on('update', ScrollTrigger.update)
-    ScrollTrigger.addEventListener('refresh', scroll.resize)
-
     refresh(app.plugins.portrait.media.matches)
     app.plugins.portrait.events.add(({ matches }) => refresh(matches))
 
-    app.plugins.scroll = scroll
-
-    app.plugins.barba.hooks.before(() => scroll.disable())
+    app.plugins.barba.hooks.before(() => scroll.disable({ inputOnly: true }))
     app.plugins.barba.hooks.after(({ next }) => {
+      scroll.currentPos = 0
       scroll.enable({
         newScrollElements: next.container,
         horizontalScroll: true
       })
+
+      ScrollTrigger.refresh(true)
     })
+
+    app.plugins.scroll = scroll
   }
 }
 
