@@ -7,14 +7,14 @@ export default class NavigationMenu extends HTMLElement {
   private smalls = this.querySelectorAll('[data-nav-small]')
   private setAccent = gsap.quickSetter(document.body, '--header-color')
 
-  public timeline = gsap.timeline({ paused: true })
+  public toggle = gsap.timeline({ paused: true })
     .from(this, {
       yPercent: 100,
       duration: 2,
       ease: 'power4.inOut'
     })
     .add(() => {
-      if (this.timeline.reversed()) {
+      if (this.toggle.reversed()) {
         this.setAccent('#151515')
         return this.links.forEach(link => link.pause())
       }
@@ -34,8 +34,14 @@ export default class NavigationMenu extends HTMLElement {
       ease: 'power3.out'
     }, '-=0.1')
 
-  public open = () => this.timeline.play()
-  public close = () => this.timeline.reverse()
+  public open = () => {
+    this.toggle.play()
+    this.setAttribute('open', '')
+  }
+  public close = async () => {
+    await this.toggle.reverse().then()
+    this.removeAttribute('open')
+  }
 
   public connectedCallback() {
     app.refs.menu = this
