@@ -3,7 +3,7 @@ import getHome from 'src/queries/getHome'
 import BaseLayout from 'layouts/BaseLayout.astro'
 import Header from 'sections/home/Header.astro'
 import Projects from 'sections/home/Projects.astro'
-import Footer from 'sections/home/Footer.astro'
+import NextLink from 'components/NextLink.astro'
 
 const { home } = await getHome()
 ---
@@ -14,5 +14,10 @@ const { home } = await getHome()
     text={home.data.attributes.header.text}
     projects={home.data.attributes.projects}
   />
-  <Footer next={home.data.attributes.next} />
+  <NextLink
+    url={home.data.attributes.next.link.url}
+    caption={home.data.attributes.next.caption}
+  >
+    {home.data.attributes.next.link.name}
+  </NextLink>
 </BaseLayout>
