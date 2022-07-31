@@ -4,16 +4,21 @@ import { app } from 'scripts/app'
 const mapper = gsap.utils.mapRange(-10, 10, -20, 20)
 
 export default class SkewWrapper extends HTMLElement {
-  private skewXSet = gsap.quickTo(this, 'skewX')
+  private skewXSet = gsap.quickSetter(this, 'skewX', 'deg')
   private skew = () => this.skewXSet(mapper(app.globals.scrollVelocity))
 
-  public connectedCallback() {
-    ScrollTrigger.create({
-      trigger: this,
-      onEnter: () => gsap.ticker.add(this.skew),
-      onEnterBack: () => gsap.ticker.add(this.skew),
-      onLeave: () => gsap.ticker.remove(this.skew),
-      onLeaveBack: () => gsap.ticker.remove(this.skew)
-    })
+  private trigger = ScrollTrigger.create({
+    trigger: this,
+    onToggle: ({ isActive }) => {
+      if (isActive) return gsap.ticker.add(this.skew)
+
+      this.skewXSet(0)
+      gsap.ticker.remove(this.skew)
+    }
+  })
+
+  public disconnectedCallback() {
+    this.trigger.kill()
+    gsap.ticker.remove(this.skew)
   }
 }

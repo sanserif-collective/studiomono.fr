@@ -1,8 +1,10 @@
 import { gsap } from 'gsap/all'
 
 export default class ParallaxWrapper extends HTMLElement {
+  private parallax: gsap.core.Tween
+
   public connectedCallback() {
-    gsap.from(this, {
+    this.parallax = gsap.from(this, {
       xPercent: this.offsetWidth > this.offsetHeight ? 50 : 100,
       duration: 5,
       scrollTrigger: {
@@ -12,5 +14,9 @@ export default class ParallaxWrapper extends HTMLElement {
         end: 'right left'
       }
     })
+  }
+
+  public disconnectedCallback() {
+    this.parallax.kill()
   }
 }

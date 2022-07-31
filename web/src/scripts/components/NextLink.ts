@@ -5,7 +5,7 @@ export default class NextLink extends HTMLElement {
   private topChars = new SplitType(this.querySelectorAll('[data-split]:first-of-type'))
   private bottomChars = new SplitType(this.querySelectorAll('[data-split]:last-of-type'))
 
-  private timeline = gsap.timeline({ paused: true })
+  private rotate = gsap.timeline({ paused: true })
     .to(this.topChars.chars, {
       stagger: 0.1,
       rotateX: -90,
@@ -21,11 +21,15 @@ export default class NextLink extends HTMLElement {
       ease: 'power3.inOut'
     }, 0.125)
 
-  private onMouseEnter = () => this.timeline.play()
-  private onMouseLeave = () => this.timeline.reverse()
+  private onMouseEnter = () => this.rotate.play()
+  private onMouseLeave = () => this.rotate.reverse()
 
   public connectedCallback() {
     this.addEventListener('mouseenter', this.onMouseEnter)
     this.addEventListener('mouseleave', this.onMouseLeave)
+  }
+
+  public disconnectedCallback() {
+    this.rotate.kill()
   }
 }
