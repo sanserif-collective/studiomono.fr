@@ -1,7 +1,6 @@
 ---
 import Text from 'components/Text.astro'
 import Sprite from 'components/Sprite.astro'
-import clsx from 'clsx'
 
 type Props = {
   url: string
@@ -11,28 +10,32 @@ type Props = {
 const { url, caption } = Astro.props as Props
 ---
 
-<next-link>
-  <a href={url} class="block">
-    <Text
-      as="strong"
-      size="3xl"
-      class="relative font-normal"
-    >
-      <div class="overflow-hidden grid">
-        <skew-wrapper class="row-start-1 col-start-1 portrait:p-custom-space" data-split>
-          <slot />
-        </skew-wrapper>
-        <skew-wrapper class="row-start-1 col-start-1" data-split>
-          <slot />
-        </skew-wrapper>
-      </div>
-    </Text>
-    <Text
-      as="small"
-      class="mt-8 transition-all duration-500 ease-in-out flex items-center justify-center"
-    >
-      {caption}
-      <Sprite id="arrow" class="h-4 w-4 ml-4" />
-    </Text>
-  </a>
-</next-link>
+<footer class="grid place-content-center w-[calc(100vw_-_var(--custom-space))] portrait:w-auto">
+  <div class="grid place-content-center mt-14 portrait:py-[10vh]">
+    <next-link>
+      <a href={url} class="block">
+        <Text
+          as="strong"
+          size="3xl"
+          class="relative font-normal"
+        >
+          <div class="overflow-hidden grid text-center">
+            <skew-wrapper class="row-start-1 col-start-1 max-w-[6em] portrait:p-custom-space" data-split>
+              <slot />
+            </skew-wrapper>
+            <skew-wrapper class="row-start-1 col-start-1 max-w-[6em]" data-split>
+              <slot />
+            </skew-wrapper>
+          </div>
+        </Text>
+        <Text
+          as="small"
+          class="mt-8 transition-all duration-500 ease-in-out flex items-center justify-center"
+        >
+          {caption}
+          <Sprite id="arrow" class="h-4 w-4 ml-4" />
+        </Text>
+      </a>
+    </next-link>
+  </div>
+</footer>
