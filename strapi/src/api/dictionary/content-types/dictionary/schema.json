@@ -12,11 +12,18 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "entries": {
-      "displayName": "Entry",
-      "type": "component",
-      "repeatable": true,
-      "component": "dictionary.entry"
+    "rights": {
+      "type": "string",
+      "unique": false,
+      "required": true
+    },
+    "next": {
+      "type": "string",
+      "required": true
+    },
+    "website": {
+      "type": "string",
+      "required": true
     }
   }
 }
