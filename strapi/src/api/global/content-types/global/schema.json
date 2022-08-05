@@ -18,6 +18,11 @@
       "repeatable": false,
       "component": "global.informations"
     },
+    "menu": {
+      "type": "component",
+      "repeatable": false,
+      "component": "global.menu"
+    },
     "favicon": {
       "type": "component",
       "repeatable": false,
