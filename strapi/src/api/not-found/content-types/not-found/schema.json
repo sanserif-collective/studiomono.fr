@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "not_founds",
+  "info": {
+    "singularName": "not-found",
+    "pluralName": "not-founds",
+    "displayName": "Page - 404",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    }
+  }
+}
