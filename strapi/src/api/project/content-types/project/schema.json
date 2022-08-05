@@ -12,6 +12,32 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "required": true
+    },
+    "color": {
+      "type": "string",
+      "required": true
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
     "header": {
       "displayName": "Header",
       "type": "component",
@@ -37,31 +63,10 @@
       ],
       "required": true
     },
-    "slug": {
-      "type": "uid",
-      "required": true
-    },
-    "cover": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "services": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::service.service"
-    },
-    "color": {
-      "type": "string",
-      "required": true
-    },
-    "name": {
-      "type": "string",
-      "required": true,
-      "unique": true
+    "meta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo-meta"
     }
   }
 }
