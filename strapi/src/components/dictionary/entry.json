@@ -2,19 +2,8 @@
   "collectionName": "components_dictionary_entries",
   "info": {
     "displayName": "Entry",
-    "icon": "align-justify",
-    "description": ""
+    "icon": "align-justify"
   },
   "options": {},
-  "attributes": {
-    "token": {
-      "type": "string",
-      "unique": true,
-      "required": true
-    },
-    "translation": {
-      "type": "string",
-      "required": true
-    }
-  }
+  "attributes": {}
 }

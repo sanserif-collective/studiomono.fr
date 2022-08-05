@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_global_menus",
+  "info": {
+    "displayName": "Menu",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.internal-link"
+    }
+  }
+}
