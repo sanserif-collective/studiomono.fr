@@ -2,9 +2,12 @@ import type { Cloudinary } from 'types/cloudinary'
 
 export namespace Strapi {
   export type Attributes <Attr> = { attributes: Attr }
-  export type Data <Attr> = { data: Attributes<Attr> }
+  export type Data <Data> = { data: Data }
 
-  export type Image = Data<{
-    provider_metadata: Cloudinary.Metadata
-  }>
+  export type Image = Data<
+    Attributes<{
+      alternativeText?: string
+      provider_metadata: Cloudinary.Metadata
+    }>
+  >
 }

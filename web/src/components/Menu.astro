@@ -3,26 +3,20 @@ import routes from 'utilities/routes'
 import clsx from 'clsx'
 import Marquee from './Marquee.astro'
 import Text from './Text.astro'
-
-const links = [
-  'Index',
-  'About',
-  'Contact'
-]
 ---
 
 <navigation-menu class="grid place-content-center fixed bg-black text-gray inset-0">
 
   <nav class="text-center max-w-xl">
-    {links.map((link, index) => (
+    {global.strapi.menu.link.map((link, index) => (
       <Text
         as="a"
         size="2xl"
         class={clsx(
           'transition-opacity block overflow-hidden',
-          routes[link.toLowerCase()] !== Astro.url.pathname && 'opacity-25 hover:opacity-50'
+          routes[link.url] !== Astro.url.pathname && 'opacity-25 hover:opacity-50'
         )}
-        href={routes[link.toLowerCase()]}
+        href={routes[link.url]}
       >
         <Marquee
           direction={index % 2 === 0 ? -100 : 100}
@@ -32,7 +26,7 @@ const links = [
         >
           {[...new Array(10)].map(() => (
             <div class="flex items-center whitespace-nowrap pl-4 before:mr-4 before:h-4 before:w-4 before:bg-current before:rounded-full">
-              {link}
+              {link.name}
             </div>
           ))}
         </Marquee>
@@ -40,15 +34,20 @@ const links = [
     ))}
   </nav>
 
-  <div class="variation-normal absolute inset-x-custom-space bottom-custom-space flex space-x-4 justify-between sm:flex-col-reverse sm:items-center sm:space-x-0">
+  <div class="variation-normal absolute inset-x-custom-space bottom-custom-space flex space-x-4 items-end justify-between sm:flex-col-reverse sm:items-center sm:space-x-0">
     <Text class="overflow-y-hidden" size="base" as="small">
-      <div data-nav-small>Brussels, Belgium</div>
+      <div data-nav-small>{global.strapi.informations.location}</div>
     </Text>
+    <div class="text-center">
+      <div class="overflow-y-hidden">
+        <a data-nav-small class="block" href={`mailto:${global.strapi.informations.email}`}>{global.strapi.informations.email}</a>
+      </div>
+      <div class="overflow-y-hidden">
+        <a data-nav-small class="block" href={global.strapi.informations.phone}>{global.strapi.informations.phone}</a>
+      </div>
+    </div>
     <Text class="overflow-y-hidden" as="a">
-      <div data-nav-small>hello@sanserif.be</div>
-    </Text>
-    <Text class="overflow-y-hidden" as="a">
-      <div data-nav-small>+32 499 56 57 76</div>
+      <div data-nav-small>{global.strapi.dictionary.rights}</div>
     </Text>
   </div>
 

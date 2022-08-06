@@ -24,18 +24,18 @@ export namespace Home {
   }
 
   export type ComponentHomeOneProject = ProjectSet & {
-    project: Strapi.Data<Project>
+    project: Strapi.Data<Strapi.Attributes<Project>>
   }
 
   export type ComponentHomeTwoProjects = ProjectSet & {
-    project1: Strapi.Data<Project>
-    project2: Strapi.Data<Project>
+    project1: Strapi.Data<Strapi.Attributes<Project>>
+    project2: Strapi.Data<Strapi.Attributes<Project>>
   }
 
   export type ComponentHomeThreeProjects = ProjectSet & {
-    project1: Strapi.Data<Project>
-    project2: Strapi.Data<Project>
-    project3: Strapi.Data<Project>
+    project1: Strapi.Data<Strapi.Attributes<Project>>
+    project2: Strapi.Data<Strapi.Attributes<Project>>
+    project3: Strapi.Data<Strapi.Attributes<Project>>
   }
 
   export type Components = {
@@ -46,6 +46,6 @@ export namespace Home {
   }
 
   export type Response = {
-    home: Strapi.Data<Components>
+    home: Strapi.Data<Strapi.Attributes<Components>>
   }
 }

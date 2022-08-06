@@ -8,6 +8,7 @@ module.exports = {
   },
   theme: {
     screens: {
+      'xl': { 'max': '1600px' },
       'md': { 'max': '1024px' },
       'sm': { 'max': '768px' },
       'portrait': { 'raw': '(orientation: portrait)' },
@@ -38,7 +39,7 @@ module.exports = {
         letterSpacing: '-0.07em',
         lineHeight: '1.2'
       }],
-      '3xl': ['10.4vw', {
+      '3xl': ['16.75vmin', {
         letterSpacing: '-0.07em',
         lineHeight: '0.9'
       }],

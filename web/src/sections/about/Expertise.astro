@@ -1,0 +1,42 @@
+---
+import Container from 'components/Container.astro'
+import Text from 'components/Text.astro'
+import SkewWrapper from 'components/SkewWrapper.astro'
+import type { Shared } from 'types/shared'
+
+type Props = {
+  title: string
+  services: Shared.Service[]
+}
+
+const { title, services } = Astro.props as Props
+---
+
+<Container class="ml-20 gap-x-40 portrait:ml-0 portrait:gap-x-0 portrait:children:row-auto portrait:children:col-start-2 portrait:children:col-end-12 portrait:mt-40">
+
+  <div class="row-start-8 flex items-end">
+    <Text size="xl" as="h2">{title}</Text>
+  </div>
+
+  <div class="relative flex items-end row-start-2 row-end-9 portrait:mt-48">
+    <div class="flex space-x-40 portrait:flex-col portrait:space-x-0 portrait:w-full portrait:space-y-72">
+      {services.map(({ attributes }) => (
+        <div class="relative">
+          <SkewWrapper>
+            <Text size="5xl" as="h3" class="translate-x-[-5vh] translate-y-[0.125em] portrait:translate-x-0 portrait:translate-y-0 portrait:text-4xl">
+              {attributes.name}
+            </Text>
+          </SkewWrapper>
+          <sticky-services class="absolute top-full mt-8 portrait:text-right portrait:relative">
+            <div>
+              {attributes.subservices.map(({ name }) => (
+                <h4>{name}</h4>
+              ))}
+            </div>
+          </sticky-services>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</Container>

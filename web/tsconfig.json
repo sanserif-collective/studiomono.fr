@@ -17,6 +17,7 @@
       "components/*": ["src/components/*"],
       "sections/*": ["src/sections/*"],
       "types/*": ["src/types/*"],
+      "queries/*": ["src/queries/*"],
       "scripts/*": ["src/scripts/*"],
       "utilities/*": ["src/utilities/*"],
       "env": ["src/env"],

@@ -17,7 +17,6 @@ const { meta } = Astro.props as Props
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>{meta.title}</title>
     <link rel="canonical" href={Astro.site} />
     <link rel="preconnect" href="https://res.cloudinary.com" />
     <slot name="preload" />
@@ -48,6 +47,7 @@ const { meta } = Astro.props as Props
   import asscroll from 'scripts/plugins/asscroll'
   import portrait from 'scripts/plugins/portrait'
   import barba from 'scripts/plugins/barba'
+  import { refs } from 'scripts/plugins/refs'
   import { gsap, ScrollTrigger } from 'gsap/all'
   import NavigationMenu from 'scripts/components/NavigationMenu'
   import MenuButton from 'scripts/components/MenuButton'
@@ -57,6 +57,7 @@ const { meta } = Astro.props as Props
   import ProgressBar from 'scripts/components/ProgressBar'
   import ParallaxWrapper from 'scripts/components/ParallaxWrapper'
   import StickyServices from 'scripts/components/StickyServices'
+  import { Team } from 'scripts/components/Team'
 
   const app = createApp()
 
@@ -67,6 +68,7 @@ const { meta } = Astro.props as Props
   app.use(barba)
   app.use(portrait)
   app.use(asscroll)
+  app.use(refs)
 
   window.customElements.define('menu-button', MenuButton)
   window.customElements.define('navigation-menu', NavigationMenu)
@@ -76,4 +78,5 @@ const { meta } = Astro.props as Props
   window.customElements.define('progress-bar', ProgressBar)
   window.customElements.define('parallax-wrapper', ParallaxWrapper)
   window.customElements.define('sticky-services', StickyServices)
+  window.customElements.define('sanserif-team', Team)
 </script>

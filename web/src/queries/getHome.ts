@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
-import strapi from 'strapi'
-import type { Home } from 'types/pages/home'
+import { strapi } from 'strapi'
+import type { Home } from 'types/routes/home'
 
 export default () => strapi.request<Home.Response>(
   gql`

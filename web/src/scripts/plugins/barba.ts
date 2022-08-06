@@ -30,7 +30,9 @@ const barba: App.Plugin = {
 
           await this.transition.then()
 
-          this.transition = gsap.timeline()
+          gsap.timeline({
+            onComplete: () => ScrollTrigger.refresh(true)
+          })
             .fromTo(this.translater, {
               x: -window.innerWidth / 2,
             }, {
@@ -44,7 +46,6 @@ const barba: App.Plugin = {
               ease: 'power3.out',
               duration: 1
             }, 0)
-            .add(() => ScrollTrigger.refresh(true), 0.5)
         }
       }]
     })

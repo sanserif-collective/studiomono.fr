@@ -58,21 +58,22 @@ const asscroll: App.Plugin = {
     const scroll = new ASScroll({
       disableRaf: true,
       customScrollbar: false,
-      limitLerpRate: false,
       touchScrollType: 'transform',
       scrollElements: '[asscroll-element]'
     })
 
     proxyScroll(scroll)
 
-    const refresh = (isPortrait: boolean) => {
+    const refresh = (isPortrait: boolean, elements?: HTMLElement) => {
       if (isPortrait) {
         scroll.disable()
-        return scroll.enable()
+        scroll.enable({ newScrollElements: elements })
+        return ScrollTrigger.refresh(true)
       }
 
       scroll.disable()
-      scroll.enable({ horizontalScroll: true })
+      scroll.enable({ horizontalScroll: true, newScrollElements: elements })
+      ScrollTrigger.refresh(true)
     }
 
     const getVelocity = velocity()
@@ -88,11 +89,7 @@ const asscroll: App.Plugin = {
     app.plugins.barba.hooks.before(() => scroll.disable({ inputOnly: true }))
     app.plugins.barba.hooks.after(({ next }) => {
       scroll.currentPos = 0
-      scroll.enable({
-        newScrollElements: next.container,
-        horizontalScroll: true
-      })
-
+      refresh(app.plugins.portrait.media.matches, next.container)
       ScrollTrigger.refresh(true)
     })
 

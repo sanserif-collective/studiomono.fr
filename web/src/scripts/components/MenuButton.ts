@@ -2,6 +2,8 @@ import { gsap, ScrollTrigger } from 'gsap/all'
 import { app } from 'scripts/app'
 
 export default class MenuButton extends HTMLElement {
+  private translateTween: gsap.core.Tween
+
   private open() {
     this.setAttribute('open', '')
     app.refs.menu.open()
@@ -17,8 +19,8 @@ export default class MenuButton extends HTMLElement {
   public connectedCallback() {
     ScrollTrigger.matchMedia({
       '(orientation: landscape)': () => {
-        gsap.to(this, {
-          x: -document.querySelector<HTMLElement>('[data-footer]').offsetWidth,
+        this.translateTween = gsap.to(this, {
+          x: -app.refs.footer.offsetWidth,
           paused: true,
           scrollTrigger: {
             trigger: document.querySelector('[data-footer]'),
@@ -31,6 +33,10 @@ export default class MenuButton extends HTMLElement {
     })
 
     this.addEventListener('click', this.onClick)
-    app.plugins.barba.hooks.before(() => this.close())
+    app.plugins.barba.hooks.before(() => { this.close() })
+  }
+
+  public disconnectedCallback() {
+    this.translateTween.kill()
   }
 }

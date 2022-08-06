@@ -7,6 +7,7 @@ type Props = {
   alt?: string
   class?: string
   fit?: keyof typeof fits
+  [x: string]: unknown
 }
 
 const fits = {
@@ -21,11 +22,12 @@ const {
   height,
   fit = 'cover',
   as: Tag = 'div',
-  class: className
+  class: className,
+  ...rest
 } = Astro.props as Props
 ---
 
-<Tag class:list={['relative', className]}>
+<Tag class:list={['relative', className]} {...rest}>
   <svg viewBox={`0 0 ${width} ${height}`}></svg>
   <img
     src={src}

@@ -1,8 +1,30 @@
 ---
 import BaseLayout from 'layouts/BaseLayout.astro'
+import NextLink from 'components/NextLink.astro'
+import Expertise from 'sections/about/Expertise.astro'
+import Header from 'sections/about/Header.astro'
+import Team from 'sections/about/Team.astro'
+import { getAbout } from 'queries/getAbout'
+import routes from 'utilities/routes'
 
+const { about, services, members } = await getAbout()
 ---
 
 <BaseLayout meta={{title:'test', description: ''}}>
-  hello
+  <Header content={about.data.attributes.header} />
+  <Expertise
+    title={about.data.attributes.services.title}
+    services={services.data}
+  />
+  <Team
+    title={about.data.attributes.team.title}
+    subtitle={about.data.attributes.team.subtitle}
+    members={members.data}
+  />
+  <NextLink
+    url={routes[about.data.attributes.next.link.url]}
+    caption={about.data.attributes.next.caption}
+  >
+    {about.data.attributes.next.link.name}
+  </NextLink>
 </BaseLayout>
