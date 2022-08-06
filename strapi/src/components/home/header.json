@@ -2,7 +2,8 @@
   "collectionName": "components_home_headers",
   "info": {
     "displayName": "Header",
-    "icon": "align-justify"
+    "icon": "align-justify",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -15,7 +16,7 @@
       "required": true
     },
     "text": {
-      "type": "string",
+      "type": "text",
       "required": true
     }
   }
