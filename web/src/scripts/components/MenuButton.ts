@@ -20,7 +20,7 @@ export default class MenuButton extends HTMLElement {
     ScrollTrigger.matchMedia({
       '(orientation: landscape)': () => {
         this.translateTween = gsap.to(this, {
-          x: -app.refs.footer.offsetWidth,
+          x: -app.refs.footer?.offsetWidth,
           paused: true,
           scrollTrigger: {
             trigger: document.querySelector('[data-footer]'),

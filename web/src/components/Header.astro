@@ -1,7 +1,6 @@
 ---
 import routes from 'utilities/routes'
 import Sprite from 'components/Sprite.astro'
-import MenuButton from './MenuButton.astro'
 import Menu from './Menu.astro'
 ---
 
@@ -9,6 +8,16 @@ import Menu from './Menu.astro'
   <a href={`${routes.index}`} class="z-50 absolute left-0 w-20 h-4" title="Go to homepage">
     <Sprite id="sanserif" class="w-full h-full" />
   </a>
-  <MenuButton />
+
+  <menu-button class="z-50 absolute right-0 group">
+    <button
+      class="h-6 w-6 relative children:block children:w-full children:h-[2px] children:bg-current children:absolute children:inset-x-0"
+      aria-label="Toggle button"
+    >
+      <span class="top-2 transform-gpu transition-transform group-open:rotate-45 group-open:translate-y-[0.19rem]"></span>
+      <span class="bottom-2 transform-gpu transition-transform group-open:-rotate-45 group-open:translate-y-[-0.19rem]"></span>
+    </button>
+  </menu-button>
+
   <Menu />
 </header>

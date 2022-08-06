@@ -59,6 +59,7 @@ const asscroll: App.Plugin = {
       disableRaf: true,
       customScrollbar: false,
       touchScrollType: 'transform',
+      touchEase: 0.2,
       scrollElements: '[asscroll-element]'
     })
 

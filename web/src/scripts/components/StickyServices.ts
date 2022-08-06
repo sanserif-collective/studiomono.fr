@@ -21,8 +21,8 @@ export default class StickyServices extends HTMLElement {
         this.subservicesTriggers = ScrollTrigger.create({
           trigger: this.previousElementSibling,
           pin: this.firstElementChild,
-          start: () => `left ${app.refs.footer.offsetWidth}px`,
-          end: () => `right ${(this.firstElementChild as HTMLElement).offsetWidth + app.refs.footer.offsetWidth + (window.innerHeight / 20)}px`
+          start: () => `left ${app.refs.footer?.offsetWidth}px`,
+          end: () => `right ${(this.firstElementChild as HTMLElement).offsetWidth + app.refs.footer?.offsetWidth + (window.innerHeight / 20)}px`
         })
 
         this.fadesTrigger = ScrollTrigger.create({

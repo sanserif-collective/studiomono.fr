@@ -1,0 +1,11 @@
+---
+import Header from 'sections/contact/Header.astro'
+import BaseLayout from 'layouts/BaseLayout.astro'
+import { getContact } from 'queries/getContact'
+
+const { contact } = await getContact()
+---
+
+<BaseLayout meta={{title:'test', description: ''}} disableFooter={true}>
+  <Header content={contact.data.attributes.header} />
+</BaseLayout>

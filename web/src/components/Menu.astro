@@ -34,7 +34,7 @@ import Text from './Text.astro'
     ))}
   </nav>
 
-  <div class="variation-normal absolute inset-x-custom-space bottom-custom-space flex space-x-4 items-end justify-between sm:flex-col-reverse sm:items-center sm:space-x-0">
+  <div class="variation-normal absolute inset-x-custom-space bottom-custom-space flex space-x-4 items-end justify-between sm:flex-col sm:items-center sm:space-x-0">
     <Text class="overflow-y-hidden" size="base" as="small">
       <div data-nav-small>{global.strapi.informations.location}</div>
     </Text>
@@ -43,7 +43,7 @@ import Text from './Text.astro'
         <a data-nav-small class="block" href={`mailto:${global.strapi.informations.email}`}>{global.strapi.informations.email}</a>
       </div>
       <div class="overflow-y-hidden">
-        <a data-nav-small class="block" href={global.strapi.informations.phone}>{global.strapi.informations.phone}</a>
+        <a data-nav-small class="block" href={`tel:${global.strapi.informations.phone}`}>{global.strapi.informations.phone}</a>
       </div>
     </div>
     <Text class="overflow-y-hidden" as="a">

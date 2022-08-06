@@ -76,7 +76,7 @@ export class Team extends HTMLElement {
         this.nameTrigger = ScrollTrigger.create({
           trigger: this.firstElementChild,
           pin: true,
-          start: () => `left ${app.refs.footer.offsetWidth}`,
+          start: () => `left ${app.refs.footer?.offsetWidth}`,
           end: () => `+=${this.offsetWidth - this.nameWrapper.offsetWidth}`,
           onEnter: () => this.translates[0].play()
         })
