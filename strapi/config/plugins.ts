@@ -15,5 +15,13 @@ export default ({ env }) => ({
         delete: {}
       }
     }
+  },
+  'users-permissions': {
+    config: {
+      jwt: {
+        jwtSecret: env('JWT_SECRET'),
+        expiresIn: '30d'
+      }
+    }
   }
 })
