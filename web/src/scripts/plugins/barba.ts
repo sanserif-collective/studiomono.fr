@@ -40,8 +40,7 @@ const barba: App.Plugin = {
           await this.transition.then()
 
           gsap.timeline({
-            onComplete: () => ScrollTrigger.refresh(true),
-            delay: 2
+            onComplete: () => ScrollTrigger.refresh(true)
           })
             .fromTo(this.translater, {
               x: -window.innerWidth / 2,
@@ -63,6 +62,7 @@ const barba: App.Plugin = {
 
           gsap.timeline({
             onComplete: () => marquee.pause(),
+            delay: 2
           })
             .to(loader, {
               yPercent: 100,
