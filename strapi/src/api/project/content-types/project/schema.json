@@ -58,7 +58,6 @@
         "project.fullscreen-image",
         "project.image-and-text",
         "project.three-images",
-        "project.two-images",
         "project.two-images-and-one-text"
       ],
       "required": true

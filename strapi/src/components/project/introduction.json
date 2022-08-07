@@ -7,14 +7,12 @@
   },
   "options": {},
   "attributes": {
-    "link": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.external-link"
-    },
     "text": {
       "type": "text",
       "required": true
+    },
+    "url": {
+      "type": "string"
     }
   }
 }
