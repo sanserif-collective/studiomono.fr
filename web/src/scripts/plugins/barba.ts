@@ -1,6 +1,15 @@
 import Barba from '@barba/core'
 import { gsap, ScrollTrigger } from 'gsap/all'
 import type { App } from 'scripts/app/types'
+import { Marquee } from 'scripts/components/Marquee'
+import { setCursorColor, setCursorColorHover, setProgressBarColor } from 'scripts/utilities/cursor'
+
+const getProjectColor = (container: HTMLElement) => {
+  return container
+    .querySelector<HTMLElement>('[data-project]')
+    .dataset
+    .color
+}
 
 const barba: App.Plugin = {
   shutter: document.querySelector('[data-loading-shutter]'),
@@ -46,8 +55,51 @@ const barba: App.Plugin = {
               ease: 'power3.out',
               duration: 1
             }, 0)
+        },
+        once() {
+          const loader = document.querySelector('[data-loader]')
+          const marquee = loader.querySelector<Marquee>('marquee-carousel')
+
+          gsap.timeline({
+            onComplete: () => marquee.pause(),
+          })
+            .to(loader, {
+              yPercent: 100,
+              duration: 2,
+              ease: 'power4.inOut'
+            })
+            .to(marquee.children, {
+              yPercent: 100,
+              ease: 'power3.inOut'
+            }, '-=1.45')
         }
-      }]
+      }],
+      views: [
+        {
+          namespace: 'base',
+          afterEnter() {
+            app.globals.cursorColor = '#151515'
+            app.globals.cursorColorHover = '#fff'
+
+            setProgressBarColor('#C9C9C9')
+            setCursorColor(app.globals.cursorColor)
+            setCursorColorHover(app.globals.cursorColorHover)
+          }
+        },
+        {
+          namespace: 'project',
+          afterEnter({ next }) {
+            const color = getProjectColor(next.container)
+            app.globals.cursorColor = color
+            app.globals.cursorColorHover = color
+
+            console.log(color)
+            setProgressBarColor(color)
+            setCursorColor(color)
+            setCursorColorHover(color)
+          }
+        }
+      ]
     })
 
     app.plugins.barba = Barba

@@ -1,6 +1,7 @@
 import { gsap } from 'gsap/all'
 
-export default class Marquee extends HTMLElement {
+export class Marquee extends HTMLElement {
+  private playing = this.getAttribute('playing') ?? 'lazy'
   private direction = this.getAttribute('direction')
   private pauseOnHover = this.getAttribute('pauseonhover')
 
@@ -9,7 +10,7 @@ export default class Marquee extends HTMLElement {
     repeat: -1,
     duration: 5,
     ease: 'none',
-    paused: true
+    paused: this.playing === 'lazy'
   })
 
   private onMouseEnter = () =>  this.slide.pause()

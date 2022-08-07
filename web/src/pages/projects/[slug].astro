@@ -43,8 +43,8 @@ type Props = Shared.Project.Components & {
 const { name, header, services, introduction, subject, color, next } = Astro.props as Props
 ---
 
-<BaseLayout meta={{title:'test', description: ''}}>
-  <article class="flex portrait:flex-col" data-project style={`--color: ${color}`}>
+<BaseLayout meta={{title:'test', description: ''}} namespace="project">
+  <article class="flex portrait:flex-col" data-project data-color={color}>
     <Header
       name={name}
       content={header}

@@ -5,7 +5,7 @@ import Marquee from './Marquee.astro'
 import Text from './Text.astro'
 ---
 
-<navigation-menu class="grid place-content-center fixed bg-black text-gray inset-0">
+<navigation-menu class="grid place-content-center fixed bg-black text-gray inset-0" style="display: none;">
 
   <nav class="text-center max-w-xl">
     {global.strapi.menu.link.map((link, index) => (

@@ -1,6 +1,7 @@
 import { gsap } from 'gsap/all'
 import { app } from 'scripts/app'
-import type Marquee from './Marquee'
+import { setCursorColor, setCursorColorHover } from 'scripts/utilities/cursor'
+import type { Marquee } from './Marquee'
 
 export default class NavigationMenu extends HTMLElement {
   private links = this.querySelectorAll<Marquee>('[data-nav-link]')
@@ -16,9 +17,13 @@ export default class NavigationMenu extends HTMLElement {
     .add(() => {
       if (this.toggle.reversed()) {
         this.setAccent('#151515')
+        setCursorColor(app.globals.cursorColor)
+        setCursorColorHover(app.globals.cursorColorHover)
         return this.links.forEach(link => link.pause())
       }
 
+      setCursorColor('#fff')
+      setCursorColorHover('#C9C9C9')
       this.setAccent('#EAEAEA')
       this.links.forEach(link => link.play())
     }, '-=0.7')
@@ -38,12 +43,14 @@ export default class NavigationMenu extends HTMLElement {
     this.toggle.play()
     this.setAttribute('open', '')
   }
+
   public close = async () => {
     await this.toggle.reverse().then()
     this.removeAttribute('open')
   }
 
   public connectedCallback() {
+    this.style.display = ''
     app.refs.menu = this
   }
 }
