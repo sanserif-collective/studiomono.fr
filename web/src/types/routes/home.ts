@@ -8,40 +8,38 @@ export namespace Home {
     text: string
   }
 
-  export type ProjectSetLayout =
-    'ComponentHomeOneProject' |
-    'ComponentHomeTwoProjects' |
-    'ComponentHomeThreeProjects'
+  export namespace Projects {
+    export type Layouts =
+      'ComponentHomeOneProject' |
+      'ComponentHomeTwoProjects' |
+      'ComponentHomeThreeProjects'
 
-  export type Project = {
-    name: string
-    slug: string
-    cover: Strapi.Image
-  }
+    export type Set = {
+      __typename: Layouts
+    }
 
-  export type ProjectSet = {
-    __typename: ProjectSetLayout
-  }
+    export namespace Components {
+      export type OneProject = Set & {
+        project: Strapi.Data<Strapi.Attributes<Shared.Project.Components>>
+      }
 
-  export type ComponentHomeOneProject = ProjectSet & {
-    project: Strapi.Data<Strapi.Attributes<Project>>
-  }
+      export type TwoProjects = Set & {
+        project1: Strapi.Data<Strapi.Attributes<Shared.Project.Components>>
+        project2: Strapi.Data<Strapi.Attributes<Shared.Project.Components>>
+      }
 
-  export type ComponentHomeTwoProjects = ProjectSet & {
-    project1: Strapi.Data<Strapi.Attributes<Project>>
-    project2: Strapi.Data<Strapi.Attributes<Project>>
-  }
-
-  export type ComponentHomeThreeProjects = ProjectSet & {
-    project1: Strapi.Data<Strapi.Attributes<Project>>
-    project2: Strapi.Data<Strapi.Attributes<Project>>
-    project3: Strapi.Data<Strapi.Attributes<Project>>
+      export type ThreeProjects = Set & {
+        project1: Strapi.Data<Strapi.Attributes<Shared.Project.Components>>
+        project2: Strapi.Data<Strapi.Attributes<Shared.Project.Components>>
+        project3: Strapi.Data<Strapi.Attributes<Shared.Project.Components>>
+      }
+    }
   }
 
   export type Components = {
     header: Header
     next: Shared.LinkWithCaption
-    projects: ProjectSet[]
+    projects: Projects.Set[]
     meta: Shared.SEO.Meta
   }
 

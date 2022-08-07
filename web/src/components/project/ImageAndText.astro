@@ -1,0 +1,27 @@
+---
+import Image from 'components/Image.astro'
+import Text from 'components/Text.astro'
+import cloudinary from 'src/cloudinary'
+import type { Shared } from 'types/shared'
+
+type Props = {
+  layout: Shared.Project.Subject.Components.ImageAndText
+}
+
+const { layout } = Astro.props as Props
+
+const image = cloudinary.image(layout.image.data.attributes.provider_metadata.public_id)
+---
+
+<skew-wrapper class="flex justify-between row-start-2 row-end-7 portrait:justify-end">
+  <Image
+    src={image.toURL()}
+    width={1200}
+    height={840}
+    class="ml-[10vw] w-[50vh] portrait:ml-0 portrait:w-[60vw]"
+  />
+</skew-wrapper>
+
+<div class="row-start-7 row-end-10 flex items-end">
+  <Text class="max-w-xl">{layout.text}</Text>
+</div>

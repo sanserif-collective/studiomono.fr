@@ -1,0 +1,62 @@
+---
+import { getProjects } from 'queries/getProjects'
+import type { Shared } from 'types/shared'
+import BaseLayout from 'layouts/BaseLayout.astro'
+import Header from 'sections/project/Header.astro'
+import Introduction from 'sections/project/Introduction.astro'
+import Subjects from 'sections/project/Subjects.astro'
+import NextLink from 'components/NextLink.astro'
+import routes from 'utilities/routes'
+
+export const getStaticPaths = async () => {
+  const { projects } = await getProjects()
+
+  return projects.data.map(({ attributes }, index) => {
+    const next = index + 1 === projects.data.length
+      ? projects.data[0]
+      : projects.data[index + 1]
+
+    const props: Props = {
+      ...attributes,
+      next: {
+        caption: next.attributes.name,
+        link: {
+          name: global.strapi.dictionary.next,
+          url: `${routes.projects}/${next.attributes.slug}`
+        }
+      }
+    }
+
+    return {
+      props,
+      params: {
+        slug: attributes.slug
+      }
+    }
+  })
+}
+
+type Props = Shared.Project.Components & {
+  next: Shared.LinkWithCaption
+}
+
+const { name, header, services, introduction, subject, color, next } = Astro.props as Props
+---
+
+<BaseLayout meta={{title:'test', description: ''}}>
+  <article class="flex portrait:flex-col" data-project style={`--color: ${color}`}>
+    <Header
+      name={name}
+      content={header}
+      services={services.data}
+    />
+    <Introduction {...introduction} />
+    <Subjects layouts={subject} />
+  </article>
+  <NextLink
+    caption={next.caption}
+    url={next.link.url}
+  >
+    {next.link.name}
+  </NextLink>
+</BaseLayout>

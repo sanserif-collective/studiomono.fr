@@ -8,7 +8,7 @@ import ThreeProjects from 'components/home/ThreeProjects.astro'
 
 type Props = {
   text: string
-  projects: Home.ProjectSet[]
+  projects: Home.Projects.Set[]
 }
 
 const { text, projects } = Astro.props as Props
@@ -23,13 +23,13 @@ const { text, projects } = Astro.props as Props
   {projects.map(({ __typename, ...projects }) => (
     <>
       {__typename === 'ComponentHomeOneProject' &&
-        <OneProject projects={(projects as Home.ComponentHomeOneProject)} />
+        <OneProject projects={(projects as Home.Projects.Components.OneProject)} />
       }
       {__typename === 'ComponentHomeTwoProjects' &&
-        <TwoProjects projects={projects as Home.ComponentHomeTwoProjects} />
+        <TwoProjects projects={projects as Home.Projects.Components.TwoProjects} />
       }
       {__typename === 'ComponentHomeThreeProjects' &&
-        <ThreeProjects projects={projects as Home.ComponentHomeThreeProjects} />
+        <ThreeProjects projects={projects as Home.Projects.Components.ThreeProjects} />
       }
     </>
   ))}

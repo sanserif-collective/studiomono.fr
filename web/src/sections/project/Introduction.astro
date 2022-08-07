@@ -1,0 +1,21 @@
+---
+import type { Shared } from 'types/shared'
+import Container from 'components/Container.astro'
+import Sprite from 'components/Sprite.astro'
+
+type Props = Shared.Project.Introduction
+
+const { url, text } = Astro.props as Props
+---
+
+<Container class="">
+  <div class="row-start-2 row-end-12 flex flex-col justify-end pl-[10vw] portrait:pt-custom-space-double portrait:pl-0 portrait:row-auto portrait:col-start-2 portrait:col-end-12 portrait:justify-start portrait:flex-col-reverse">
+    {url && (
+      <a class="flex ml-[20vw] text-lg portrait:ml-0 portrait:mt-custom-space" href={url} target="_blank" rel="noopener noreferrer">
+        {global.strapi.dictionary.website}
+        <Sprite id="arrow" class="ml-2 mt-0.5 w-[1em] h-[1em] -rotate-45" />
+      </a>
+    )}
+    <p class="mt-32 text-xl variation-semibold max-w-5xl portrait:mt-0">{text}</p>
+  </div>
+</Container>

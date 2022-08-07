@@ -90,7 +90,8 @@ module.exports = {
         DEFAULT: '500ms'
       },
       spacing: {
-        'custom-space': 'var(--custom-space)'
+        'custom-space': 'var(--custom-space)',
+        'custom-space-double': 'calc(var(--custom-space) * 2)'
       }
     }
   },
@@ -125,6 +126,7 @@ module.exports = {
       )
 
       addVariant('children', '& > *')
+      addVariant('owl', '& > * + *')
     })
   ]
 }

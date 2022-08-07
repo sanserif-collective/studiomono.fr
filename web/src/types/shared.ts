@@ -11,13 +11,6 @@ export namespace Shared {
     caption: string
   }
 
-  export namespace SEO {
-    export type Meta = {
-      title: string
-      description: string
-    }
-  }
-
   export type Subservices = {
     name: string
   }
@@ -32,4 +25,74 @@ export namespace Shared {
     role: string
     image: Strapi.Image
   }>
+
+  export namespace Project {
+    export type Header = {
+      text: string
+      image: Strapi.Image
+    }
+
+    export type Introduction = {
+      text: string
+      url: string
+    }
+
+    export namespace Subject {
+      export type Layouts =
+        'ComponentProjectCenteredImage' |
+        'ComponentProjectFullscreenImage' |
+        'ComponentProjectImageAndText' |
+        'ComponentProjectThreeImages' |
+        'ComponentProjectTwoImagesAndOneText'
+
+      export type Set = {
+        __typename: Layouts
+      }
+
+      export namespace Components {
+        export type CenteredImage = {
+          image: Strapi.Image
+        }
+
+        export type FullscreenImage = {
+          image: Strapi.Image
+        }
+
+        export type ImageAndText = {
+          text: string
+          image: Strapi.Image
+        }
+
+        export type ThreeImages = {
+          image1: Strapi.Image
+          image2: Strapi.Image
+          image3: Strapi.Image
+        }
+
+        export type TwoImagesAndOneText = {
+          text: string
+          image1: Strapi.Image
+          image2: Strapi.Image
+        }
+      }
+    }
+
+    export type Components = {
+      slug: string
+      color: string
+      name: string
+      cover: Strapi.Image
+      header: Header
+      introduction: Introduction
+      subject: Subject.Set[]
+      services: Strapi.Data<Service[]>
+    }
+  }
+
+  export namespace SEO {
+    export type Meta = {
+      title: string
+      description: string
+    }
+  }
 }

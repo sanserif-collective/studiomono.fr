@@ -1,5 +1,5 @@
 import type { Shared } from 'types/shared'
-import { Strapi } from 'types/strapi'
+import type { Strapi } from 'types/strapi'
 
 export namespace Contact {
   export type Header = {
