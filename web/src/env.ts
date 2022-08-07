@@ -1,6 +1,6 @@
-import { from } from 'env-var'
+import e from 'env-var'
 
-const env = from(typeof import.meta === 'undefined' ? process.env : import.meta.env)
+const env = e.from(typeof import.meta === 'undefined' ? process.env : import.meta.env)
 
 export const STRAPI_URL = env.get('STRAPI_URL').required().asUrlString()
 export const STRAPI_TOKEN = env.get('STRAPI_TOKEN').required().asString()
