@@ -85,6 +85,7 @@ const { meta, disableFooter = false, namespace = 'base' } = Astro.props as Props
 
   // GSAP plugins
   gsap.registerPlugin(ScrollTrigger)
+  ScrollTrigger.normalizeScroll(true)
 
   // App plugins
   app.use(barba)
