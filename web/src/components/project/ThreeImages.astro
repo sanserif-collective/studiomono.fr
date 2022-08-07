@@ -14,29 +14,35 @@ const image2 = cloudinary.image(layout.image2.data.attributes.provider_metadata.
 const image3 = cloudinary.image(layout.image3.data.attributes.provider_metadata.public_id)
 ---
 
-<skew-wrapper class:list="row-start-2 row-end-5 flex items-start">
-  <Image
-    src={image1.toURL()}
-    width={600}
-    height={400}
-    class="w-[33vh] portrait:w-[50vw]"
-  />
+<skew-wrapper class="row-start-2 row-end-5 flex items-start">
+  <parallax-wrapper>
+    <Image
+      src={image1.toURL()}
+      width={600}
+      height={400}
+      class="w-[33vh] portrait:w-[50vw]"
+    />
+  </parallax-wrapper>
 </skew-wrapper>
 
-<skew-wrapper class:list="row-start-5 row-end-9 flex items-center portrait:justify-center">
-  <Image
-    src={image2.toURL()}
-    width={600}
-    height={400}
-    class="w-[33vh] portrait:w-[50vw]"
-  />
+<skew-wrapper class="row-start-5 row-end-9 flex items-center portrait:justify-center">
+  <parallax-wrapper>
+    <Image
+      src={image2.toURL()}
+      width={600}
+      height={400}
+      class="w-[33vh] portrait:w-[50vw]"
+    />
+  </parallax-wrapper>
 </skew-wrapper>
 
 <skew-wrapper class="row-start-9 row-end-12 flex items-end portrait:justify-end">
-  <Image
-    src={image3.toURL()}
-    width={560}
-    height={340}
-    class="w-[33vh] portrait:w-[50vw]"
-  />
+  <parallax-wrapper>
+    <Image
+      src={image3.toURL()}
+      width={560}
+      height={340}
+      class="w-[33vh] portrait:w-[50vw]"
+    />
+  </parallax-wrapper>
 </skew-wrapper>

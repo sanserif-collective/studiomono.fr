@@ -12,11 +12,13 @@ const { layout } = Astro.props as Props
 const image = cloudinary.image(layout.image.data.attributes.provider_metadata.public_id)
 ---
 
-<skew-wrapper class="flex justify-center items-center row-start-5 row-end-11 portrait:justify-start">
-  <Image
-    src={image.toURL()}
-    width={1200}
-    height={840}
-    class="w-[50vh] portrait:w-[60vw]"
-  />
+<skew-wrapper class="row-start-5 row-end-11 flex justify-center items-center portrait:justify-start">
+  <parallax-wrapper>
+    <Image
+      src={image.toURL()}
+      width={1200}
+      height={840}
+      class="w-[50vh] portrait:w-[60vw]"
+    />
+  </parallax-wrapper>
 </skew-wrapper>
