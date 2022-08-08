@@ -1,6 +1,6 @@
 ---
-import routes from 'utilities/routes'
 import clsx from 'clsx'
+import routes from 'utilities/routes'
 import Marquee from './Marquee.astro'
 import Text from './Text.astro'
 ---
@@ -17,12 +17,12 @@ import Text from './Text.astro'
           routes[link.url] !== Astro.url.pathname && 'opacity-25 hover:opacity-50'
         )}
         href={routes[link.url]}
+        data-nav-link
       >
         <Marquee
+          class="flex transition-opacity justify-center"
           direction={index % 2 === 0 ? -100 : 100}
-          pauseOnHover={true}
-          class="justify-center"
-          data-nav-link
+          pauseonhover={true}
         >
           {[...new Array(10)].map(() => (
             <div class="flex items-center whitespace-nowrap pl-4 before:mr-4 before:h-4 before:w-4 before:bg-current before:rounded-full">

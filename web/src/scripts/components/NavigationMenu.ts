@@ -4,7 +4,8 @@ import { setCursorColor, setCursorColorHover } from 'scripts/utilities/cursor'
 import type { Marquee } from './Marquee'
 
 export default class NavigationMenu extends HTMLElement {
-  private links = this.querySelectorAll<Marquee>('[data-nav-link]')
+  private marquees = this.querySelectorAll<Marquee>('marquee-carousel')
+  private links = this.querySelectorAll<HTMLAnchorElement>('[data-nav-link]')
   private smalls = this.querySelectorAll('[data-nav-small]')
   private setAccent = gsap.quickSetter(document.body, '--header-color')
 
@@ -19,15 +20,15 @@ export default class NavigationMenu extends HTMLElement {
         this.setAccent('#151515')
         setCursorColor(app.globals.cursorColor)
         setCursorColorHover(app.globals.cursorColorHover)
-        return this.links.forEach(link => link.pause())
+        return this.marquees.forEach(marquee => marquee.pause())
       }
 
       setCursorColor('#fff')
       setCursorColorHover('#C9C9C9')
       this.setAccent('#EAEAEA')
-      this.links.forEach(link => link.play())
+      this.marquees.forEach(marquee => marquee.play())
     }, '-=0.7')
-    .from(this.links, {
+    .from(this.marquees, {
       yPercent: 100,
       stagger: 0.1,
       ease: 'power3.out'
@@ -49,8 +50,20 @@ export default class NavigationMenu extends HTMLElement {
     this.removeAttribute('open')
   }
 
+  private setCurrentLink() {
+    this.links.forEach(link => {
+      if (link.href === location.href) {
+        return link.classList.remove('opacity-25', 'hover:opacity-50')
+      }
+
+      link.classList.add('opacity-25', 'hover:opacity-50')
+    })
+  }
+
   public connectedCallback() {
     this.style.display = ''
     app.refs.menu = this
+
+    app.plugins.barba.hooks.after(() => this.setCurrentLink())
   }
 }
