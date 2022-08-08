@@ -1,9 +1,9 @@
 import { gsap } from 'gsap/all'
 import type { App } from 'scripts/app/types'
 
-const scaleCursor = document.querySelector('[data-scale-cursor]')
-const scaleXTo = gsap.quickTo(scaleCursor, 'scaleX')
-const scaleYTo = gsap.quickTo(scaleCursor, 'scaleY')
+const cursorScale = document.querySelector('[data-cursor-scale]')
+const scaleXTo = gsap.quickTo(cursorScale, 'scaleX')
+const scaleYTo = gsap.quickTo(cursorScale, 'scaleY')
 
 const onMouseEnter = () => {
   scaleXTo(3)

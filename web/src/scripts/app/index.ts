@@ -12,7 +12,7 @@ const start = (
   resolve: (value: PromiseLike<App.Core> | App.Core) => void
 ) => resolve(app)
 
-export default () => {
+export const createApp = () => {
   app.loaded = new Promise<App.Core>(resolve => {
     document.addEventListener(
       'DOMContentLoaded',

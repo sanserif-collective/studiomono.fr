@@ -1,11 +1,11 @@
 import { gsap } from 'gsap/all'
 
 export class Cursor extends HTMLElement {
-  private duration = Number(this.getAttribute('duration')) ?? 0.5
+  private speed = Number(this.getAttribute('speed') ?? '0.5')
   private position = { x: 0, y: 0 }
 
-  private xTo = gsap.quickTo(this, 'x', { duration: this.duration })
-  private yTo = gsap.quickTo(this, 'y', { duration: this.duration })
+  private xTo = gsap.quickTo(this, 'x', { duration: this.speed })
+  private yTo = gsap.quickTo(this, 'y', { duration: this.speed })
 
   private updatePosition = ({ x, y }: MouseEvent) => {
     this.position.x = x
