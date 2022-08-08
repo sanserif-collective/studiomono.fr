@@ -1,11 +1,13 @@
 ---
 import clsx from 'clsx'
 import routes from 'utilities/routes'
-import Marquee from './Marquee.astro'
 import Text from './Text.astro'
 ---
 
-<navigation-menu class="grid place-content-center fixed bg-black text-gray inset-0" style="display: none;">
+<sanserif-menu
+  class="grid place-content-center fixed bg-black text-gray inset-0"
+  style="display: none;"
+>
 
   <nav class="text-center max-w-xl">
     {global.strapi.menu.link.map((link, index) => (
@@ -19,7 +21,7 @@ import Text from './Text.astro'
         href={routes[link.url]}
         data-nav-link
       >
-        <Marquee
+        <sanserif-marquee
           class="flex transition-opacity justify-center"
           direction={index % 2 === 0 ? -100 : 100}
           pauseonhover={true}
@@ -29,7 +31,7 @@ import Text from './Text.astro'
               {link.name}
             </div>
           ))}
-        </Marquee>
+        </sanserif-marquee>
       </Text>
     ))}
   </nav>
@@ -51,4 +53,4 @@ import Text from './Text.astro'
     </Text>
   </div>
 
-</navigation-menu>
+</sanserif-menu>

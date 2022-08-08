@@ -1,6 +1,6 @@
 import type ASScroll from '@ashthornton/asscroll'
 import type barba from '@barba/core'
-import type NavigationMenu from 'scripts/components/NavigationMenu'
+import type { Menu } from 'scripts/components/Menu'
 import type { Plugin as Portrait } from 'scripts/plugins/portrait'
 
 export namespace App {
@@ -31,7 +31,7 @@ export namespace App {
   }
 
   export type Refs = {
-    menu?: NavigationMenu
+    menu?: Menu
     footer?: HTMLElement
   }
 }

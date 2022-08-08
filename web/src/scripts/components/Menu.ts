@@ -3,10 +3,11 @@ import { app } from 'scripts/app'
 import { setCursorColor, setCursorColorHover } from 'scripts/utilities/cursor'
 import type { Marquee } from './Marquee'
 
-export default class NavigationMenu extends HTMLElement {
-  private marquees = this.querySelectorAll<Marquee>('marquee-carousel')
+export class Menu extends HTMLElement {
+  private marquees = this.querySelectorAll<Marquee>('sanserif-marquee')
   private links = this.querySelectorAll<HTMLAnchorElement>('[data-nav-link]')
   private smalls = this.querySelectorAll('[data-nav-small]')
+
   private setAccent = gsap.quickSetter(document.body, '--header-color')
 
   public toggle = gsap.timeline({ paused: true })

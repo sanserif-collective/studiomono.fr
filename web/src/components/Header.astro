@@ -9,15 +9,15 @@ import Menu from './Menu.astro'
     <Sprite id="sanserif" class="w-full h-full" />
   </a>
 
-  <menu-button class="z-50 absolute right-0 group">
+  <sanserif-menu-toggle class="z-50 absolute right-0 group">
     <button
       class="h-6 w-6 relative children:block children:w-full children:h-[2px] children:bg-current children:absolute children:inset-x-0"
-      aria-label="Toggle button"
+      aria-label="Toggle menu"
     >
       <span class="top-2 transform-gpu transition-transform group-open:rotate-45 group-open:translate-y-[0.19rem]"></span>
       <span class="bottom-2 transform-gpu transition-transform group-open:-rotate-45 group-open:translate-y-[-0.19rem]"></span>
     </button>
-  </menu-button>
+  </sanserif-menu-toggle>
 
   <Menu />
 </header>

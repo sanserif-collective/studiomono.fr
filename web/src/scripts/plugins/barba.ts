@@ -1,7 +1,6 @@
 import Barba from '@barba/core'
 import { gsap, ScrollTrigger } from 'gsap/all'
 import type { App } from 'scripts/app/types'
-import { Marquee } from 'scripts/components/Marquee'
 import { setCursorColor, setCursorColorHover, setProgressBarColor } from 'scripts/utilities/cursor'
 
 const getProjectColor = (container: HTMLElement) => {
@@ -56,24 +55,24 @@ const barba: App.Plugin = {
               duration: 1
             }, 0)
         },
-        once() {
-          const loader = document.querySelector('[data-loader]')
-          const marquee = loader.querySelector<Marquee>('marquee-carousel')
+        // once() {
+        //   const loader = document.querySelector('[data-loader]')
+        //   const marquee = loader.querySelector<Marquee>('marquee-carousel')
 
-          gsap.timeline({
-            onComplete: () => marquee.pause(),
-            delay: 2
-          })
-            .to(loader, {
-              yPercent: 100,
-              duration: 2,
-              ease: 'power4.inOut'
-            })
-            .to(marquee.children, {
-              yPercent: 100,
-              ease: 'power3.inOut'
-            }, '-=1.45')
-        }
+        //   gsap.timeline({
+        //     onComplete: () => marquee.pause(),
+        //     delay: 2
+        //   })
+        //     .to(loader, {
+        //       yPercent: 100,
+        //       duration: 2,
+        //       ease: 'power4.inOut'
+        //     })
+        //     .to(marquee.children, {
+        //       yPercent: 100,
+        //       ease: 'power3.inOut'
+        //     }, '-=1.45')
+        // }
       }],
       views: [
         {

@@ -1,7 +1,7 @@
 import { gsap, ScrollTrigger } from 'gsap/all'
 import { app } from 'scripts/app'
 
-export default class MenuButton extends HTMLElement {
+export class MenuToggle extends HTMLElement {
   private translateTween: gsap.core.Tween
 
   private open() {
