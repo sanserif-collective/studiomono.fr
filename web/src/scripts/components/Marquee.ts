@@ -13,16 +13,14 @@ export class Marquee extends HTMLElement {
     paused: this.playing === 'lazy'
   })
 
-  private onMouseEnter = () =>  this.slide.pause()
-  private onMouseLeave = () => this.slide.play()
+  private onMouseEnter = () => this.pauseOnHover && this.slide.pause()
+  private onMouseLeave = () => this.pauseOnHover && this.slide.play()
 
   public play = () => this.slide.play()
   public pause = () => this.slide.pause()
 
   public connectedCallback() {
-    if (this.pauseOnHover) {
-      this.addEventListener('mouseenter', this.onMouseEnter)
-      this.addEventListener('mouseleave', this.onMouseLeave)
-    }
+    this.addEventListener('mouseenter', this.onMouseEnter)
+    this.addEventListener('mouseleave', this.onMouseLeave)
   }
 }
