@@ -1,12 +1,15 @@
 import { gsap } from 'gsap/all'
 import { app } from 'scripts/app'
 
-export default class ProgressBar extends HTMLElement {
+export class ProgressBar extends HTMLElement {
   private scaleXTo = gsap.quickTo(this, 'scaleX')
 
+  private setProgress = (currentPos: number) => this.scaleXTo(
+    currentPos / app.plugins.scroll.maxScroll
+  )
+
   public connectedCallback() {
-    const { scroll, barba } = app.plugins
-    scroll.on('scroll', (currentPos: number) => this.scaleXTo(currentPos / scroll.maxScroll))
-    barba.hooks.before(() => this.scaleXTo(0))
+    app.plugins.scroll.on('scroll', this.setProgress)
+    app.plugins.barba.hooks.before(() => this.scaleXTo(0))
   }
 }
