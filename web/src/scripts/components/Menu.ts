@@ -1,6 +1,6 @@
 import { gsap } from 'gsap/all'
 import { app } from 'scripts/app'
-import { setCursorColor, setCursorColorHover } from 'scripts/utilities/cursor'
+import { setCursorColor, setCursorColorHover, setHeaderColor } from 'scripts/features/color'
 import type { Marquee } from './Marquee'
 
 export class Menu extends HTMLElement {
@@ -8,9 +8,24 @@ export class Menu extends HTMLElement {
   private links = this.querySelectorAll<HTMLAnchorElement>('[data-nav-link]')
   private smalls = this.querySelectorAll('[data-nav-small]')
 
-  private setAccent = gsap.quickSetter(document.body, '--header-color')
+  private onForward() {
+    setCursorColor('#fff')
+    setCursorColorHover('#C9C9C9')
+    setHeaderColor('#EAEAEA')
 
-  public toggle = gsap.timeline({ paused: true })
+    this.marquees.forEach(marquee => marquee.play())
+  }
+
+  private onBackward() {
+    setHeaderColor('#151515')
+    setCursorColor(app.globals.cursorColor)
+    setCursorColorHover(app.globals.cursorColorHover)
+
+    this.marquees.forEach(marquee => marquee.pause())
+  }
+
+  public toggle = gsap
+    .timeline({ paused: true })
     .from(this, {
       yPercent: 100,
       duration: 2,
@@ -18,16 +33,10 @@ export class Menu extends HTMLElement {
     })
     .add(() => {
       if (this.toggle.reversed()) {
-        this.setAccent('#151515')
-        setCursorColor(app.globals.cursorColor)
-        setCursorColorHover(app.globals.cursorColorHover)
-        return this.marquees.forEach(marquee => marquee.pause())
+        return this.onBackward()
       }
 
-      setCursorColor('#fff')
-      setCursorColorHover('#C9C9C9')
-      this.setAccent('#EAEAEA')
-      this.marquees.forEach(marquee => marquee.play())
+      this.onForward()
     }, '-=0.7')
     .from(this.marquees, {
       yPercent: 100,
@@ -63,8 +72,6 @@ export class Menu extends HTMLElement {
 
   public connectedCallback() {
     this.style.display = ''
-    app.refs.menu = this
-
     app.plugins.barba.hooks.after(() => this.setCurrentLink())
   }
 }
