@@ -38,11 +38,3 @@ export const getGlobal = () => strapi.request<Global.Response>(
     }
   `
 )
-
-export const getGlobalData = async () => {
-  const { global, dictionary } = await getGlobal()
-  return {
-    ...global.data.attributes,
-    dictionary: dictionary.data.attributes
-  }
-}

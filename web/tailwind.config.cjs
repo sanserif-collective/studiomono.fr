@@ -107,6 +107,12 @@ module.exports = {
         },
         'button, a': {
           'cursor': 'none'
+        },
+        'small': {
+          'font-size': 'inherit'
+        },
+        'strong': {
+          'font-weight': 'inherit'
         }
       })
 

@@ -1,15 +1,16 @@
 ---
-import clsx from 'clsx'
+import { app } from 'src/app'
 ---
 
 <footer
-  class={clsx(
-    'flex-shrink-0 flex justify-between border-left items-center w-custom-space border-r',
-    'h-screen py-custom-space writing-v-rl rotate-180 portrait:writing-h-tb portrait:rotate-0',
-    'portrait:h-auto portrait:w-screen portrait:px-custom-space portrait:border-r-0 portrait:border-t'
-  )}
+  class:list={[
+    'flex-shrink-0 flex justify-between border-left items-center w-custom-space',
+    'border-r h-screen py-custom-space writing-v-rl rotate-180 portrait:writing-h-tb',
+    'portrait:rotate-0 portrait:h-auto portrait:w-screen portrait:px-custom-space',
+    'portrait:border-r-0 portrait:border-t'
+  ]}
   data-footer
 >
-  <small>{global.strapi.informations.location}</small>
-  <small>{global.strapi.dictionary.rights}</small>
+  <small>{app.global.informations.location}</small>
+  <small>{app.dictionary.rights}</small>
 </footer>

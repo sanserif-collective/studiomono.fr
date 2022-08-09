@@ -1,24 +1,24 @@
 ---
 import clsx from 'clsx'
-import routes from 'utilities/routes'
-import Text from './Text.astro'
+import { app } from 'src/app'
+import { route } from 'utilities/routes'
+import Text from 'components/Text.astro'
 ---
 
 <sanserif-menu
   class="grid place-content-center fixed bg-black text-gray inset-0"
-  style="display: none;"
+  style="display: none"
 >
-
   <nav class="text-center max-w-xl">
-    {global.strapi.menu.link.map((link, index) => (
+    {app.global.menu.link.map((link, index) => (
       <Text
         as="a"
         size="2xl"
         class={clsx(
           'transition-opacity block overflow-hidden',
-          routes[link.url] !== Astro.url.pathname && 'opacity-25 hover:opacity-50'
+          route(link.url) !== Astro.url.pathname && 'opacity-25 hover:opacity-50'
         )}
-        href={routes[link.url]}
+        href={route(link.url)}
         data-nav-link
       >
         <sanserif-marquee
@@ -27,7 +27,12 @@ import Text from './Text.astro'
           pauseonhover={true}
         >
           {[...new Array(10)].map(() => (
-            <div class="flex items-center whitespace-nowrap pl-4 before:mr-4 before:h-4 before:w-4 before:bg-current before:rounded-full">
+            <div
+              class:list={[
+                'flex items-center whitespace-nowrap pl-4 before:mr-4 before:h-4',
+                'before:w-4 before:bg-current before:rounded-full'
+              ]}
+            >
               {link.name}
             </div>
           ))}
@@ -35,22 +40,37 @@ import Text from './Text.astro'
       </Text>
     ))}
   </nav>
-
-  <div class="variation-normal absolute inset-x-custom-space bottom-custom-space flex space-x-4 items-end justify-between sm:flex-col sm:items-center sm:space-x-0">
-    <Text class="overflow-y-hidden" size="base" as="small">
-      <div data-nav-small>{global.strapi.informations.location}</div>
-    </Text>
+  <div
+    class:list={[
+      'variation-normal absolute inset-x-custom-space bottom-custom-space flex',
+      'space-x-4 items-end justify-between sm:flex-col sm:items-center sm:space-x-0'
+    ]}
+  >
+    <small class="overflow-y-hidden">
+      <div data-nav-small>{app.global.informations.location}</div>
+    </small>
     <div class="text-center">
       <div class="overflow-y-hidden">
-        <a data-nav-small class="block" href={`mailto:${global.strapi.informations.email}`}>{global.strapi.informations.email}</a>
+        <a
+          class="block"
+          href={`mailto:${app.global.informations.email}`}
+          data-nav-small
+        >
+          {app.global.informations.email}
+        </a>
       </div>
       <div class="overflow-y-hidden">
-        <a data-nav-small class="block" href={`tel:${global.strapi.informations.phone}`}>{global.strapi.informations.phone}</a>
+        <a
+          class="block"
+          href={`tel:${app.global.informations.phone}`}
+          data-nav-small
+        >
+          {app.global.informations.phone}
+        </a>
       </div>
     </div>
-    <Text class="overflow-y-hidden" as="a">
-      <div data-nav-small>{global.strapi.dictionary.rights}</div>
-    </Text>
+    <div class="overflow-y-hidden">
+      <small data-nav-small>{app.dictionary.rights}</small>
+    </div>
   </div>
-
 </sanserif-menu>

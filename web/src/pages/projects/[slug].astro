@@ -1,12 +1,12 @@
 ---
-import { getProjects } from 'queries/getProjects'
-import type { Shared } from 'types/shared'
+import NextLink from 'components/NextLink.astro'
 import BaseLayout from 'layouts/BaseLayout.astro'
+import { getProjects } from 'queries/getProjects'
 import Header from 'sections/project/Header.astro'
 import Introduction from 'sections/project/Introduction.astro'
 import Subjects from 'sections/project/Subjects.astro'
-import NextLink from 'components/NextLink.astro'
-import routes from 'utilities/routes'
+import type { Shared } from 'types/shared'
+import { route } from 'utilities/routes'
 
 export const getStaticPaths = async () => {
   const { projects } = await getProjects()
@@ -22,7 +22,7 @@ export const getStaticPaths = async () => {
         caption: next.attributes.name,
         link: {
           name: global.strapi.dictionary.next,
-          url: `${routes.projects}/${next.attributes.slug}`
+          url: route('projects', next.attributes.slug)
         }
       }
     }
@@ -40,11 +40,19 @@ type Props = Shared.Project.Components & {
   next: Shared.LinkWithCaption
 }
 
-const { name, header, services, introduction, subject, color, next } = Astro.props as Props
+const {
+  name,
+  header,
+  services,
+  introduction,
+  subject,
+  color,
+  next
+} = Astro.props as Props
 ---
 
-<BaseLayout meta={{title:'test', description: ''}} namespace="project">
-  <article class="flex portrait:flex-col" data-project data-color={color}>
+<BaseLayout meta={{title:'test', description: ''}} namespace="project" data-color={color}>
+  <article class="flex portrait:flex-col">
     <Header
       name={name}
       content={header}

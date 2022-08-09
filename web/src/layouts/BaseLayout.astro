@@ -1,20 +1,26 @@
 ---
-import type { Shared } from 'types/shared'
 import FontFaces from 'components/FontFaces.astro'
-import Header from 'components/Header.astro'
 import Footer from 'components/Footer.astro'
-import Sprite from 'components/Sprite.astro'
-import { getGlobalData } from 'queries/getGlobal'
+import Header from 'components/Header.astro'
+import { getGlobal } from 'queries/getGlobal'
+import { app } from 'src/app'
+import type { Shared } from 'types/shared'
+
 
 type Props = {
   meta: Shared.SEO.Meta
   disableFooter?: boolean
-  namespace: string
+  namespace?: string
+  [name: string]: unknown
 }
 
-if (!global.strapi) global.strapi = await getGlobalData()
+if (!app.global || !app.dictionary) {
+  const { global, dictionary } = await getGlobal()
+  app.global = global.data.attributes
+  app.dictionary = dictionary.data.attributes
+}
 
-const { meta, disableFooter = false, namespace = 'base' } = Astro.props as Props
+const { meta, disableFooter = false, namespace = 'base', ...rest } = Astro.props as Props
 ---
 
 <!doctype html>
@@ -44,6 +50,7 @@ const { meta, disableFooter = false, namespace = 'base' } = Astro.props as Props
           asscroll-element
           data-barba="container"
           data-barba-namespace={namespace}
+          {...rest}
         >
           <main class="flex-shrink-0 flex portrait:flex-col">
             <slot />
@@ -75,17 +82,6 @@ const { meta, disableFooter = false, namespace = 'base' } = Astro.props as Props
       data-cursor-scale
     />
 
-    <!-- <div class="grid place-content-center h-screen w-screen fixed inset-0 bg-black text-white" data-loader>
-      <marquee-carousel class="flex justify-center max-w-2xl overflow-hidden" direction="100" playing="eager">
-        {[...new Array(3)].map(() => (
-          <div class="flex-shrink-0 flex items-center text-center text-2xl pl-4 before:mr-4 before:h-4 before:w-4 before:bg-white before:rounded-full">
-            <Sprite id="sanserif" class="w-[4.5em] h-[1em]" />
-            <div class="variation-light flex items-center ml-4 before:mr-4 before:h-4 before:w-4 before:bg-white before:rounded-full">Collective</div>
-          </div>
-        ))}
-      </marquee-carousel>
-    </div> -->
-
     <div
       class="h-screen w-screen fixed inset-0 bg-black pointer-events-none"
       style="transform: scaleX(0)"
@@ -96,23 +92,23 @@ const { meta, disableFooter = false, namespace = 'base' } = Astro.props as Props
 </html>
 
 <script>
+  import { gsap,ScrollTrigger } from 'gsap/all'
   import { createApp } from 'scripts/app'
-  import asscroll from 'scripts/plugins/asscroll'
-  import portrait from 'scripts/plugins/portrait'
-  import barba from 'scripts/plugins/barba'
-  import { refs } from 'scripts/plugins/refs'
-  import { gsap, ScrollTrigger } from 'gsap/all'
+  import { Cursor } from 'scripts/components/Cursor'
+  import { Marquee } from 'scripts/components/Marquee'
   import { Menu } from 'scripts/components/Menu'
   import { MenuToggle } from 'scripts/components/MenuToggle'
-  import NextLink from 'scripts/components/NextLink'
-  import SkewWrapper from 'scripts/components/SkewWrapper'
-  import { Marquee } from 'scripts/components/Marquee'
-  import { ProgressBar } from 'scripts/components/ProgressBar'
+  import { NextLink } from 'scripts/components/NextLink'
   import ParallaxWrapper from 'scripts/components/ParallaxWrapper'
+  import { ProgressBar } from 'scripts/components/ProgressBar'
+  import SkewWrapper from 'scripts/components/SkewWrapper'
   import StickyServices from 'scripts/components/StickyServices'
   import { Team } from 'scripts/components/Team'
-  import { Cursor } from 'scripts/components/Cursor'
+  import asscroll from 'scripts/plugins/asscroll'
+  import { barba } from 'scripts/plugins/barba'
   import { clickables } from 'scripts/plugins/clickables'
+  import portrait from 'scripts/plugins/portrait'
+  import { refs } from 'scripts/plugins/refs'
 
   const app = createApp()
 
@@ -127,9 +123,10 @@ const { meta, disableFooter = false, namespace = 'base' } = Astro.props as Props
   app.use(refs)
   app.use(clickables)
 
+  // Web Components
   window.customElements.define('sanserif-menu-toggle', MenuToggle)
   window.customElements.define('sanserif-menu', Menu)
-  window.customElements.define('next-link', NextLink)
+  window.customElements.define('sanserif-next-link', NextLink)
   window.customElements.define('skew-wrapper', SkewWrapper)
   window.customElements.define('sanserif-marquee', Marquee)
   window.customElements.define('sanserif-progress-bar', ProgressBar)

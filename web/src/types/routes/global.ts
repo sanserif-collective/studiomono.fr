@@ -16,12 +16,10 @@ export namespace Global {
     main: Strapi.Image
   }
 
-  export type Meta = Shared.SEO.Meta
-
   export type Components = {
     informations: Informations
     menu: Menu
-    meta: Meta
+    meta: Shared.SEO.Meta
   }
 
   export type Dictionary = {

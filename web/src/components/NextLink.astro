@@ -11,31 +11,25 @@ const { url, caption } = Astro.props as Props
 ---
 
 <footer class="grid place-content-center w-[calc(100vw_-_var(--custom-space))] portrait:w-auto">
-  <div class="grid place-content-center mt-14 portrait:py-[10vh]">
-    <next-link>
-      <a href={url} class="block">
-        <Text
-          as="strong"
-          size="3xl"
-          class="relative font-normal"
-        >
-          <div class="overflow-hidden grid text-center">
-            <skew-wrapper class="row-start-1 col-start-1 max-w-[6em] portrait:p-custom-space" data-split>
-              <slot />
-            </skew-wrapper>
-            <skew-wrapper class="row-start-1 col-start-1 max-w-[6em]" data-split>
-              <slot />
-            </skew-wrapper>
-          </div>
-        </Text>
-        <Text
-          as="small"
-          class="mt-8 transition-all duration-500 ease-in-out flex items-center justify-center"
-        >
-          {caption}
-          <Sprite id="arrow" class="h-4 w-4 ml-4" />
-        </Text>
-      </a>
-    </next-link>
-  </div>
+  <sanserif-next-link class="grid place-content-center mt-14 portrait:py-[10vh]">
+    <a href={url} class="block">
+      <Text as="strong" size="3xl" class="relative">
+        <div class="overflow-hidden grid text-center">
+          <skew-wrapper
+            class="row-start-1 col-start-1 max-w-[6em] portrait:p-custom-space"
+            data-split
+          >
+            <slot />
+          </skew-wrapper>
+          <skew-wrapper class="row-start-1 col-start-1 max-w-[6em]" data-split>
+            <slot />
+          </skew-wrapper>
+        </div>
+      </Text>
+      <small class="mt-8 transition-all duration-500 ease-in-out flex items-center justify-center">
+        {caption}
+        <Sprite id="arrow" class="h-4 w-4 ml-4" />
+      </small>
+    </a>
+  </sanserif-next-link>
 </footer>
