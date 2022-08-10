@@ -2,11 +2,12 @@
 import NextLink from 'components/NextLink.astro'
 import BaseLayout from 'layouts/BaseLayout.astro'
 import { getProjects } from 'queries/getProjects'
+import { app } from 'src/app'
 import Header from 'sections/project/Header.astro'
 import Introduction from 'sections/project/Introduction.astro'
 import Subjects from 'sections/project/Subjects.astro'
 import type { Shared } from 'types/shared'
-import { route } from 'utilities/routes'
+import { route } from 'utilities/route'
 
 export const getStaticPaths = async () => {
   const { projects } = await getProjects()
@@ -21,7 +22,7 @@ export const getStaticPaths = async () => {
       next: {
         caption: next.attributes.name,
         link: {
-          name: global.strapi.dictionary.next,
+          name: app.dictionary.next,
           url: route('projects', next.attributes.slug)
         }
       }

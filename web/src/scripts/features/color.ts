@@ -1,5 +1,5 @@
 import { gsap } from 'gsap/all'
-import type { App } from 'scripts/app/types'
+import { app } from 'scripts/app'
 
 export const setProgressBarColor = gsap.quickSetter(document.body, '--progress-color')
 export const setCursorColor = gsap.quickSetter(document.body, '--cursor-color')
@@ -8,11 +8,13 @@ export const setHeaderColor = gsap.quickSetter(document.body, '--header-color')
 
 export const getColorAttribute = ({ dataset }: HTMLElement) => dataset.color
 
-export const setColor = (app: App.Core, [progress, cursor, cursorHover]: string[]) => {
+export const setColors = ([progress, cursor, cursorHover]: string[]) => {
   setProgressBarColor(progress)
   setCursorColor(cursor)
   setCursorColorHover(cursorHover)
+}
 
+export const saveColors = ([cursor, cursorHover]: string[]) => {
   app.globals.cursorColor = cursor
   app.globals.cursorColorHover = cursorHover
 }

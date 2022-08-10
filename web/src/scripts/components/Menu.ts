@@ -1,6 +1,6 @@
 import { gsap } from 'gsap/all'
 import { app } from 'scripts/app'
-import { setCursorColor, setCursorColorHover, setHeaderColor } from 'scripts/features/color'
+import { setColors } from 'scripts/features/color'
 import type { Marquee } from './Marquee'
 
 export class Menu extends HTMLElement {
@@ -9,18 +9,13 @@ export class Menu extends HTMLElement {
   private smalls = this.querySelectorAll('[data-nav-small]')
 
   private onForward() {
-    setCursorColor('#fff')
-    setCursorColorHover('#C9C9C9')
-    setHeaderColor('#EAEAEA')
-
+    setColors(['#fff', '#C9C9C9', '#EAEAEA'])
     this.marquees.forEach(marquee => marquee.play())
   }
 
   private onBackward() {
-    setHeaderColor('#151515')
-    setCursorColor(app.globals.cursorColor)
-    setCursorColorHover(app.globals.cursorColorHover)
-
+    const { cursorColor, cursorColorHover } = app.globals
+    setColors(['#151515', cursorColor, cursorColorHover])
     this.marquees.forEach(marquee => marquee.pause())
   }
 

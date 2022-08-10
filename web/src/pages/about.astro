@@ -5,7 +5,7 @@ import { getAbout } from 'queries/getAbout'
 import Expertise from 'sections/about/Expertise.astro'
 import Header from 'sections/about/Header.astro'
 import Team from 'sections/about/Team.astro'
-import routes from 'utilities/routes'
+import { route } from 'utilities/route'
 
 const { about, services, members } = await getAbout()
 ---
@@ -22,7 +22,7 @@ const { about, services, members } = await getAbout()
     members={members.data}
   />
   <NextLink
-    url={routes[about.data.attributes.next.link.url]}
+    url={route(about.data.attributes.next.link.url)}
     caption={about.data.attributes.next.caption}
   >
     {about.data.attributes.next.link.name}

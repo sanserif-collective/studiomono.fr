@@ -1,6 +1,6 @@
 ---
 import SkewWrapper from 'components/SkewWrapper.astro'
-import routes from 'utilities/routes'
+import { route } from 'utilities/route'
 
 type Props = {
   class?: string
@@ -13,7 +13,7 @@ const { slug, name, class: className } = Astro.props as Props
 
 <article class={className}>
   <parallax-wrapper>
-    <a href={`${routes.projects}/${slug}`} aria-label={name}>
+    <a href={route('projects', slug)} aria-label={name}>
       <SkewWrapper>
         <slot />
      </SkewWrapper>

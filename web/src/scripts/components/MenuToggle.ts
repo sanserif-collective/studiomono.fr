@@ -14,7 +14,13 @@ export class MenuToggle extends HTMLElement {
     app.refs.menu.close()
   }
 
-  private onClick = () => this.hasAttribute('open') ? this.close() : this.open()
+  private onClick = () => {
+    if (this.hasAttribute('open')) {
+      return this.close()
+    }
+
+    this.open()
+  }
 
   public connectedCallback() {
     ScrollTrigger.matchMedia({

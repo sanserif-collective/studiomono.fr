@@ -4,7 +4,7 @@ import BaseLayout from 'layouts/BaseLayout.astro'
 import Header from 'sections/home/Header.astro'
 import Projects from 'sections/home/Projects.astro'
 import NextLink from 'components/NextLink.astro'
-import routes from 'utilities/routes'
+import { route } from 'utilities/route'
 
 const { home } = await getHome()
 ---
@@ -16,7 +16,7 @@ const { home } = await getHome()
     projects={home.data.attributes.projects}
   />
   <NextLink
-    url={routes[home.data.attributes.next.link.url]}
+    url={route(home.data.attributes.next.link.url)}
     caption={home.data.attributes.next.caption}
   >
     {home.data.attributes.next.link.name}

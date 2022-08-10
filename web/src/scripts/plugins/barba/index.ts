@@ -1,6 +1,6 @@
 import { default as core } from '@barba/core'
 import type { App } from 'scripts/app/types'
-import { getColorAttribute, setColor } from 'scripts/features/color'
+import { getColorAttribute, saveColors, setColors } from 'scripts/features/color'
 import { Transition } from './Transition'
 
 export const barba: App.Plugin = {
@@ -11,14 +11,15 @@ export const barba: App.Plugin = {
         {
           namespace: 'base',
           afterEnter() {
-            setColor(app, ['#C9C9C9', '#151515', '#fff'])
+            setColors(['#C9C9C9', '#151515', '#fff'])
           }
         },
         {
           namespace: 'project',
           afterEnter({ next }) {
             const color = getColorAttribute(next.container)
-            setColor(app, [color, color, color])
+            setColors([color, color, color])
+            saveColors([color, color])
           }
         }
       ]
