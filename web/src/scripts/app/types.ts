@@ -25,6 +25,7 @@ export namespace App {
 
   export type Globals = {
     scrollVelocity?: number
+    progressColor?: string
     cursorColor?: string
     cursorColorHover?: string
     clickables?: NodeList

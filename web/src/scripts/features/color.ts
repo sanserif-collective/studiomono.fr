@@ -14,7 +14,8 @@ export const setColors = ([progress, cursor, cursorHover]: string[]) => {
   setCursorColorHover(cursorHover)
 }
 
-export const saveColors = ([cursor, cursorHover]: string[]) => {
+export const saveColors = ([progress, cursor, cursorHover]: string[]) => {
+  app.globals.progressColor = progress
   app.globals.cursorColor = cursor
   app.globals.cursorColorHover = cursorHover
 }

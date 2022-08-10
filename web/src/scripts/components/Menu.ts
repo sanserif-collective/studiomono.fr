@@ -9,13 +9,13 @@ export class Menu extends HTMLElement {
   private smalls = this.querySelectorAll('[data-nav-small]')
 
   private onForward() {
-    setColors(['#fff', '#C9C9C9', '#EAEAEA'])
+    setColors(['#C9C9C9', '#fff', '#EAEAEA'])
     this.marquees.forEach(marquee => marquee.play())
   }
 
   private onBackward() {
-    const { cursorColor, cursorColorHover } = app.globals
-    setColors(['#151515', cursorColor, cursorColorHover])
+    const { progressColor, cursorColor, cursorColorHover } = app.globals
+    setColors([progressColor, cursorColor, cursorColorHover])
     this.marquees.forEach(marquee => marquee.pause())
   }
 
