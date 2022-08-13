@@ -16,9 +16,9 @@ const image = cloudinary.image(content.image.data.attributes.provider_metadata.p
 
 <Container fullscreen={true} as="header">
   <div class="row-start-2 row-end-12 col-start-2 col-end-12 flex items-end portrait:row-end-13">
-    <skew-wrapper>
+    <sanserif-skew>
       <Text size="3xl" class="max-w-[3em]">{content.title}</Text>
-    </skew-wrapper>
+    </sanserif-skew>
   </div>
   <div class="row-start-4 col-start-2 col-end-6 portrait:col-end-12">
     <Text class="max-w-lg">{content.text}</Text>
@@ -29,7 +29,7 @@ const image = cloudinary.image(content.image.data.attributes.provider_metadata.p
       'portrait:row-start-6 portrait:col-start-2'
     ]}
   >
-    <skew-wrapper>
+    <sanserif-skew>
       <Image
         src={image.toURL()}
         alt={content.image.data.attributes.alternativeText}
@@ -37,7 +37,7 @@ const image = cloudinary.image(content.image.data.attributes.provider_metadata.p
         height={420}
         class="w-[68vmin] xl:w-[50vmin] md:w-[60vmin]"
       />
-    </skew-wrapper>
+    </sanserif-skew>
   </div>
   <div
     class:list={[

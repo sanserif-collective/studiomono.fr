@@ -13,7 +13,7 @@ const { layout } = Astro.props as Props
 const image = cloudinary.image(layout.image.data.attributes.provider_metadata.public_id)
 ---
 
-<skew-wrapper class="row-start-2 row-end-7 flex justify-between portrait:justify-end">
+<sanserif-skew class="row-start-2 row-end-7 flex justify-between portrait:justify-end">
 <parallax-wrapper>
     <Image
       src={image.toURL()}
@@ -22,7 +22,7 @@ const image = cloudinary.image(layout.image.data.attributes.provider_metadata.pu
       class="ml-[10vw] w-[50vh] portrait:ml-0 portrait:w-[60vw]"
     />
   </parallax-wrapper>
-</skew-wrapper>
+</sanserif-skew>
 
 <parallax-wrapper class="row-start-7 row-end-10">
   <div class=" flex items-end">

@@ -131,10 +131,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site)
   import { Menu } from 'scripts/components/Menu'
   import { MenuToggle } from 'scripts/components/MenuToggle'
   import { NextLink } from 'scripts/components/NextLink'
-  import ParallaxWrapper from 'scripts/components/ParallaxWrapper'
   import { ProgressBar } from 'scripts/components/ProgressBar'
-  import SkewWrapper from 'scripts/components/SkewWrapper'
-  import StickyServices from 'scripts/components/StickyServices'
+  import { Services } from 'scripts/components/Services'
+  import { Skew } from 'scripts/components/Skew'
   import { Team } from 'scripts/components/Team'
   import asscroll from 'scripts/plugins/asscroll'
   import { barba } from 'scripts/plugins/barba'
@@ -153,11 +152,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site)
       customElements.define('sanserif-menu-toggle', MenuToggle)
       customElements.define('sanserif-menu', Menu)
       customElements.define('sanserif-next-link', NextLink)
-      customElements.define('skew-wrapper', SkewWrapper)
+      customElements.define('sanserif-skew', Skew)
       customElements.define('sanserif-marquee', Marquee)
       customElements.define('sanserif-progress-bar', ProgressBar)
-      customElements.define('parallax-wrapper', ParallaxWrapper)
-      customElements.define('sticky-services', StickyServices)
+      customElements.define('sanserif-services', Services)
       customElements.define('sanserif-team', Team)
       customElements.define('sanserif-cursor', Cursor)
     }

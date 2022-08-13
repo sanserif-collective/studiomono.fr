@@ -1,7 +1,7 @@
 import { gsap, ScrollTrigger } from 'gsap/all'
 import { app } from 'scripts/app'
 
-export default class StickyServices extends HTMLElement {
+export class Services extends HTMLElement {
   private fadesTrigger: ScrollTrigger
   private subservicesTriggers: ScrollTrigger
 

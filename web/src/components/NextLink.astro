@@ -1,6 +1,6 @@
 ---
-import Text from 'components/Text.astro'
 import Sprite from 'components/Sprite.astro'
+import Text from 'components/Text.astro'
 
 type Props = {
   url: string
@@ -15,15 +15,15 @@ const { url, caption } = Astro.props as Props
     <a href={url} class="block">
       <Text as="strong" size="3xl" class="relative">
         <div class="overflow-hidden grid text-center">
-          <skew-wrapper
+          <sanserif-skew
             class="row-start-1 col-start-1 max-w-[6em] portrait:p-custom-space"
             data-split
           >
             <slot />
-          </skew-wrapper>
-          <skew-wrapper class="row-start-1 col-start-1 max-w-[6em]" data-split>
+          </sanserif-skew>
+          <sanserif-skew class="row-start-1 col-start-1 max-w-[6em]" data-split>
             <slot />
-          </skew-wrapper>
+          </sanserif-skew>
         </div>
       </Text>
       <small class="mt-8 transition-all duration-500 ease-in-out flex items-center justify-center">

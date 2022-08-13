@@ -1,8 +1,8 @@
 ---
-import type { Home } from 'types/routes/home'
 import Container from 'components/Container.astro'
-import Text from 'components/Text.astro'
 import Sprite from 'components/Sprite.astro'
+import Text from 'components/Text.astro'
+import type { Home } from 'types/routes/home'
 
 type Props = {
   content: Home.Header
@@ -17,9 +17,9 @@ const { content } = Astro.props as Props
   class="portrait:children:col-start-2 portrait:children:col-end-12"
 >
 
-  <skew-wrapper class="flex items-end col-start-2 col-end-12 row-start-1 row-end-12 overflow-hidden portrait:row-end-11">
+  <sanserif-skew class="flex items-end col-start-2 col-end-12 row-start-1 row-end-12 overflow-hidden portrait:row-end-11">
     <Text as="h1" size="3xl" class="max-w-[6em]">{content.title}</Text>
-  </skew-wrapper>
+  </sanserif-skew>
 
   <div class="col-start-11 row-start-2 row-end-12 flex flex-col items-end justify-end portrait:row-start-12">
     <div class="flex flex-col items-center portrait:w-full portrait:flex-row-reverse">

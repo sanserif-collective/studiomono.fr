@@ -29,7 +29,7 @@ const { title, services } = Astro.props as Props
     >
       {services.map(({ attributes }) => (
         <div class="relative">
-          <skew-wrapper>
+          <sanserif-skew>
             <Text
               size="5xl"
               as="h3"
@@ -40,14 +40,14 @@ const { title, services } = Astro.props as Props
             >
               {attributes.name}
             </Text>
-          </skew-wrapper>
-          <sticky-services class="absolute top-full mt-[10vh] portrait:text-right portrait:relative">
+          </sanserif-skew>
+          <sanserif-services class="absolute top-full mt-[10vh] portrait:text-right portrait:relative">
             <div>
               {attributes.subservices.map(({ name }) => (
                 <h4>{name}</h4>
               ))}
             </div>
-          </sticky-services>
+          </sanserif-services>
         </div>
       ))}
     </div>

@@ -14,7 +14,7 @@ const image1 = cloudinary.image(layout.image1.data.attributes.provider_metadata.
 const image2 = cloudinary.image(layout.image2.data.attributes.provider_metadata.public_id)
 ---
 
-<skew-wrapper class="row-start-2 row-end-7 col-span-2 flex justify-center items-start">
+<sanserif-skew class="row-start-2 row-end-7 col-span-2 flex justify-center items-start">
   <parallax-wrapper>
     <Image
       src={image1.toURL()}
@@ -23,13 +23,13 @@ const image2 = cloudinary.image(layout.image2.data.attributes.provider_metadata.
       class="w-[50vh] portrait:w-[60vw]"
     />
   </parallax-wrapper>
-</skew-wrapper>
+</sanserif-skew>
 
 <parallax-wrapper class="row-start-7 row-end-12 flex items-center">
   <Text class="max-w-md">{layout.text}</Text>
 </parallax-wrapper>
 
-<skew-wrapper class="row-start-7 row-end-12 flex items-end portrait:justify-end">
+<sanserif-skew class="row-start-7 row-end-12 flex items-end portrait:justify-end">
   <parallax-wrapper>
     <Image
       src={image2.toURL()}
@@ -38,4 +38,4 @@ const image2 = cloudinary.image(layout.image2.data.attributes.provider_metadata.
       class="w-[50vh] portrait:w-[60vw]"
     />
   </parallax-wrapper>
-</skew-wrapper>
+</sanserif-skew>
