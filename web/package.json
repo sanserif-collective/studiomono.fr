@@ -11,7 +11,7 @@
   "devDependencies": {
     "@astrojs/tailwind": "^1.0.0",
     "@cloudinary/url-gen": "^1.8.0",
-    "astro": "1.0.0",
+    "astro": "1.0.4",
     "env-var": "^7.1.1",
     "graphql-request": "^4.3.0"
   },
