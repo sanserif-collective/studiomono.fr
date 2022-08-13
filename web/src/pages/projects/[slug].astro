@@ -1,7 +1,7 @@
 ---
 import NextLink from 'components/NextLink.astro'
 import BaseLayout from 'layouts/BaseLayout.astro'
-import { getProjects } from 'queries/getProjects'
+import { getAppProjects } from 'queries/getProjects'
 import Header from 'sections/project/Header.astro'
 import Introduction from 'sections/project/Introduction.astro'
 import Subjects from 'sections/project/Subjects.astro'
@@ -10,15 +10,12 @@ import type { Shared } from 'types/shared'
 import { route } from 'utilities/route'
 
 export const getStaticPaths = async () => {
-  if (!app.projects) {
-    const { projects } = await getProjects()
-    app.projects = projects.data
-  }
+  const projects = await getAppProjects()
 
-  return app.projects.map(({ attributes }, index) => {
-    const next = index + 1 === app.projects.length
-      ? app.projects[0]
-      : app.projects[index + 1]
+  return projects.map(({ attributes }, index) => {
+    const next = index + 1 === projects.length
+      ? projects[0]
+      : projects[index + 1]
 
     const props: Props = {
       ...attributes,

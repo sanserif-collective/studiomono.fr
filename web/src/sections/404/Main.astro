@@ -1,0 +1,87 @@
+---
+import Container from 'components/Container.astro'
+import ProjectCard from 'components/ProjectCard.astro'
+import Sprite from 'components/Sprite.astro'
+import Text from 'components/Text.astro'
+import { NotFound } from 'types/routes/not-found'
+import { Shared } from 'types/shared'
+import { Strapi } from 'types/strapi'
+
+type Props = {
+  content: NotFound.Components
+  projects: Strapi.Attributes<Shared.Project.Components>[]
+}
+
+const {
+  content,
+  projects: [project1, project2, project3, project4]
+} = Astro.props as Props
+---
+
+<Container fullscreen={true}>
+  <header
+    class:list={[
+      'col-start-2 col-end-5 row-start-3 row-end-7 flex justify-end flex-col',
+      'portrait:col-end-12 portrait:justify-start portrait:row-start-3'
+    ]}
+  >
+    <h1 class="sr-only">{content.title}</h1>
+    <Text size="xl" as="h2" class="max-w-sm">{content.subtitle}</Text>
+    <p class="mt-8">{content.text}</p>
+  </header>
+  <article
+    class:list={[
+      'flex items-end col-start-2 col-end-4 row-start-8 row-end-12',
+      'portrait:col-end-7 portrait:row-start-7 portrait:items-start portrait:row-end-10'
+    ]}
+  >
+    <ProjectCard
+      width={200}
+      height={300}
+      loading="eager"
+      class="w-[22vh]"
+      project={project1.attributes}
+    />
+  </article>
+  <article
+    class:list={[
+      'flex items-center col-start-5 col-end-7 row-start-8 row-end-12',
+      'portrait:col-start-8 portrait:col-end-12 portrait:items-end',
+      'portrait:row-start-9 portrait:pb-custom-space portrait:justify-end'
+    ]}
+  >
+    <ProjectCard
+      width={140}
+      height={188}
+      loading="eager"
+      class="w-[18vh]"
+      project={project2.attributes}
+    />
+  </article>
+  <article
+    class:list={[
+      'flex justify-end items-center col-start-9 col-end-12 row-start-4',
+      'row-end-8 portrait:hidden'
+    ]}
+  >
+    <ProjectCard
+      width={440}
+      height={410}
+      loading="eager"
+      class="w-[40vh]"
+      project={project3.attributes}
+    />
+  </article>
+  <article class="flex col-start-6 col-end-8 row-start-2 row-end-6 portrait:hidden">
+    <ProjectCard
+      width={300}
+      height={400}
+      loading="eager"
+      class="w-[30vh]"
+      project={project4.attributes}
+    />
+  </article>
+  <div class="col-span-full row-span-full overflow-hidden -z-10">
+    <Sprite id="404" class="w-full h-full scale-110 fill-black/5" />
+  </div>
+</Container>

@@ -1,4 +1,5 @@
 import { gql } from 'graphql-request'
+import { app } from 'src/app'
 import { strapi } from 'strapi'
 import type { Projects } from 'types/routes/projects'
 
@@ -11,6 +12,7 @@ export const getProjects = () => strapi.request<Projects.Response>(
         }
       }
     }
+
     query Projects {
       projects {
         data {
@@ -18,6 +20,14 @@ export const getProjects = () => strapi.request<Projects.Response>(
             slug
             color
             name
+            cover {
+              data {
+                attributes {
+                  alternativeText
+                  provider_metadata
+                }
+              }
+            }
             services {
               data {
                 attributes {
@@ -80,3 +90,12 @@ export const getProjects = () => strapi.request<Projects.Response>(
     }
   `
 )
+
+export const getAppProjects = async () => {
+  if (!app.projects) {
+    const { projects } = await getProjects()
+    app.projects = projects.data
+  }
+
+  return app.projects
+}
