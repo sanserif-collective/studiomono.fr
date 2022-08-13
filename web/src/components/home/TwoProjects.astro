@@ -16,7 +16,7 @@ const image1 = cloudinary.image(project1.cover.data.attributes.provider_metadata
 const image2 = cloudinary.image(project2.cover.data.attributes.provider_metadata.public_id)
 ---
 
-<article class="row-start-2 row-end-6 portrait:col-span-6">
+<article class="row-start-2 row-end-6 portrait:col-start-2 portrait:col-span-6">
   <ProjectCard
     src={image1.toURL()}
     class="w-[21.5vh] max-w-sm"

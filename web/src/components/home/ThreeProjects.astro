@@ -18,7 +18,12 @@ const image2 = cloudinary.image(project2.cover.data.attributes.provider_metadata
 const image3 = cloudinary.image(project3.cover.data.attributes.provider_metadata.public_id)
 ---
 
-<article class="items-end row-start-8 row-end-12 portrait:items-start portrait:col-span-8">
+<article
+  class:list={[
+    'items-end row-start-8 row-end-12 portrait:items-start',
+    'portrait:col-start-2 portrait:col-span-8'
+  ]}
+>
   <ProjectCard
     src={image1.toURL()}
     class="w-[24.5vh] max-w-md"
@@ -31,7 +36,7 @@ const image3 = cloudinary.image(project3.cover.data.attributes.provider_metadata
 <article
   class:list={[
     'items-end row-start-9 row-end-12 pl-custom-space mb-10 portrait:pl-0',
-    'portrait:mb-0 portrait:col-start-2 portrait:col-span-6'
+    'portrait:mb-0 portrait:col-start-3 portrait:col-span-6'
   ]}
 >
   <ProjectCard
@@ -43,7 +48,12 @@ const image3 = cloudinary.image(project3.cover.data.attributes.provider_metadata
   />
 </article>
 
-<article class="row-start-2 row-end-8 portrait:col-end-13 portrait:col-span-9 portrait:justify-end">
+<article
+  class:list={[
+    'row-start-2 row-end-8 portrait:col-end-12 portrait:col-span-9',
+    'portrait:justify-end'
+  ]}
+>
   <ProjectCard
     src={image3.toURL()}
     class="w-[34.5vh] max-w-xl"
