@@ -3,7 +3,7 @@ import Container from 'components/Container.astro'
 import Image from 'components/Image.astro'
 import Sprite from 'components/Sprite.astro'
 import Text from 'components/Text.astro'
-import cloudinary from 'src/cloudinary'
+import { cloudinary } from 'src/cloudinary'
 import { About } from 'types/routes/about'
 
 type Props = {
@@ -20,12 +20,15 @@ const image = cloudinary.image(content.image.data.attributes.provider_metadata.p
       <Text size="3xl" class="max-w-[3em]">{content.title}</Text>
     </skew-wrapper>
   </div>
-
   <div class="row-start-4 col-start-2 col-end-6 portrait:col-end-12">
     <Text class="max-w-lg">{content.text}</Text>
   </div>
-
-  <div class="col-start-6 col-end-12 row-start-4 row-end-9 flex justify-end portrait:row-start-6 portrait:col-start-2">
+  <div
+    class:list={[
+      'col-start-6 col-end-12 row-start-4 row-end-9 flex justify-end',
+      'portrait:row-start-6 portrait:col-start-2'
+    ]}
+  >
     <skew-wrapper>
       <Image
         src={image.toURL()}
@@ -36,8 +39,12 @@ const image = cloudinary.image(content.image.data.attributes.provider_metadata.p
       />
     </skew-wrapper>
   </div>
-
-  <div class="flex justify-end items-center col-start-8 col-end-12 row-start-10 portrait:items-end portrait:row-start-12 portrait:text-right">
+  <div
+    class:list={[
+      'flex justify-end items-center col-start-8 col-end-12 row-start-10',
+      'portrait:items-end portrait:row-start-12 portrait:text-right'
+    ]}
+  >
     <Text as="h2" size="lg">{content.subtitle}</Text>
     <Sprite id="arrow" class="ml-4 w-6 h-6 text-black portrait:rotate-90 portrait:mb-1" />
   </div>

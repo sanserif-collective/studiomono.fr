@@ -1,9 +1,8 @@
 ---
-import type { Home } from 'types/routes/home'
-import cloudinary from 'src/cloudinary'
 import { Resize } from '@cloudinary/url-gen/actions'
-import Image from 'components/Image.astro'
-import ProjectWrapper from 'components/home/ProjectWrapper.astro'
+import ProjectCard from 'components/ProjectCard.astro'
+import { cloudinary } from 'src/cloudinary'
+import type { Home } from 'types/routes/home'
 
 type Props = {
   projects: Home.Projects.Components.OneProject
@@ -11,15 +10,21 @@ type Props = {
 
 const { projects } = Astro.props as Props
 
-const { cover, ...rest } = projects.project.data.attributes
+const { cover } = projects.project.data.attributes
 const image = cloudinary.image(cover.data.attributes.provider_metadata.public_id)
 ---
 
-<ProjectWrapper class="items-center row-start-5 row-end-12 px-custom-space portrait:col-start-2 portrait:col-end-12 portrait:px-0 portrait:justify-center" {...rest}>
-  <Image
+<article
+  class:list={[
+    'items-center row-start-5 row-end-12 px-custom-space portrait:col-start-2',
+    'portrait:col-end-12 portrait:px-0 portrait:justify-center'
+  ]}
+>
+  <ProjectCard
     class="w-[69vh] max-w-5xl portrait:w-[80vw]"
     width={620}
     height={410}
+    project={projects.project.data.attributes}
     src={image.resize(Resize.thumbnail(920)).toURL()}
   />
-</ProjectWrapper>
+</article>

@@ -1,8 +1,7 @@
 ---
-import clsx from 'clsx'
+import Text from 'components/Text.astro'
 import { app } from 'src/app'
 import { route } from 'utilities/route'
-import Text from 'components/Text.astro'
 ---
 
 <sanserif-menu
@@ -14,10 +13,10 @@ import Text from 'components/Text.astro'
       <Text
         as="a"
         size="2xl"
-        class={clsx(
+        class:list={[
           'transition-opacity block overflow-hidden',
           route(link.url) !== Astro.url.pathname && 'opacity-25 hover:opacity-50'
-        )}
+        ]}
         href={route(link.url)}
         data-nav-link
       >
@@ -46,9 +45,9 @@ import Text from 'components/Text.astro'
       'space-x-4 items-end justify-between sm:flex-col sm:items-center sm:space-x-0'
     ]}
   >
-    <small class="overflow-y-hidden">
-      <div data-nav-small>{app.global.informations.location}</div>
-    </small>
+    <div class="overflow-y-hidden">
+      <small class="block" data-nav-small>{app.global.informations.location}</small>
+    </div>
     <div class="text-center">
       <div class="overflow-y-hidden">
         <a
@@ -70,7 +69,7 @@ import Text from 'components/Text.astro'
       </div>
     </div>
     <div class="overflow-y-hidden">
-      <small data-nav-small>{app.dictionary.rights}</small>
+      <small class="block" data-nav-small>{app.dictionary.rights}</small>
     </div>
   </div>
 </sanserif-menu>

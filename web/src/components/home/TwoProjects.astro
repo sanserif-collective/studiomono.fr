@@ -1,8 +1,7 @@
 ---
+import ProjectCard from 'components/ProjectCard.astro'
+import { cloudinary } from 'src/cloudinary'
 import type { Home } from 'types/routes/home'
-import cloudinary from 'src/cloudinary'
-import Image from 'components/Image.astro'
-import ProjectWrapper from 'components/home/ProjectWrapper.astro'
 
 type Props = {
   projects: Home.Projects.Components.TwoProjects
@@ -17,28 +16,27 @@ const image1 = cloudinary.image(project1.cover.data.attributes.provider_metadata
 const image2 = cloudinary.image(project2.cover.data.attributes.provider_metadata.public_id)
 ---
 
-<ProjectWrapper
-  slug={project1.slug}
-  name={project1.name}
-  class="row-start-2 row-end-6 portrait:col-span-6"
->
-  <Image
+<article class="row-start-2 row-end-6 portrait:col-span-6">
+  <ProjectCard
     src={image1.toURL()}
     class="w-[21.5vh] max-w-sm"
     width={230}
     height={300}
+    project={project1}
   />
-</ProjectWrapper>
+</article>
 
-<ProjectWrapper
-  slug={project2.slug}
-  name={project2.name}
-  class="items-end row-start-6 row-end-12 pl-10 mb-10 portrait:col-start-3 portrait:col-end-12 portrait:pl-0 portrait:mb-0 portrait:justify-end"
+<article
+  class:list={[
+    'items-end row-start-6 row-end-12 pl-10 mb-10 portrait:col-start-3',
+    'portrait:col-end-12 portrait:pl-0 portrait:mb-0 portrait:justify-end'
+  ]}
 >
-  <Image
+  <ProjectCard
     src={image2.toURL()}
     class="w-[30.5vh] max-w-xl"
     width={310}
     height={410}
+    project={project2}
   />
-</ProjectWrapper>
+</article>

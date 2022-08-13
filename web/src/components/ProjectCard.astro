@@ -1,0 +1,47 @@
+---
+import type { AstroBuiltinAttributes } from 'astro'
+import Image from 'components/Image.astro'
+import { cloudinary } from 'src/cloudinary'
+import type { Shared } from 'types/shared'
+import { route } from 'utilities/route'
+
+type Props = {
+  width: number
+  height: number
+  loading?: 'eager' | 'lazy'
+  project: Shared.Project.Components
+  'class:list'?: AstroBuiltinAttributes['class:list']
+  class?: string
+  [name: string]: unknown
+}
+
+const {
+  width,
+  height,
+  project,
+  loading,
+  'class:list': classList,
+  class: className,
+  ...rest
+} = Astro.props as Props
+
+const image = cloudinary.image(project.cover.data.attributes.provider_metadata.public_id)
+---
+
+<div class:list={[classList, className]} {...rest}>
+  <skew-wrapper class="block group overflow-hidden">
+    <Image
+      as="a"
+      width={width}
+      height={height}
+      loading={loading}
+      alt={project.name}
+      src={image.toURL()}
+      href={route('projects', project.slug)}
+      class:list={[
+        'block transform-gpu transition-[clip-path,transform] [clip-path:inset(0)]',
+        'group-hover:[clip-path:inset(0.75rem)] group-hover:scale-[102.5%]'
+      ]}
+    />
+  </skew-wrapper>
+</div>

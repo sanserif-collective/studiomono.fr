@@ -26,7 +26,7 @@ export class MenuToggle extends HTMLElement {
     ScrollTrigger.matchMedia({
       '(orientation: landscape)': () => {
         this.translateTween = gsap.to(this, {
-          x: -app.refs.footer?.offsetWidth,
+          x: () => -app.refs.footer?.offsetWidth,
           paused: true,
           scrollTrigger: {
             trigger: document.querySelector('[data-footer]'),
@@ -39,7 +39,6 @@ export class MenuToggle extends HTMLElement {
     })
 
     this.addEventListener('click', this.onClick)
-    app.plugins.barba.hooks.before(() => { this.close() })
   }
 
   public disconnectedCallback() {

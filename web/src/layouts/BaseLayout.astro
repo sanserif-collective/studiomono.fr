@@ -7,8 +7,8 @@ import { app } from 'src/app'
 import type { Shared } from 'types/shared'
 
 type Props = {
-  meta: Shared.SEO.Meta
-  disableFooter?: boolean
+  meta?: Shared.SEO.Meta
+  enableFooter?: boolean
   namespace?: string
   [name: string]: unknown
 }
@@ -19,7 +19,7 @@ if (!app.global || !app.dictionary) {
   app.dictionary = dictionary.data.attributes
 }
 
-const { meta, disableFooter = false, namespace = 'base', ...rest } = Astro.props as Props
+const { meta, enableFooter = true, namespace = 'base', ...rest } = Astro.props as Props
 ---
 
 <!doctype html>
@@ -55,7 +55,7 @@ const { meta, disableFooter = false, namespace = 'base', ...rest } = Astro.props
             <slot />
           </main>
 
-          {!disableFooter && <Footer />}
+          {enableFooter && <Footer />}
         </div>
       </div>
 

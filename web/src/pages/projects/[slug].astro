@@ -2,20 +2,23 @@
 import NextLink from 'components/NextLink.astro'
 import BaseLayout from 'layouts/BaseLayout.astro'
 import { getProjects } from 'queries/getProjects'
-import { app } from 'src/app'
 import Header from 'sections/project/Header.astro'
 import Introduction from 'sections/project/Introduction.astro'
 import Subjects from 'sections/project/Subjects.astro'
+import { app } from 'src/app'
 import type { Shared } from 'types/shared'
 import { route } from 'utilities/route'
 
 export const getStaticPaths = async () => {
-  const { projects } = await getProjects()
+  if (!app.projects) {
+    const { projects } = await getProjects()
+    app.projects = projects.data
+  }
 
-  return projects.data.map(({ attributes }, index) => {
-    const next = index + 1 === projects.data.length
-      ? projects.data[0]
-      : projects.data[index + 1]
+  return app.projects.map(({ attributes }, index) => {
+    const next = index + 1 === app.projects.length
+      ? app.projects[0]
+      : app.projects[index + 1]
 
     const props: Props = {
       ...attributes,

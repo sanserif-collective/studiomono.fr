@@ -1,9 +1,9 @@
 ---
-import Container from 'components/Container.astro';
-import Image from 'components/Image.astro';
-import Text from 'components/Text.astro';
-import cloudinary from 'src/cloudinary';
-import { Shared } from 'types/shared';
+import Container from 'components/Container.astro'
+import Image from 'components/Image.astro'
+import Text from 'components/Text.astro'
+import { cloudinary } from 'src/cloudinary'
+import type { Shared } from 'types/shared'
 
 type Props = {
   name: string
@@ -16,7 +16,13 @@ const { content, name, services } = Astro.props as Props
 const image = cloudinary.image(content.image.data.attributes.provider_metadata.public_id)
 ---
 
-<Container as="header" class="portrait:children:row-auto portrait:children:col-start-2 portrait:children:col-end-12 portrait:children:pl-0 portrait:space-y-custom-space-double">
+<Container
+  as="header"
+  class:list={[
+    'portrait:children:row-auto portrait:children:col-start-2 portrait:children:col-end-12',
+    'portrait:children:pl-0 portrait:space-y-custom-space-double'
+  ]}
+>
   <skew-wrapper class="flex items-end row-start-3 row-end-12 mt-custom-space-double">
     <Image
       src={image.toURL()}

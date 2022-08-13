@@ -1,10 +1,9 @@
 ---
-import type { Home } from 'types/routes/home'
 import Container from 'components/Container.astro'
-import Text from 'components/Text.astro'
 import OneProject from 'components/home/OneProject.astro'
-import TwoProjects from 'components/home/TwoProjects.astro'
 import ThreeProjects from 'components/home/ThreeProjects.astro'
+import TwoProjects from 'components/home/TwoProjects.astro'
+import type { Home } from 'types/routes/home'
 
 type Props = {
   text: string
@@ -14,12 +13,20 @@ type Props = {
 const { text, projects } = Astro.props as Props
 ---
 
-<Container class="gap-x-custom-space grid-flow-col children:flex portrait:grid-flow-row portrait:gap-x-0 portrait:gap-y-24 portrait:children:row-auto">
-
-  <header class="col-start-1 col-end-3 row-start-2 row-end-7 items-center portrait:col-start-2 portrait:col-end-12">
-    <Text class="max-w-md">{text}</Text>
+<Container
+  class:list={[
+    'gap-x-custom-space grid-flow-col children:flex portrait:grid-flow-row',
+    'portrait:gap-x-0 portrait:gap-y-24 portrait:children:row-auto'
+  ]}
+>
+  <header
+    class:list={[
+      'col-start-1 col-end-3 row-start-2 row-end-7 items-center',
+      'portrait:col-start-2 portrait:col-end-12'
+    ]}
+  >
+    <p class="max-w-md">{text}</p>
   </header>
-
   {projects.map(({ __typename, ...projects }) => (
     <>
       {__typename === 'ComponentHomeOneProject' &&
@@ -33,5 +40,4 @@ const { text, projects } = Astro.props as Props
       }
     </>
   ))}
-
 </Container>

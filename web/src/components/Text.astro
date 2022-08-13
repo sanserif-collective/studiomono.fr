@@ -1,7 +1,10 @@
 ---
+import type { AstroBuiltinAttributes } from 'astro'
+
 type Props = {
   as?: string
   class?: string
+  'class:list'?: AstroBuiltinAttributes['class:list']
   href?: string
   size?: keyof typeof sizes
   [x: string]: unknown
@@ -17,9 +20,15 @@ const sizes = {
   '5xl': 'text-5xl variation-light'
 }
 
-const { as: Tag = 'p', class: className, size = 'base', ...rest } = Astro.props as Props
+const {
+  as: Tag = 'p',
+  class: className,
+  'class:list': classList,
+  size = 'base',
+  ...rest
+} = Astro.props as Props
 ---
 
-<Tag class:list={[sizes[size], className]} {...rest}>
+<Tag class:list={[sizes[size], className, classList]} {...rest}>
   <slot />
 </Tag>
