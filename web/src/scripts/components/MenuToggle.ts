@@ -39,6 +39,7 @@ export class MenuToggle extends HTMLElement {
     })
 
     this.addEventListener('click', this.onClick)
+    app.plugins.barba.hooks.before(() => { this.removeAttribute('open') })
   }
 
   public disconnectedCallback() {

@@ -1,6 +1,6 @@
 import { gsap } from 'gsap/all'
 import { app } from 'scripts/app'
-import { setColors } from 'scripts/features/color'
+import { setColors, setHeaderColor } from 'scripts/features/color'
 import type { Marquee } from './Marquee'
 
 export class Menu extends HTMLElement {
@@ -9,13 +9,15 @@ export class Menu extends HTMLElement {
   private smalls = this.querySelectorAll('[data-nav-small]')
 
   private onForward() {
-    setColors(['#C9C9C9', '#fff', '#EAEAEA'])
+    setColors(['#C9C9C9', '#FFF', '#EAEAEA'])
+    setHeaderColor('#FFF')
     this.marquees.forEach(marquee => marquee.play())
   }
 
   private onBackward() {
     const { progressColor, cursorColor, cursorColorHover } = app.globals
     setColors([progressColor, cursorColor, cursorColorHover])
+    setHeaderColor('#151515')
     this.marquees.forEach(marquee => marquee.pause())
   }
 
@@ -68,5 +70,6 @@ export class Menu extends HTMLElement {
   public connectedCallback() {
     this.style.display = ''
     app.plugins.barba.hooks.after(() => this.setCurrentLink())
+    app.plugins.barba.hooks.before(() => { this.close() })
   }
 }
