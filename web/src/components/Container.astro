@@ -1,17 +1,26 @@
 ---
+import type { AstroBuiltinAttributes } from 'astro'
+
 type Props = {
   as?: string
   class?: string
+  'class:list'?: AstroBuiltinAttributes['class:list']
   fullscreen?: boolean
 }
 
-const { as: Tag = 'section', class: className, fullscreen } = Astro.props as Props
+const {
+  as: Tag = 'section',
+  class: className,
+  'class:list': classList,
+  fullscreen
+} = Astro.props as Props
 ---
 
 <Tag
   class:list={[
     'h-screen flex-shrink-0 grid grid-rows-[var(--grid)]',
     className,
+    classList,
     fullscreen
       ? 'grid-cols-[var(--grid)] w-screen portrait:py-custom-space'
       : [
