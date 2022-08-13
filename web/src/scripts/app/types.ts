@@ -9,12 +9,18 @@ export namespace App {
     plugins: Plugins
     globals: Globals
     refs: Refs
+    hooks: Hooks
+    installed: Promise<void>[]
     use: (plugin: Plugin) => void
+  }
+
+  export type Hooks = {
+    before?: (app: Core) => void | Promise<void>
+    after?: (app: Core) => void | Promise<void>
   }
 
   export type Plugin = {
     install: (app: Core) => void
-    [props: string]: unknown
   }
 
   export type Plugins = {

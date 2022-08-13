@@ -19,7 +19,15 @@ if (!app.global || !app.dictionary) {
   app.dictionary = dictionary.data.attributes
 }
 
-const { meta, enableFooter = true, namespace = 'base', ...rest } = Astro.props as Props
+const {
+  meta,
+  enableFooter = true,
+  namespace = 'base',
+  ...rest
+} = Astro.props as Props
+
+const title = `${meta?.title ? `${meta.title} — ${app.global?.meta?.title}` : app.global?.meta?.title}`
+const description = meta?.description || app.global?.meta?.description
 ---
 
 <!doctype html>
@@ -28,6 +36,24 @@ const { meta, enableFooter = true, namespace = 'base', ...rest } = Astro.props a
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <meta name="author" content="Sanserif">
+    <meta property="og:site_name" content={title}>
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <!-- <meta property="og:url" content={Astro.canonicalURL.href}> -->
+    <!-- <meta property="og:image" content={thumbnail?.data.attributes.url || meta.thumbnail.data.attributes.url}> -->
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <!-- <meta name="twitter:image" content={thumbnail?.data.attributes.url || meta.thumbnail.data.attributes.url}> -->
+    <meta name="twitter:site" content="@dosbenjamin">
+    <!-- <meta name="theme-color" content="#e8e8e8"> -->
     <link rel="canonical" href={Astro.site} />
     <link rel="preconnect" href="https://res.cloudinary.com" />
     <slot name="preload" />
@@ -68,18 +94,24 @@ const { meta, enableFooter = true, namespace = 'base', ...rest } = Astro.props a
     <sanserif-cursor
       class:list={[
         'pointer-events-none fixed border border-[color:var(--cursor-color)]',
-        'rounded-full h-4 w-4 hover:border-[color:var(--cursor-color)] sm:hidden'
+        'rounded-full h-4 w-4 is-hover:border-[color:var(--cursor-color-hover)]',
+        'transition-colors sm:hidden'
       ]}
     />
 
     <sanserif-cursor
-      class:list={[
-        'pointer-events-none fixed h-[4px] w-[4px] rounded-full',
-        'bg-[color:var(--cursor-color)] hover:bg-[color:var(--cursor-color)] sm:hidden'
-      ]}
+      class="pointer-events-none fixed sm:hidden"
       speed="0.1"
       data-cursor-scale
-    />
+    >
+      <div
+        class:list={[
+          'bg-[color:var(--cursor-color)] transition-[background-color,transform]',
+          'transform-gpu rounded-full h-[0.175rem] w-[0.175rem]',
+          'is-hover:bg-[color:var(--cursor-color-hover)] is-hover:scale-[3]'
+        ]}
+      />
+    </sanserif-cursor>
 
     <div
       class="h-screen w-screen fixed inset-0 bg-black pointer-events-none"
@@ -109,28 +141,31 @@ const { meta, enableFooter = true, namespace = 'base', ...rest } = Astro.props a
   import portrait from 'scripts/plugins/portrait'
   import { refs } from 'scripts/plugins/refs'
 
-  const app = createApp()
-
-  // GSAP plugins
-  gsap.registerPlugin(ScrollTrigger)
-  ScrollTrigger.normalizeScroll(true)
+  const app = createApp({
+    before() {
+      // GSAP plugins
+      gsap.registerPlugin(ScrollTrigger)
+      ScrollTrigger.normalizeScroll(true)
+    },
+    after() {
+      // Web Components
+      customElements.define('sanserif-menu-toggle', MenuToggle)
+      customElements.define('sanserif-menu', Menu)
+      customElements.define('sanserif-next-link', NextLink)
+      customElements.define('skew-wrapper', SkewWrapper)
+      customElements.define('sanserif-marquee', Marquee)
+      customElements.define('sanserif-progress-bar', ProgressBar)
+      customElements.define('parallax-wrapper', ParallaxWrapper)
+      customElements.define('sticky-services', StickyServices)
+      customElements.define('sanserif-team', Team)
+      customElements.define('sanserif-cursor', Cursor)
+    }
+  })
 
   // App plugins
   app.use(barba)
   app.use(portrait)
   app.use(asscroll)
-  app.use(refs)
   app.use(clickables)
-
-  // Web Components
-  window.customElements.define('sanserif-menu-toggle', MenuToggle)
-  window.customElements.define('sanserif-menu', Menu)
-  window.customElements.define('sanserif-next-link', NextLink)
-  window.customElements.define('skew-wrapper', SkewWrapper)
-  window.customElements.define('sanserif-marquee', Marquee)
-  window.customElements.define('sanserif-progress-bar', ProgressBar)
-  window.customElements.define('parallax-wrapper', ParallaxWrapper)
-  window.customElements.define('sticky-services', StickyServices)
-  window.customElements.define('sanserif-team', Team)
-  window.customElements.define('sanserif-cursor', Cursor)
+  app.use(refs)
 </script>

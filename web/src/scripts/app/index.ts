@@ -1,18 +1,43 @@
 import type { App } from 'scripts/app/types'
 
-export const app: App.Core = {
-  use: (plugin) => plugin.install(app),
-  plugins: {},
-  globals: {},
-  refs: {}
+const use = (plugin: App.Plugin) => {
+  app.installed = [
+    ...app.installed,
+    new Promise(async resolve => {
+      await app.loaded
+      resolve(plugin.install(app))
+    })
+  ]
 }
 
-const start = (
+export const app: App.Core = {
+  use,
+  hooks: {},
+  plugins: {},
+  globals: {},
+  refs: {},
+  installed: []
+}
+
+const start = async (
   app: App.Core,
   resolve: (value: PromiseLike<App.Core> | App.Core) => void
-) => resolve(app)
+) => {
+  // Initialize some logic before mounting the app.
+  await app.hooks.before?.(app)
 
-export const createApp = () => {
+  // Mount the app.
+  resolve(app)
+
+  // Wait all plugins to be installed.
+  await Promise.all(app.installed)
+
+  // Initialize some logic after mounting the app.
+  app.hooks.after?.(app)
+}
+
+export const createApp = (hooks: App.Hooks = {}) => {
+  app.hooks = hooks
   app.loaded = new Promise<App.Core>(resolve => {
     document.addEventListener(
       'DOMContentLoaded',

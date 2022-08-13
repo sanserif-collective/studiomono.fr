@@ -1,37 +1,33 @@
-import { gsap } from 'gsap/all'
+import { app } from 'scripts/app'
 import type { App } from 'scripts/app/types'
 
-const cursorScale = document.querySelector('[data-cursor-scale]')
-const scaleXTo = gsap.quickTo(cursorScale, 'scaleX')
-const scaleYTo = gsap.quickTo(cursorScale, 'scaleY')
+const addHoverAttribute = () => document.body.setAttribute('data-is-hover', '')
+const removeHoverAttribute = () => document.body.removeAttribute('data-is-hover')
 
-const onMouseEnter = () => {
-  scaleXTo(3)
-  scaleYTo(3)
+const bindClickablesHover = () => {
+  const clickables = document.querySelectorAll('a, button')
+
+  clickables.forEach(clickable => {
+    clickable.addEventListener('pointerenter', addHoverAttribute)
+    clickable.addEventListener('pointerleave', removeHoverAttribute)
+  })
+
+  app.globals.clickables = clickables
 }
 
-const onMouseLeave = () => {
-  scaleXTo(1)
-  scaleYTo(1)
+const unbindClickablesHover = () => {
+  app.globals.clickables.forEach(clickable => {
+    clickable.addEventListener('pointerenter', addHoverAttribute)
+    clickable.addEventListener('pointerleave', removeHoverAttribute)
+  })
 }
 
 export const clickables: App.Plugin = {
-  install(app) {
-    app.plugins.barba.hooks.afterEnter(() => {
-      app.globals.clickables = document.querySelectorAll('a, button')
-      app.globals.clickables.forEach(clickable => {
-        clickable.addEventListener('pointerenter', onMouseEnter)
-        clickable.addEventListener('pointerleave', onMouseLeave)
-      })
-    })
+  install() {
+    bindClickablesHover()
 
-    app.plugins.barba.hooks.before(() => {
-      app.globals.clickables.forEach(clickable => {
-        clickable.removeEventListener('pointerenter', onMouseEnter)
-        clickable.removeEventListener('pointerleave', onMouseLeave)
-      })
-    })
-
-    app.plugins.barba.hooks.before(() => onMouseLeave())
+    app.plugins.barba.hooks.before(() => unbindClickablesHover())
+    app.plugins.barba.hooks.beforeEnter(() => removeHoverAttribute())
+    app.plugins.barba.hooks.after(() => bindClickablesHover())
   }
 }

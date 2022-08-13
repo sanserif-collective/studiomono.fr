@@ -136,6 +136,7 @@ module.exports = {
 
       addVariant('children', '& > *')
       addVariant('owl', '& > * + *')
+      addVariant('is-hover', '[data-is-hover] &')
     })
   ]
 }
