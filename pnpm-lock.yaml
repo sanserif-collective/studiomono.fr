@@ -28,7 +28,6 @@ importers:
       '@barba/core': ^2.9.7
       '@cloudinary/url-gen': ^1.8.0
       astro: 1.0.0
-      clsx: ^1.2.1
       env-var: ^7.1.1
       graphql-request: ^4.3.0
       gsap: ^3.10.4
@@ -42,7 +41,6 @@ importers:
       '@astrojs/tailwind': 1.0.0
       '@cloudinary/url-gen': 1.8.0
       astro: 1.0.0
-      clsx: 1.2.1
       env-var: 7.1.1
       graphql-request: 4.3.0
 
@@ -4923,11 +4921,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
-
-  /clsx/1.2.1:
-    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
-    engines: {node: '>=6'}
-    dev: true
 
   /co-body/5.2.0:
     resolution: {integrity: sha512-sX/LQ7LqUhgyaxzbe7IqwPeTr2yfpfUIQ/dgpKo6ZI4y4lpQA0YxAomWIY+7I7rHWcG02PG+OuPREzMW/5tszQ==}
