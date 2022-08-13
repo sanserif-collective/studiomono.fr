@@ -1,23 +1,44 @@
 ---
-import { route } from 'utilities/route'
 import Sprite from 'components/Sprite.astro'
+import { route } from 'utilities/route'
 import Menu from './Menu.astro'
 ---
 
-<header class="z-50 fixed top-custom-space inset-x-custom-space text-[color:var(--header-color)] transition-colors duration-300">
-  <a href={route('index')} class="z-50 absolute left-0 w-20 h-4" aria-label="Go to homepage">
+<header
+  class:list={[
+    'z-50 fixed top-custom-space inset-x-custom-space',
+    'text-[color:var(--header-color)] transition-colors duration-300'
+  ]}
+>
+  <a
+    href={route('index')}
+    class="z-50 absolute left-0 w-20 h-4"
+    aria-label="Go to homepage"
+  >
     <Sprite id="sanserif" class="w-full h-full" />
   </a>
-
-  <sanserif-menu-toggle class="z-50 absolute right-0 group">
-    <button
-      class="h-6 w-6 relative children:block children:w-full children:h-[2px] children:bg-current children:absolute children:inset-x-0"
-      aria-label="Toggle menu"
-    >
-      <span class="top-2 transform-gpu transition-transform group-open:rotate-45 group-open:translate-y-[0.19rem]"></span>
-      <span class="bottom-2 transform-gpu transition-transform group-open:-rotate-45 group-open:translate-y-[-0.19rem]"></span>
-    </button>
+  <sanserif-menu-toggle
+    role="button"
+    aria-label="Toggle menu"
+    class:list={[
+      'group z-50 absolute right-0 group h-6 w-6 children:block children:w-full',
+      'children:h-[2px] children:bg-current children:absolute children:inset-x-0'
+    ]}
+  >
+    <span
+      class:list={[
+        'top-2 transform-gpu transition-transform group-open:rotate-45',
+        'group-open:translate-y-[0.19rem] group-hover:translate-x-1',
+        'group-hover:group-open:translate-x-0'
+      ]}
+    />
+    <span
+      class:list={[
+        'bottom-2 transform-gpu transition-transform group-open:-rotate-45',
+        'group-open:translate-y-[-0.19rem] group-hover:-translate-x-1',
+        'group-hover:group-open:translate-x-0'
+      ]}
+    />
   </sanserif-menu-toggle>
-
   <Menu />
 </header>

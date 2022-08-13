@@ -5,7 +5,7 @@ const addHoverAttribute = () => document.body.setAttribute('data-is-hover', '')
 const removeHoverAttribute = () => document.body.removeAttribute('data-is-hover')
 
 const bindClickablesHover = () => {
-  const clickables = document.querySelectorAll('a, button')
+  const clickables = document.querySelectorAll('a, button, [role="button"]')
 
   clickables.forEach(clickable => {
     clickable.addEventListener('pointerenter', addHoverAttribute)

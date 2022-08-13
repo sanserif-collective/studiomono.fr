@@ -105,7 +105,7 @@ module.exports = {
         'html': {
           'font-size': 'clamp(14px, 1.05vw, 18px)'
         },
-        'button, a': {
+        'button, a, [role="button"]': {
           'cursor': 'none'
         },
         'small': {
