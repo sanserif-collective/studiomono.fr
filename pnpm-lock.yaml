@@ -26,8 +26,8 @@ importers:
       '@ashthornton/asscroll': ^2.0.11
       '@astrojs/tailwind': ^1.0.0
       '@barba/core': ^2.9.7
-      '@cloudinary/url-gen': ^1.8.0
-      astro: 1.0.4
+      '@cloudinary/url-gen': ^1.8.1
+      astro: 1.0.5
       env-var: ^7.1.1
       graphql-request: ^4.3.0
       gsap: ^3.10.4
@@ -39,8 +39,8 @@ importers:
       split-type: 0.3.2
     devDependencies:
       '@astrojs/tailwind': 1.0.0
-      '@cloudinary/url-gen': 1.8.0
-      astro: 1.0.4
+      '@cloudinary/url-gen': 1.8.1
+      astro: 1.0.5
       env-var: 7.1.1
       graphql-request: 4.3.0
 
@@ -1525,8 +1525,16 @@ packages:
       '@ucast/mongo2js': 1.3.3
     dev: false
 
-  /@cloudinary/url-gen/1.8.0:
-    resolution: {integrity: sha512-sSbLY3i/FZ+yHAinVbTzUjIzFGsnpYajWTLG+dc/80GbSfODuxZ0OyXp2kOxtf7MUyx5y998BIa8ketnVr7chA==}
+  /@cloudinary/transformation-builder-sdk/1.0.0:
+    resolution: {integrity: sha512-P7Mic/F5xmxuy2YqP8WWfYmTss6fONIITWQth6sARepvA9qky09LW12eoMivZNU0ootQVB1IZ4Gxvq/tw/5/+A==}
+    dependencies:
+      '@cloudinary/url-gen': 1.8.1
+    dev: true
+
+  /@cloudinary/url-gen/1.8.1:
+    resolution: {integrity: sha512-JfAZTz3TZp5uygkvj25PVuAGJATGAaU2KYitgvaS3JSvvkaM2OHN6+yDJH/Inm72DSQl3v41wcSgqNhbxdUw3Q==}
+    dependencies:
+      '@cloudinary/transformation-builder-sdk': 1.0.0
     dev: true
 
   /@colors/colors/1.5.0:
@@ -3941,8 +3949,8 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /astro/1.0.4:
-    resolution: {integrity: sha512-wNXmDSHnhiFcEeMy2VWMJV1i8mPx8Lu4qLBfZSmP9nWrc/oxgBZfDQTWOj0/NFu+MkfZ2JEGJlL9RZFmHrKlew==}
+  /astro/1.0.5:
+    resolution: {integrity: sha512-+L45/SJfJ4yxQuRaaxXeIxf3BXGj80m7BIc9/7Cq5zFMxdvFLJ+4u6srntWY+4KlcrUcVBC/1mnhGbD80vYJQQ==}
     engines: {node: ^14.18.0 || >=16.12.0, npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -3987,7 +3995,7 @@ packages:
       recast: 0.20.5
       rehype: 12.0.1
       resolve: 1.22.1
-      rollup: 2.77.3
+      rollup: 2.78.0
       semver: 7.3.7
       shiki: 0.10.1
       sirv: 2.0.2
@@ -4426,7 +4434,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001375
-      electron-to-chromium: 1.4.218
+      electron-to-chromium: 1.4.219
       node-releases: 2.0.6
       update-browserslist-db: 1.0.5_browserslist@4.21.3
 
@@ -5757,8 +5765,8 @@ packages:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: false
 
-  /electron-to-chromium/1.4.218:
-    resolution: {integrity: sha512-INDylKH//YIf2w67D+IjkfVnGVrZ/D94DAU/FPPm6T4jEPbEDQvo9r2wTj0ncFdtJH8+V8BggZTaN8Rzk5wkgw==}
+  /electron-to-chromium/1.4.219:
+    resolution: {integrity: sha512-zoQJsXOUw0ZA0YxbjkmzBumAJRtr6je5JySuL/bAoFs0DuLiLJ+5FzRF7/ZayihxR2QcewlRZVm5QZdUhwjOgA==}
 
   /elliptic/6.5.4:
     resolution: {integrity: sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==}
@@ -11711,8 +11719,8 @@ packages:
       inherits: 2.0.4
     dev: false
 
-  /rollup/2.77.3:
-    resolution: {integrity: sha512-/qxNTG7FbmefJWoeeYJFbHehJ2HNWnjkAFRKzWN/45eNBBF/r8lo992CwcJXEzyVxs5FmfId+vTSTQDb+bxA+g==}
+  /rollup/2.78.0:
+    resolution: {integrity: sha512-4+YfbQC9QEVvKTanHhIAFVUFSRsezvQF8vFOJwtGfb9Bb+r014S+qryr9PSmw8x6sMnPkmFBGAvIFVQxvJxjtg==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
@@ -13261,7 +13269,7 @@ packages:
       esbuild: 0.14.54
       postcss: 8.4.16
       resolve: 1.22.1
-      rollup: 2.77.3
+      rollup: 2.78.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
