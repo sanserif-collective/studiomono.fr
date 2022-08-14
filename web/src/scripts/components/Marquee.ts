@@ -11,14 +11,13 @@ export class Marquee extends HTMLElement {
   private delayBeforePlay = Number(this.getAttribute('delaybeforeplay') ?? '0')
   private delayBeforePause = Number(this.getAttribute('delaybeforepause') ?? '0')
 
-  private slide = gsap
-    .to(this.children, {
-      xPercent: this.direction,
-      repeat: -1,
-      duration: 5,
-      ease: 'none',
-      paused: this.playing === 'lazy'
-    })
+  private slide = gsap.to(this.children, {
+    xPercent: this.direction,
+    repeat: -1,
+    duration: 5,
+    ease: 'none',
+    paused: this.playing === 'lazy'
+  })
 
   private onMouseEnter = () => {
     this.pauseOnHover && this.pause()
