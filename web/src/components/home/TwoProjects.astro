@@ -1,6 +1,5 @@
 ---
 import ProjectCard from 'components/ProjectCard.astro'
-import { cloudinary } from 'src/cloudinary'
 import type { Home } from 'types/routes/home'
 
 type Props = {
@@ -11,9 +10,6 @@ const { projects } = Astro.props as Props
 
 const project1 = projects.project1.data.attributes
 const project2 = projects.project2.data.attributes
-
-const image1 = cloudinary.image(project1.cover.data.attributes.provider_metadata.public_id)
-const image2 = cloudinary.image(project2.cover.data.attributes.provider_metadata.public_id)
 ---
 
 <article class="row-start-2 row-end-6 portrait:col-start-2 portrait:col-span-6">

@@ -1,7 +1,5 @@
 ---
-import { Resize } from '@cloudinary/url-gen/actions'
 import ProjectCard from 'components/ProjectCard.astro'
-import { cloudinary } from 'src/cloudinary'
 import type { Home } from 'types/routes/home'
 
 type Props = {
@@ -9,9 +7,6 @@ type Props = {
 }
 
 const { projects } = Astro.props as Props
-
-const { cover } = projects.project.data.attributes
-const image = cloudinary.image(cover.data.attributes.provider_metadata.public_id)
 ---
 
 <article
