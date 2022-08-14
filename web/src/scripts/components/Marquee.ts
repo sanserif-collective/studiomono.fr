@@ -34,11 +34,10 @@ export class Marquee extends HTMLElement {
     this.delayedPause?.kill()
 
     if (this.delayBeforePlay) {
-      return this.delayedPlay = gsap
-        .delayedCall(
-          this.delayBeforePlay,
-          () => this.slide.play()
-        )
+      return this.delayedPlay = gsap.delayedCall(
+        this.delayBeforePlay,
+        () => this.slide.play()
+      )
     }
 
     this.slide.play()
@@ -48,11 +47,10 @@ export class Marquee extends HTMLElement {
     this.delayedPlay?.kill()
 
     if (this.delayBeforePause) {
-      return this.delayedPause = gsap
-        .delayedCall(
-          this.delayBeforePause,
-          () => this.slide.pause()
-        )
+      return this.delayedPause = gsap.delayedCall(
+        this.delayBeforePause,
+        () => this.slide.pause()
+      )
     }
 
     this.slide.pause()
