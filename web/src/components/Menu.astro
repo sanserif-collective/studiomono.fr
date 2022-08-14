@@ -1,7 +1,8 @@
 ---
-import Text from 'components/Text.astro';
-import { app } from 'src/app';
-import { route } from 'utilities/route';
+import Text from 'components/Text.astro'
+import { app } from 'src/app'
+import { route } from 'utilities/route'
+import MarqueeItem from './MarqueeItem.astro'
 ---
 
 <sanserif-menu
@@ -25,16 +26,10 @@ import { route } from 'utilities/route';
           direction={index % 2 === 0 ? -100 : 100}
           pauseonhover={true}
         >
-          {[...new Array(10)].map(() => (
-            <div
-              class:list={[
-                'flex items-center whitespace-nowrap pl-4 before:mr-4 before:h-4',
-                'before:w-4 before:bg-current before:rounded-full'
-              ]}
-            >
-              {link.name}
-            </div>
-          ))}
+          {Array.from(
+            { length: 10 },
+            () => <MarqueeItem>{link.name}</MarqueeItem>
+          )}
         </sanserif-marquee>
       </Text>
     ))}
