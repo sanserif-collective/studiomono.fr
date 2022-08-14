@@ -113,6 +113,9 @@ module.exports = {
         },
         'strong': {
           'font-weight': 'inherit'
+        },
+        'sanserif-skew': {
+          'display': 'block'
         }
       })
 

@@ -12,7 +12,12 @@ const { layout } = Astro.props as Props
 const image = cloudinary.image(layout.image.data.attributes.provider_metadata.public_id)
 ---
 
-<sanserif-skew class="row-start-5 row-end-11 flex justify-center items-center portrait:justify-start">
+<sanserif-skew
+  class:list={[
+    'row-start-5 row-end-11 flex justify-center items-center',
+    'portrait:justify-start'
+  ]}
+>
   <parallax-wrapper>
     <Image
       src={image.toURL()}

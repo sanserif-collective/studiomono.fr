@@ -10,20 +10,35 @@ type Props = {
 const { url, caption } = Astro.props as Props
 ---
 
-<footer class="grid place-content-center w-[calc(100vw_-_var(--custom-space))] portrait:w-auto">
+<footer
+  class:list={[
+    'grid place-content-center w-[calc(100vw_-_var(--custom-space))]',
+    'portrait:w-auto'
+  ]}
+>
   <sanserif-next-link class="grid place-content-center mt-14 portrait:py-[10vh]">
     <a href={url} class="block">
       <Text as="strong" size="3xl" class="relative">
         <div class="overflow-hidden grid text-center">
-          <sanserif-skew class="row-start-1 col-start-1 max-w-[6em]" data-split>
-            <slot />
-          </sanserif-skew>
-          <sanserif-skew class="row-start-1 col-start-1 max-w-[6em]" data-split>
-            <slot />
-          </sanserif-skew>
+          {Array.from(
+            { length: 2 },
+            () => (
+              <sanserif-skew
+                class="row-start-1 col-start-1 max-w-[6em]"
+                data-split
+              >
+                <slot />
+              </sanserif-skew>
+            )
+          )}
         </div>
       </Text>
-      <small class="mt-8 transition-all duration-500 ease-in-out flex items-center justify-center">
+      <small
+        class:list={[
+          'mt-8 transition-all duration-500 ease-in-out flex',
+          'items-center justify-center'
+        ]}
+      >
         {caption}
         <Sprite id="arrow" class="h-4 w-4 ml-4" />
       </small>
