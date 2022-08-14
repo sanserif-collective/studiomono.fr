@@ -21,7 +21,7 @@ const createVelocityWatcher = () => {
   }
 }
 
-const asscroll: App.Plugin = {
+export const asscroll: App.Plugin = {
   install(app) {
     const scroll = new ASScroll({
       disableRaf: true,
@@ -47,12 +47,7 @@ const asscroll: App.Plugin = {
     const getVelocity = createVelocityWatcher()
     const setVelocity = () => app.globals.scrollVelocity = getVelocity(scroll.currentPos)
 
-    // Link ASScroll and ScrollTrigger.
-    ScrollTrigger.defaults({
-      horizontal: true,
-      scroller: scroll.containerElement
-    })
-
+    // Use ASScroll as proxy.
     ScrollTrigger.scrollerProxy(scroll.containerElement, {
       scrollTop(value = 0) {
         return (arguments.length && scroll)
@@ -75,8 +70,13 @@ const asscroll: App.Plugin = {
       pinType: 'transform'
     })
 
+    // Link ASScroll and ScrollTrigger.
     scroll.on('update', ScrollTrigger.update)
     ScrollTrigger.addEventListener('refresh', scroll.resize)
+    ScrollTrigger.defaults({ horizontal: true, scroller: scroll.containerElement })
+
+    // Prevent mobile address bar show/hide.
+    ScrollTrigger.normalizeScroll(true)
 
     // Toggle vertical and horizontal scrolling.
     refresh(app.plugins.portrait.media.matches)
@@ -102,5 +102,3 @@ const asscroll: App.Plugin = {
     app.plugins.scroll = scroll
   }
 }
-
-export default asscroll

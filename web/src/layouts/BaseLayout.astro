@@ -135,7 +135,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site)
   import { Services } from 'scripts/components/Services'
   import { Skew } from 'scripts/components/Skew'
   import { Team } from 'scripts/components/Team'
-  import asscroll from 'scripts/plugins/asscroll'
+  import { asscroll } from 'scripts/plugins/asscroll'
   import { barba } from 'scripts/plugins/barba'
   import { clickables } from 'scripts/plugins/clickables'
   import portrait from 'scripts/plugins/portrait'
@@ -145,7 +145,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site)
     before() {
       // GSAP plugins
       gsap.registerPlugin(ScrollTrigger)
-      ScrollTrigger.normalizeScroll(true)
     },
     after() {
       // Web Components
