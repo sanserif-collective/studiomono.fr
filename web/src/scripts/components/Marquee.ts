@@ -39,7 +39,7 @@ export class Marquee extends HTMLElement {
       )
     }
 
-    this.slide.play()
+    return this.slide.play()
   }
 
   public pause = () => {
@@ -52,7 +52,7 @@ export class Marquee extends HTMLElement {
       )
     }
 
-    this.slide.pause()
+    return this.slide.pause()
   }
 
   public connectedCallback() {
