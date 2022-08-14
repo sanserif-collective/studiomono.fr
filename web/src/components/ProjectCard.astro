@@ -3,6 +3,7 @@ import type { AstroBuiltinAttributes } from 'astro'
 import Image from 'components/Image.astro'
 import { cloudinary } from 'src/cloudinary'
 import type { Shared } from 'types/shared'
+import { route } from 'utilities/route'
 import MarqueeItem from './MarqueeItem.astro'
 import Text from './Text.astro'
 
@@ -29,51 +30,53 @@ const {
 const image = cloudinary.image(project.cover.data.attributes.provider_metadata.public_id)
 ---
 
-<a class:list={[classList, className]} {...rest}>
-  <sanserif-skew
-    class:list={[
-      'relative block group overflow-hidden transition-[clip-path]',
-      '[clip-path:inset(0)] hover:[clip-path:inset(0.75rem)] bg-gray'
-    ]}
-  >
-    <Text
-      as="sanserif-marquee"
-      size="xl"
+<div class:list={[classList, className]} {...rest}>
+  <a href={route('projects', project.slug)}>
+    <sanserif-skew
       class:list={[
-        'h-full flex justify-center absolute top-1/2 -translate-y-1/2 z-10',
-        'w-full items-center overflow-hidden'
+        'relative block group overflow-hidden transition-[clip-path]',
+        '[clip-path:inset(0)] hover:[clip-path:inset(0.75rem)] bg-gray'
       ]}
-      playonhover
-      delaybeforepause="1"
-      role="heading"
-      aria-level="3"
     >
-      {Array.from(
-        { length: 10 },
-        () => (
-          <div class="overflow-y-hidden flex-shrink-0">
-            <MarqueeItem
-              class:list={[
-                'translate-y-full transform-gpu transition-transform',
-                'group-hover:translate-y-0'
-              ]}
-            >
-              {project.name}
-            </MarqueeItem>
-          </div>
-        )
-      )}
-    </Text>
-    <Image
-      width={width}
-      height={height}
-      loading={loading}
-      alt={project.name}
-      src={image.toURL()}
-      class:list={[
-        'block transform-gpu transition-[opacity,transform]',
-        'group-hover:scale-[102.5%] group-hover:opacity-70'
-      ]}
-    />
-  </sanserif-skew>
-</a>
+      <Text
+        as="sanserif-marquee"
+        size="xl"
+        class:list={[
+          'h-full flex justify-center absolute top-1/2 -translate-y-1/2 z-10',
+          'w-full items-center overflow-hidden'
+        ]}
+        playonhover
+        delaybeforepause="1"
+        role="heading"
+        aria-level="3"
+      >
+        {Array.from(
+          { length: 10 },
+          () => (
+            <div class="overflow-y-hidden flex-shrink-0">
+              <MarqueeItem
+                class:list={[
+                  'translate-y-full transform-gpu transition-transform',
+                  'group-hover:translate-y-0'
+                ]}
+              >
+                {project.name}
+              </MarqueeItem>
+            </div>
+          )
+        )}
+      </Text>
+      <Image
+        width={width}
+        height={height}
+        loading={loading}
+        alt={project.name}
+        src={image.toURL()}
+        class:list={[
+          'block transform-gpu transition-[opacity,transform]',
+          'group-hover:scale-[102.5%] group-hover:opacity-70'
+        ]}
+      />
+    </sanserif-skew>
+  </a>
+</div>

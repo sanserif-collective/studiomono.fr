@@ -25,6 +25,5 @@ const image = cloudinary.image(cover.data.attributes.provider_metadata.public_id
     width={620}
     height={410}
     project={projects.project.data.attributes}
-    src={image.resize(Resize.thumbnail(920)).toURL()}
   />
 </article>
