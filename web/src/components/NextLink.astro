@@ -15,10 +15,7 @@ const { url, caption } = Astro.props as Props
     <a href={url} class="block">
       <Text as="strong" size="3xl" class="relative">
         <div class="overflow-hidden grid text-center">
-          <sanserif-skew
-            class="row-start-1 col-start-1 max-w-[6em] portrait:p-custom-space"
-            data-split
-          >
+          <sanserif-skew class="row-start-1 col-start-1 max-w-[6em]" data-split>
             <slot />
           </sanserif-skew>
           <sanserif-skew class="row-start-1 col-start-1 max-w-[6em]" data-split>
