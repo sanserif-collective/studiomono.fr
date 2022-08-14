@@ -3,10 +3,10 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import type { App } from 'scripts/app/types'
 
-const velocity = () => {
+const createVelocityWatcher = () => {
   const last = { time: 0, position: 0 }
 
-  return ({ currentPos }: ASScroll) => {
+  return (currentPos: number) => {
     const currentTime = Date.now()
 
     const delayInMs = currentTime - last.time
@@ -21,38 +21,6 @@ const velocity = () => {
   }
 }
 
-const proxyScroll = (scroll: ASScroll) => {
-  ScrollTrigger.defaults({
-    horizontal: true,
-    scroller: scroll.containerElement
-  })
-
-  ScrollTrigger.scrollerProxy(scroll.containerElement, {
-    scrollTop(value = 0) {
-      return (arguments.length && scroll)
-        ? scroll.currentPos = value
-        : scroll.currentPos
-    },
-    scrollLeft(value = 0) {
-      return (arguments.length && scroll)
-        ? scroll.currentPos = value
-        : scroll.currentPos
-    },
-    getBoundingClientRect() {
-      return {
-        top: 0,
-        left: 0,
-        width: window.innerWidth,
-        height: window.innerHeight
-      }
-    },
-    pinType: 'transform'
-  })
-
-  scroll.on('update', ScrollTrigger.update)
-  ScrollTrigger.addEventListener('refresh', scroll.resize)
-}
-
 const asscroll: App.Plugin = {
   install(app) {
     const scroll = new ASScroll({
@@ -60,40 +28,77 @@ const asscroll: App.Plugin = {
       customScrollbar: false,
       touchScrollType: 'transform',
       touchEase: 0.2,
-      scrollElements: '[asscroll-element]'
+      containerElement: '[data-asscroll-container]',
+      scrollElements: '[data-asscroll-element]'
     })
 
-    proxyScroll(scroll)
-
-    const refresh = (isPortrait: boolean, elements?: HTMLElement) => {
-      if (isPortrait) {
-        scroll.disable()
-        scroll.enable({ newScrollElements: elements })
-        return ScrollTrigger.refresh(true)
-      }
-
+    // Recalculate page max scroll and toggle horizontal/portrait.
+    const refresh = (isPortrait: boolean) => {
       scroll.disable()
-      scroll.enable({ horizontalScroll: true, newScrollElements: elements })
-      ScrollTrigger.refresh(true)
+      scroll.enable({
+        horizontalScroll: !isPortrait,
+        newScrollElements: document.querySelector<HTMLElement>(
+          '[data-asscroll-element]'
+        )
+      })
     }
 
-    const getVelocity = velocity()
+    // Calculate scroll velocity to use across the app.
+    const getVelocity = createVelocityWatcher()
+    const setVelocity = () => app.globals.scrollVelocity = getVelocity(scroll.currentPos)
 
-    gsap.ticker.add(() => {
-      scroll.update()
-      app.globals.scrollVelocity = getVelocity(scroll)
+    // Link ASScroll and ScrollTrigger.
+    ScrollTrigger.defaults({
+      horizontal: true,
+      scroller: scroll.containerElement
     })
 
+    ScrollTrigger.scrollerProxy(scroll.containerElement, {
+      scrollTop(value = 0) {
+        return (arguments.length && scroll)
+          ? scroll.currentPos = value
+          : scroll.currentPos
+      },
+      scrollLeft(value = 0) {
+        return (arguments.length && scroll)
+          ? scroll.currentPos = value
+          : scroll.currentPos
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight
+        }
+      },
+      pinType: 'transform'
+    })
+
+    scroll.on('update', ScrollTrigger.update)
+    ScrollTrigger.addEventListener('refresh', scroll.resize)
+
+    // Toggle vertical and horizontal scrolling.
     refresh(app.plugins.portrait.media.matches)
     app.plugins.portrait.events.add(({ matches }) => refresh(matches))
 
+    // Prevent user from scrolling before changing page.
     app.plugins.barba.hooks.before(() => scroll.disable({ inputOnly: true }))
-    app.plugins.barba.hooks.after(({ next }) => {
+
+    // Refresh ASSCroll and ScrollTrigger after page change.
+    app.plugins.barba.hooks.after(async () => {
+      const triggerRefresh = gsap.delayedCall(0.75, ScrollTrigger.refresh)
+
       scroll.currentPos = 0
-      refresh(app.plugins.portrait.media.matches, next.container)
-      ScrollTrigger.refresh(true)
+      refresh(app.plugins.portrait.media.matches)
+
+      await triggerRefresh.then()
+      triggerRefresh.kill()
     })
 
+    // Initialize smooth scrolling.
+    gsap.ticker.add(scroll.update)
+    gsap.ticker.add(setVelocity)
     app.plugins.scroll = scroll
   }
 }
