@@ -1,6 +1,9 @@
 import type { App } from 'scripts/app/types'
 
-export type ChangeEvent = (event: MediaQueryListEvent | MediaQueryList) => void
+export type ChangeEvent = (
+  event: MediaQueryListEvent | MediaQueryList
+) => void
+
 export type Plugin = {
   media: MediaQueryList
   events: Set<ChangeEvent>

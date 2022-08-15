@@ -1,8 +1,8 @@
-import { gsap, ScrollTrigger } from 'gsap/all'
+import { gsap } from 'gsap/all'
 import { app } from 'scripts/app'
 
 export class MenuToggle extends HTMLElement {
-  private translateTween: gsap.core.Tween | null = null
+  private shiftTween: gsap.core.Tween | null | undefined = null
 
   private open() {
     this.setAttribute('open', '')
@@ -22,36 +22,40 @@ export class MenuToggle extends HTMLElement {
     this.open()
   }
 
-  public connectedCallback() {
-    ScrollTrigger.matchMedia({
-      '(orientation: landscape)': () => {
-        this.translateTween = gsap.to(this, {
-          x: () => -app.refs.footer?.offsetWidth!,
-          paused: true,
-          scrollTrigger: {
-            trigger: app.refs.footer!,
-            scrub: 1,
-            start: 'left right',
-            end: 'right right'
-          }
-        })
+  private createShiftTween = (
+    event: MediaQueryListEvent | MediaQueryList | undefined
+  ) => {
+    this.shiftTween?.time(0).kill()
+
+    if (!app.refs.footer || event?.matches) return
+
+    this.shiftTween = gsap.to(this, {
+      x: () => -app.refs.footer!.offsetWidth,
+      paused: true,
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: app.refs.footer,
+        scrub: 1,
+        start: 'left right',
+        end: 'right right'
       }
-    })
-
-    this.addEventListener('click', this.onClick)
-
-    app.plugins.barba?.hooks.before(() => {
-      this.removeAttribute('open')
-      // this.translateTween.kill()
-    })
-
-    app.plugins.barba?.hooks.after(() => {
-      // this.translateTween.progress(0)
-      // this.translateTween.scrollTrigger.refresh()
     })
   }
 
+  public connectedCallback() {
+    this.addEventListener('click', this.onClick)
+
+    this.createShiftTween(app.plugins.portrait?.media)
+    app.plugins.portrait?.events.add(this.createShiftTween)
+
+    app.plugins.barba?.hooks.before(() => this.removeAttribute('open'))
+
+    app.plugins.barba?.hooks.afterEnter(
+      () => this.createShiftTween(app.plugins.portrait?.media)
+    )
+  }
+
   public disconnectedCallback() {
-    this.translateTween?.kill()
+    this.shiftTween?.kill()
   }
 }
