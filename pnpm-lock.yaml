@@ -26,8 +26,7 @@ importers:
       '@ashthornton/asscroll': ^2.0.11
       '@astrojs/tailwind': ^1.0.0
       '@barba/core': ^2.9.7
-      '@cloudinary/url-builder': 0.2.0-beta
-      '@cloudinary/url-gen': ^1.8.1
+      '@cloudinary/url-gen': ^1.8.3
       astro: 1.0.5
       env-var: ^7.1.1
       graphql-request: ^4.3.0
@@ -40,8 +39,7 @@ importers:
       split-type: 0.3.2
     devDependencies:
       '@astrojs/tailwind': 1.0.0
-      '@cloudinary/url-builder': 0.2.0-beta
-      '@cloudinary/url-gen': 1.8.1
+      '@cloudinary/url-gen': 1.8.3
       astro: 1.0.5
       env-var: 7.1.1
       graphql-request: 4.3.0
@@ -1530,17 +1528,11 @@ packages:
   /@cloudinary/transformation-builder-sdk/1.0.0:
     resolution: {integrity: sha512-P7Mic/F5xmxuy2YqP8WWfYmTss6fONIITWQth6sARepvA9qky09LW12eoMivZNU0ootQVB1IZ4Gxvq/tw/5/+A==}
     dependencies:
-      '@cloudinary/url-gen': 1.8.1
+      '@cloudinary/url-gen': 1.8.3
     dev: true
 
-  /@cloudinary/url-builder/0.2.0-beta:
-    resolution: {integrity: sha512-3UMh86lCeg0bpEbzLXljq8pejcBopqYlDixxiWjAVyH7HUupscKRxZdv1OHm3fp+8CLtcuPVKVG4kw4Z89HKQw==}
-    dependencies:
-      '@cloudinary/transformation-builder-sdk': 1.0.0
-    dev: true
-
-  /@cloudinary/url-gen/1.8.1:
-    resolution: {integrity: sha512-JfAZTz3TZp5uygkvj25PVuAGJATGAaU2KYitgvaS3JSvvkaM2OHN6+yDJH/Inm72DSQl3v41wcSgqNhbxdUw3Q==}
+  /@cloudinary/url-gen/1.8.3:
+    resolution: {integrity: sha512-pEq4YQ0SP3UywHQ57UjbinS8qSFlpiUzsZ8+pPw7LrLbHTMdUlWW4Yp4O+ScGpPg9Pz0VQ40wp13RJm8V+DwJQ==}
     dependencies:
       '@cloudinary/transformation-builder-sdk': 1.0.0
     dev: true
@@ -4053,7 +4045,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.3
-      caniuse-lite: 1.0.30001375
+      caniuse-lite: 1.0.30001376
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -4441,7 +4433,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001375
+      caniuse-lite: 1.0.30001376
       electron-to-chromium: 1.4.219
       node-releases: 2.0.6
       update-browserslist-db: 1.0.5_browserslist@4.21.3
@@ -4594,8 +4586,8 @@ packages:
     resolution: {integrity: sha512-W2lPwkBkMZwFlPCXhIlYgxu+7gC/NUlCtdK652DAJ1JdgV0sTrvuPFshNPrFa1TY2JOkLhgdeEBplB4ezEa+xg==}
     dev: false
 
-  /caniuse-lite/1.0.30001375:
-    resolution: {integrity: sha512-kWIMkNzLYxSvnjy0hL8w1NOaWNr2rn39RTAVyIwcw8juu60bZDWiF1/loOYANzjtJmy6qPgNmn38ro5Pygagdw==}
+  /caniuse-lite/1.0.30001376:
+    resolution: {integrity: sha512-I27WhtOQ3X3v3it9gNs/oTpoE5KpwmqKR5oKPA8M0G7uMXh9Ty81Q904HpKUrM30ei7zfcL5jE7AXefgbOfMig==}
 
   /caseless/0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
