@@ -1,4 +1,4 @@
-import { Cloudinary } from '@cloudinary/url-gen'
+import { Cloudinary } from '@cloudinary/url-builder'
 import { CLOUDINARY_KEY, CLOUDINARY_NAME, CLOUDINARY_SECRET } from 'env'
 
 export const cloudinary = new Cloudinary({

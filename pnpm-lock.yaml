@@ -26,6 +26,7 @@ importers:
       '@ashthornton/asscroll': ^2.0.11
       '@astrojs/tailwind': ^1.0.0
       '@barba/core': ^2.9.7
+      '@cloudinary/url-builder': 0.2.0-beta
       '@cloudinary/url-gen': ^1.8.1
       astro: 1.0.5
       env-var: ^7.1.1
@@ -39,6 +40,7 @@ importers:
       split-type: 0.3.2
     devDependencies:
       '@astrojs/tailwind': 1.0.0
+      '@cloudinary/url-builder': 0.2.0-beta
       '@cloudinary/url-gen': 1.8.1
       astro: 1.0.5
       env-var: 7.1.1
@@ -1529,6 +1531,12 @@ packages:
     resolution: {integrity: sha512-P7Mic/F5xmxuy2YqP8WWfYmTss6fONIITWQth6sARepvA9qky09LW12eoMivZNU0ootQVB1IZ4Gxvq/tw/5/+A==}
     dependencies:
       '@cloudinary/url-gen': 1.8.1
+    dev: true
+
+  /@cloudinary/url-builder/0.2.0-beta:
+    resolution: {integrity: sha512-3UMh86lCeg0bpEbzLXljq8pejcBopqYlDixxiWjAVyH7HUupscKRxZdv1OHm3fp+8CLtcuPVKVG4kw4Z89HKQw==}
+    dependencies:
+      '@cloudinary/transformation-builder-sdk': 1.0.0
     dev: true
 
   /@cloudinary/url-gen/1.8.1:
