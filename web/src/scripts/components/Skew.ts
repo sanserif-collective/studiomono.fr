@@ -4,7 +4,7 @@ import { app } from 'scripts/app'
 const mapper = gsap.utils.mapRange(-10, 10, -15, 15)
 
 export class Skew extends HTMLElement {
-  private trigger: ScrollTrigger | null = null
+  private trigger?: ScrollTrigger
 
   private skewXSet = gsap.quickSetter(this, 'skewX', 'deg')
   private skewX = () => this.skewXSet(mapper(app.globals.scrollVelocity ?? 0))

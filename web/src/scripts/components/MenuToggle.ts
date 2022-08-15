@@ -2,7 +2,7 @@ import { gsap } from 'gsap/all'
 import { app } from 'scripts/app'
 
 export class MenuToggle extends HTMLElement {
-  private shiftTween: gsap.core.Tween | null = null
+  private shiftTween?: gsap.core.Tween
 
   private open() {
     this.setAttribute('open', '')

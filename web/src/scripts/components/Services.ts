@@ -2,8 +2,8 @@ import { gsap, ScrollTrigger } from 'gsap/all'
 import { app } from 'scripts/app'
 
 export class Services extends HTMLElement {
-  private fadesTrigger: ScrollTrigger | null = null
-  private subservicesTriggers: ScrollTrigger | null = null
+  private fadesTrigger?: ScrollTrigger
+  private subservicesTriggers?: ScrollTrigger
 
   private fades = gsap.from(this.firstElementChild!.children, {
     opacity: 0,

@@ -7,7 +7,7 @@ const transformer = gsap.utils.pipe(
 )
 
 export class Team extends HTMLElement {
-  private nameTrigger: ScrollTrigger | null = null
+  private nameTrigger?: ScrollTrigger
 
   private images = [...this.querySelectorAll<HTMLElement>('[data-member-image]')]
   private nameWrapper = this.querySelector<HTMLElement>('[data-member-names]')
