@@ -50,7 +50,7 @@ export class MenuToggle extends HTMLElement {
 
     app.plugins.barba?.hooks.before(() => this.removeAttribute('open'))
 
-    app.plugins.barba?.hooks.afterEnter(
+    app.plugins.barba?.hooks.after(
       () => this.createShiftTween(app.plugins.portrait?.media)
     )
   }
