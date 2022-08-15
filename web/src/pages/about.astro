@@ -22,7 +22,7 @@ const { about, services, members } = await getAbout()
     members={members.data}
   />
   <NextLink
-    url={route(about.data.attributes.next.link.url)}
+    url={route(about.data.attributes.next.link.route)}
     caption={about.data.attributes.next.caption}
   >
     {about.data.attributes.next.link.name}

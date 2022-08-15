@@ -19,12 +19,10 @@ export const getStaticPaths = async () => {
 
     const props: Props = {
       ...attributes,
-      next: {
-        caption: next.attributes.name,
-        link: {
-          name: app.dictionary.next,
-          url: route('projects', next.attributes.slug)
-        }
+      caption: next.attributes.name,
+      link: {
+        name: app.dictionary?.next ?? '',
+        url: route('projects', next.attributes.slug)
       }
     }
 
@@ -38,7 +36,8 @@ export const getStaticPaths = async () => {
 }
 
 type Props = Shared.Project.Components & {
-  next: Shared.LinkWithCaption
+  caption: string
+  link: Shared.Link
 }
 
 const {
@@ -48,7 +47,8 @@ const {
   introduction,
   subject,
   color,
-  next
+  caption,
+  link
 } = Astro.props as Props
 ---
 
@@ -63,9 +63,9 @@ const {
     <Subjects layouts={subject} />
   </article>
   <NextLink
-    caption={next.caption}
-    url={next.link.url}
+    caption={caption}
+    url={link.url}
   >
-    {next.link.name}
+    {link.name}
   </NextLink>
 </BaseLayout>

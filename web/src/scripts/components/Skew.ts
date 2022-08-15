@@ -4,13 +4,13 @@ import { app } from 'scripts/app'
 const mapper = gsap.utils.mapRange(-10, 10, -15, 15)
 
 export class Skew extends HTMLElement {
-  private trigger: ScrollTrigger
+  private trigger: ScrollTrigger | null = null
 
   private skewXSet = gsap.quickSetter(this, 'skewX', 'deg')
-  private skewX = () => this.skewXSet(mapper(app.globals.scrollVelocity))
+  private skewX = () => this.skewXSet(mapper(app.globals.scrollVelocity ?? 0))
 
   private skewYSet = gsap.quickSetter(this, 'skewY', 'deg')
-  private skewY = () => this.skewYSet(mapper(app.globals.scrollVelocity))
+  private skewY = () => this.skewYSet(mapper(app.globals.scrollVelocity ?? 0))
 
   constructor() {
     super()
@@ -27,7 +27,7 @@ export class Skew extends HTMLElement {
             if (isActive) return gsap.ticker.add(this.skewX)
 
             this.skewXSet(0)
-            gsap.ticker.remove(this.skewX)
+            return gsap.ticker.remove(this.skewX)
           }
         })
       },
@@ -42,7 +42,7 @@ export class Skew extends HTMLElement {
             if (isActive) return gsap.ticker.add(this.skewY)
 
             this.skewYSet(0)
-            gsap.ticker.remove(this.skewY)
+            return gsap.ticker.remove(this.skewY)
           }
         })
       }

@@ -11,7 +11,7 @@ export const barba: App.Plugin = {
         {
           namespace: 'base',
           afterEnter() {
-            const colors = ['#C9C9C9', '#151515', '#fff']
+            const colors = ['#C9C9C9', '#151515', '#FFF']
             setColors(colors)
             saveColors(colors)
           }
@@ -19,7 +19,7 @@ export const barba: App.Plugin = {
         {
           namespace: 'project',
           afterEnter({ next }) {
-            const color = getColorAttribute(next.container)
+            const color = getColorAttribute(next.container)!
             const colors = [color, color, color]
             setColors(colors)
             saveColors(colors)

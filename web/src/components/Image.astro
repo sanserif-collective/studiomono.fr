@@ -6,10 +6,10 @@ type Props = {
   height: number
   as?: string
   src?: string
-  alt?: string
+  alt?: string | undefined
   class?: string
   'class:list'?: AstroBuiltinAttributes['class:list']
-  loading?: 'eager' | 'lazy'
+  loading?: 'eager' | 'lazy' | undefined
   priority?: 'high' | 'low' | 'auto'
   decoding?: 'async' | 'sync' | 'auto'
   fit?: keyof typeof fits
@@ -46,6 +46,7 @@ const {
     width={width}
     loading={loading}
     decoding={decoding}
+    {/* @ts-ignore */}
     fetchpriority={priority}
     class:list={['absolute inset-0 h-full w-full', fits[fit]]}
   >

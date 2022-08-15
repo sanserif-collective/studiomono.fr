@@ -1,8 +1,8 @@
 import { gsap } from 'gsap/all'
 
 export class Marquee extends HTMLElement {
-  private delayedPlay: gsap.core.Tween
-  private delayedPause: gsap.core.Tween
+  private delayedPause: gsap.core.Tween | null = null
+  private delayedPlay: gsap.core.Tween | null = null
 
   private playing = this.getAttribute('playing') ?? 'lazy'
   private direction = this.getAttribute('direction') ?? '100'

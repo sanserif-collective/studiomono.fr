@@ -14,9 +14,9 @@ export const getGlobal = () => strapi.request<Global.Response>(
               phone
             }
             menu {
-              link {
+              links {
                 name
-                url
+                route
               }
             }
             meta {

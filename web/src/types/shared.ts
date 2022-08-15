@@ -6,8 +6,20 @@ export namespace Shared {
     url: string
   }
 
+  export enum Routes {
+    'home' = '/',
+    'about' = '/about',
+    'contact' = '/contact',
+    'projects' = '/projects'
+  }
+
+  export type InternalLink = {
+    name: string
+    route: keyof typeof Routes
+  }
+
   export type LinkWithCaption = {
-    link: Link
+    link: InternalLink
     caption: string
   }
 

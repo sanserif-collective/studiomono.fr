@@ -26,8 +26,8 @@ const {
   ...rest
 } = Astro.props as Props
 
-const title = `${meta?.title ? `${meta.title} — ${app.global?.meta?.title}` : app.global?.meta?.title}`
-const description = meta?.description || app.global?.meta?.description
+const title = `${meta?.title ? `${meta.title} — ${app.global.meta.title}` : app.global.meta.title}`
+const description = meta?.description || app.global.meta.description
 const canonical = new URL(Astro.url.pathname, Astro.site)
 ---
 

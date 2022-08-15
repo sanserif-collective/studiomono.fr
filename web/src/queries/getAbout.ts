@@ -31,7 +31,7 @@ export const getAbout = () => strapi.request<About.Response>(
             next {
               link {
                 name
-                url
+                route
               }
               caption
             }

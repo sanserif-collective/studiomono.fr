@@ -1,7 +1,7 @@
 import { gsap } from 'gsap/all'
 
 export default class ParallaxWrapper extends HTMLElement {
-  private parallax: gsap.core.Tween
+  private parallax: gsap.core.Tween | null = null
 
   private init(matches: boolean) {
     this.parallax?.kill()

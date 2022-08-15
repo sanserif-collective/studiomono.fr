@@ -7,7 +7,7 @@ const transformer = gsap.utils.pipe(
 )
 
 export class Team extends HTMLElement {
-  private nameTrigger: ScrollTrigger
+  private nameTrigger: ScrollTrigger | null = null
 
   private images = [...this.querySelectorAll<HTMLElement>('[data-member-image]')]
   private nameWrapper = this.querySelector<HTMLElement>('[data-member-names]')
@@ -77,7 +77,7 @@ export class Team extends HTMLElement {
           trigger: this.firstElementChild,
           pin: true,
           start: () => `left ${app.refs.footer?.offsetWidth}`,
-          end: () => `+=${this.offsetWidth - this.nameWrapper.offsetWidth}`,
+          end: () => `+=${this.offsetWidth - this.nameWrapper?.offsetWidth!}`,
           onEnter: () => this.translates[0].play()
         })
       }

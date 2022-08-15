@@ -16,7 +16,7 @@ export class Menu extends HTMLElement {
 
   private onBackward() {
     const { progressColor, cursorColor, cursorColorHover } = app.globals
-    setColors([progressColor, cursorColor, cursorColorHover])
+    setColors([progressColor!, cursorColor!, cursorColorHover!])
     setHeaderColor('#151515')
     this.marquees.forEach(marquee => marquee.pause())
   }
@@ -69,7 +69,7 @@ export class Menu extends HTMLElement {
 
   public connectedCallback() {
     this.style.display = ''
-    app.plugins.barba.hooks.after(() => this.setCurrentLink())
-    app.plugins.barba.hooks.before(() => { this.close() })
+    app.plugins.barba?.hooks.after(() => this.setCurrentLink())
+    app.plugins.barba?.hooks.before(() => { this.close() })
   }
 }

@@ -2,10 +2,10 @@ import { gsap, ScrollTrigger } from 'gsap/all'
 import { app } from 'scripts/app'
 
 export class Services extends HTMLElement {
-  private fadesTrigger: ScrollTrigger
-  private subservicesTriggers: ScrollTrigger
+  private fadesTrigger: ScrollTrigger | null = null
+  private subservicesTriggers: ScrollTrigger | null = null
 
-  private fades = gsap.from(this.firstElementChild.children, {
+  private fades = gsap.from(this.firstElementChild!.children, {
     opacity: 0,
     x: 20,
     paused: true,
@@ -22,7 +22,7 @@ export class Services extends HTMLElement {
           trigger: this.previousElementSibling,
           pin: this.firstElementChild,
           start: () => `left ${app.refs.footer?.offsetWidth}px`,
-          end: () => `right ${(this.firstElementChild as HTMLElement).offsetWidth + app.refs.footer?.offsetWidth + (window.innerHeight / 20)}px`
+          end: () => `right ${(this.firstElementChild as HTMLElement).offsetWidth + app.refs.footer?.offsetWidth! + (window.innerHeight / 20)}px`
         })
 
         this.fadesTrigger = ScrollTrigger.create({

@@ -10,15 +10,15 @@ import MarqueeItem from './MarqueeItem.astro'
   style="display: none"
 >
   <nav class="text-center max-w-xl">
-    {app.global.menu.link.map((link, index) => (
+    {app.global?.menu.links.map((link, index) => (
       <Text
         as="a"
         size="2xl"
         class:list={[
           'transition-opacity block overflow-hidden',
-          route(link.url) !== Astro.url.pathname && 'opacity-25 hover:opacity-50'
+          route(link.route) !== Astro.url.pathname && 'opacity-25 hover:opacity-50'
         ]}
-        href={route(link.url)}
+        href={route(link.route)}
         data-nav-link
       >
         <sanserif-marquee
@@ -41,30 +41,30 @@ import MarqueeItem from './MarqueeItem.astro'
     ]}
   >
     <div class="overflow-y-hidden">
-      <small class="block" data-nav-small>{app.global.informations.location}</small>
+      <small class="block" data-nav-small>{app.global?.informations.location}</small>
     </div>
     <div class="text-center">
       <div class="overflow-y-hidden">
         <a
           class="block"
-          href={`mailto:${app.global.informations.email}`}
+          href={`mailto:${app.global?.informations.email}`}
           data-nav-small
         >
-          {app.global.informations.email}
+          {app.global?.informations.email}
         </a>
       </div>
       <div class="overflow-y-hidden">
         <a
           class="block"
-          href={`tel:${app.global.informations.phone}`}
+          href={`tel:${app.global?.informations.phone}`}
           data-nav-small
         >
-          {app.global.informations.phone}
+          {app.global?.informations.phone}
         </a>
       </div>
     </div>
     <div class="overflow-y-hidden">
-      <small class="block" data-nav-small>{app.dictionary.rights}</small>
+      <small class="block" data-nav-small>{app.dictionary?.rights}</small>
     </div>
   </div>
 </sanserif-menu>

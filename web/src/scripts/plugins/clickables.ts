@@ -16,7 +16,7 @@ const bindClickablesHover = () => {
 }
 
 const unbindClickablesHover = () => {
-  app.globals.clickables.forEach(clickable => {
+  app.globals.clickables?.forEach(clickable => {
     clickable.addEventListener('pointerenter', addHoverAttribute)
     clickable.addEventListener('pointerleave', removeHoverAttribute)
   })
@@ -26,8 +26,8 @@ export const clickables: App.Plugin = {
   install() {
     bindClickablesHover()
 
-    app.plugins.barba.hooks.before(() => unbindClickablesHover())
-    app.plugins.barba.hooks.beforeEnter(() => removeHoverAttribute())
-    app.plugins.barba.hooks.after(() => bindClickablesHover())
+    app.plugins.barba?.hooks.before(() => unbindClickablesHover())
+    app.plugins.barba?.hooks.beforeEnter(() => removeHoverAttribute())
+    app.plugins.barba?.hooks.after(() => bindClickablesHover())
   }
 }

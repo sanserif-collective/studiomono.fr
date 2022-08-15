@@ -1,6 +1,6 @@
 import type { Global } from 'types/routes/global'
-import type { Shared } from './shared'
-import type { Strapi } from './strapi'
+import type { Shared } from 'types/shared'
+import type { Strapi } from 'types/strapi'
 
 export type App = {
   global?: Global.Components

@@ -34,8 +34,8 @@ const { content } = Astro.props as Props
       'row-end-12 sm:row-start-11 sm:row-end-13'
     ]}
   >
-    <a href={`tel:${app.global.informations.phone}`}>{app.global.informations.phone}</a>
-    <a href={`mailto:${app.global.informations.email}`}>{app.global.informations.email}</a>
-    <small>{app.global.informations.location}</small>
+    <a href={`tel:${app.global?.informations.phone}`}>{app.global?.informations.phone}</a>
+    <a href={`mailto:${app.global?.informations.email}`}>{app.global?.informations.email}</a>
+    <small>{app.global?.informations.location}</small>
   </footer>
 </Container>

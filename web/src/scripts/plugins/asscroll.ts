@@ -33,19 +33,19 @@ export const asscroll: App.Plugin = {
     })
 
     // Recalculate page max scroll and toggle horizontal/portrait.
-    const refresh = (isPortrait: boolean) => {
+    const refresh = (isPortrait: boolean = window.innerWidth < 1024) => {
       scroll.disable()
       scroll.enable({
         horizontalScroll: !isPortrait,
         newScrollElements: document.querySelector<HTMLElement>(
           '[data-asscroll-element]'
-        )
+        )!
       })
     }
 
     // Calculate scroll velocity to use across the app.
     const getVelocity = createVelocityWatcher()
-    const setVelocity = () => app.globals.scrollVelocity = getVelocity(scroll.currentPos)
+    const setVelocity = () => { app.globals.scrollVelocity = getVelocity(scroll.currentPos) }
 
     // Use ASScroll as proxy.
     ScrollTrigger.scrollerProxy(scroll.containerElement, {
@@ -79,18 +79,18 @@ export const asscroll: App.Plugin = {
     ScrollTrigger.normalizeScroll(true)
 
     // Toggle vertical and horizontal scrolling.
-    refresh(app.plugins.portrait.media.matches)
-    app.plugins.portrait.events.add(({ matches }) => refresh(matches))
+    refresh(app.plugins.portrait?.media.matches)
+    app.plugins.portrait?.events.add(({ matches }) => refresh(matches))
 
     // Prevent user from scrolling before changing page.
-    app.plugins.barba.hooks.before(() => scroll.disable({ inputOnly: true }))
+    app.plugins.barba?.hooks.before(() => scroll.disable({ inputOnly: true }))
 
     // Refresh ASSCroll and ScrollTrigger after page change.
-    app.plugins.barba.hooks.after(async () => {
+    app.plugins.barba?.hooks.after(async () => {
       const triggerRefresh = gsap.delayedCall(0.75, ScrollTrigger.refresh)
 
       scroll.currentPos = 0
-      refresh(app.plugins.portrait.media.matches)
+      refresh(app.plugins.portrait?.media.matches)
 
       await triggerRefresh.then()
       triggerRefresh.kill()

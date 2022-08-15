@@ -11,10 +11,10 @@
       "type": "string",
       "required": true
     },
-    "url": {
+    "route": {
       "type": "enumeration",
       "enum": [
-        "index",
+        "home",
         "about",
         "contact"
       ],

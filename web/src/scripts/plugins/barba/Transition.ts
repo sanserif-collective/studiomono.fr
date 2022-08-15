@@ -38,13 +38,13 @@ export class Transition implements ITransitionPage {
     }, 0)
 
   public static async leave() {
-    if (app.refs.menu.hasAttribute('open')) return
+    if (app.refs.menu?.hasAttribute('open')) return
 
     this.leaving.restart()
   }
 
   public static async enter() {
-    if (app.refs.menu.hasAttribute('open')) return
+    if (app.refs.menu?.hasAttribute('open')) return
 
     await this.leaving.then()
     this.entering.restart()

@@ -9,7 +9,7 @@ export namespace Global {
   }
 
   export type Menu = {
-    link: Shared.Link[]
+    links: Shared.InternalLink[]
   }
 
   export type Favicon = {

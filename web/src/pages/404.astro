@@ -3,7 +3,7 @@ import BaseLayout from 'layouts/BaseLayout.astro'
 import { getNotFound } from 'queries/getNotFound'
 import { getAppProjects } from 'queries/getProjects'
 import Main from 'sections/404/Main.astro'
-import { shuffle } from 'utilities/random'
+import { shuffle } from 'utilities/shuffle'
 
 const [projects, { notFound }] = await Promise.all([
   getAppProjects(),
