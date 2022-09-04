@@ -98,6 +98,7 @@ export namespace Shared {
       introduction: Introduction
       subject: Subject.Set[]
       services: Strapi.Data<Service[]>
+      meta: SEO.Meta
     }
   }
 

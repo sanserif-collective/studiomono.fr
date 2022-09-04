@@ -84,6 +84,17 @@ export const getProjects = () => strapi.request<Projects.Response>(
                 }
               }
             }
+            meta {
+              title
+              description
+              thumbnail {
+                data {
+                  attributes {
+                    provider_metadata
+                  }
+                }
+              }
+            }
           }
         }
       }

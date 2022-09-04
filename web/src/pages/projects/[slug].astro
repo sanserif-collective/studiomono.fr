@@ -21,7 +21,7 @@ export const getStaticPaths = async () => {
       ...attributes,
       caption: next.attributes.name,
       link: {
-        name: app.dictionary?.next ?? '',
+        name: app.dictionary!.next,
         url: route('projects', next.attributes.slug)
       }
     }
@@ -48,11 +48,12 @@ const {
   subject,
   color,
   caption,
-  link
+  link,
+  meta
 } = Astro.props as Props
 ---
 
-<BaseLayout meta={{title:'test', description: ''}} namespace="project" data-color={color}>
+<BaseLayout meta={meta} namespace="project" data-color={color}>
   <article class="flex portrait:flex-col">
     <Header
       name={name}
