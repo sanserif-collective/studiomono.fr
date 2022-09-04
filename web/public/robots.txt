@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://sanserif.be/sitemap.xml
+Sitemap: https://sanserif.be/sitemap-index.xml
