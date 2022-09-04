@@ -39,7 +39,7 @@ const appThumbnail = cloudinary
   .resize(Resize.thumbnail(1200, 630))
 
 const pageThumbnail = meta?.thumbnail && cloudinary
-  .image(meta?.thumbnail.data.attributes.provider_metadata.public_id)
+  .image(meta?.thumbnail.data?.attributes.provider_metadata.public_id)
   .resize(Resize.thumbnail(1200, 630))
 
 const thumbnail = pageThumbnail ?? appThumbnail
