@@ -1,10 +1,13 @@
 ---
+import { Resize } from '@cloudinary/url-gen/actions'
 import FontFaces from 'components/FontFaces.astro'
 import Footer from 'components/Footer.astro'
 import Header from 'components/Header.astro'
 import Sprite from 'components/Sprite.astro'
+import Favicon from 'components/Favicon.astro'
 import { getGlobal } from 'queries/getGlobal'
 import { app } from 'src/app'
+import { cloudinary } from 'src/cloudinary'
 import type { Shared } from 'types/shared'
 
 type Props = {
@@ -30,6 +33,16 @@ const {
 const title = `${meta?.title ? `${meta.title} — ${app.global.meta.title}` : app.global.meta.title}`
 const description = meta?.description || app.global.meta.description
 const canonical = new URL(Astro.url.pathname, Astro.site)
+
+const appThumbnail = cloudinary
+  .image(app.global.meta.thumbnail.data.attributes.provider_metadata.public_id)
+  .resize(Resize.thumbnail(1200, 630))
+
+const pageThumbnail = meta?.thumbnail && cloudinary
+  .image(meta?.thumbnail.data.attributes.provider_metadata.public_id)
+  .resize(Resize.thumbnail(1200, 630))
+
+const thumbnail = pageThumbnail ?? appThumbnail
 ---
 
 <!doctype html>
@@ -47,15 +60,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site)
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
     <meta property="og:url" content={canonical}>
-    <!-- <meta property="og:image" content={thumbnail?.data.attributes.url || meta.thumbnail.data.attributes.url}> -->
+    <meta property="og:image" content={thumbnail.toURL()}>
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
-    <!-- <meta name="twitter:image" content={thumbnail?.data.attributes.url || meta.thumbnail.data.attributes.url}> -->
-    <meta name="twitter:site" content="@dosbenjamin">
+    <meta name="twitter:image" content={thumbnail.toURL()}>
     <meta name="theme-color" content="#EAEAEA">
+    <Favicon />
     <link rel="canonical" href={canonical} />
     <link rel="preconnect" href="https://res.cloudinary.com" />
     <slot name="preload" />

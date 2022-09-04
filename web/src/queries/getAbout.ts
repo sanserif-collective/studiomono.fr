@@ -35,6 +35,17 @@ export const getAbout = () => strapi.request<About.Response>(
               }
               caption
             }
+            meta {
+              title
+              description
+              thumbnail {
+                data {
+                  attributes {
+                    provider_metadata
+                  }
+                }
+              }
+            }
           }
         }
       }

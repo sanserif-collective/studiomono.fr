@@ -10,7 +10,7 @@ import { route } from 'utilities/route'
 const { about, services, members } = await getAbout()
 ---
 
-<BaseLayout meta={{title:'test', description: ''}}>
+<BaseLayout meta={about.data.attributes.meta}>
   <Header content={about.data.attributes.header} />
   <Expertise
     title={about.data.attributes.services.title}

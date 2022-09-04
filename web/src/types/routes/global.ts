@@ -19,6 +19,7 @@ export namespace Global {
   export type Components = {
     informations: Informations
     menu: Menu
+    favicon: Favicon
     meta: Shared.SEO.Meta
   }
 

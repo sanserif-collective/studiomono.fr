@@ -13,6 +13,17 @@ export const getContact = () => strapi.request<Contact.Response>(
               subtitle
               text
             }
+            meta {
+              title
+              description
+              thumbnail {
+                data {
+                  attributes {
+                    provider_metadata
+                  }
+                }
+              }
+            }
           }
         }
       }

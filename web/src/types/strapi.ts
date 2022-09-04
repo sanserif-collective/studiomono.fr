@@ -7,6 +7,7 @@ export namespace Strapi {
   export type Image = Data<
     Attributes<{
       alternativeText?: string
+      mime: string
       provider_metadata: Cloudinary.Metadata
     }>
   >

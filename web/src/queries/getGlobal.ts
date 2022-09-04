@@ -19,9 +19,26 @@ export const getGlobal = () => strapi.request<Global.Response>(
                 route
               }
             }
+            favicon {
+              main {
+                data {
+                  attributes {
+                    mime
+                    provider_metadata
+                  }
+                }
+              }
+            }
             meta {
               title
               description
+              thumbnail {
+                data {
+                  attributes {
+                    provider_metadata
+                  }
+                }
+              }
             }
           }
         }

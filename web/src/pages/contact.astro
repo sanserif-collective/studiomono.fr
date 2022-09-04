@@ -6,6 +6,6 @@ import { getContact } from 'queries/getContact'
 const { contact } = await getContact()
 ---
 
-<BaseLayout meta={{title:'test', description: ''}} enableFooter={false}>
+<BaseLayout meta={contact.data.attributes.meta} enableFooter={false}>
   <Header content={contact.data.attributes.header} />
 </BaseLayout>
