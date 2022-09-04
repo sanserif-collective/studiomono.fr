@@ -68,6 +68,7 @@ const thumbnail = pageThumbnail ?? appThumbnail
     <meta name="twitter:description" content={description}>
     <meta name="twitter:image" content={thumbnail.toURL()}>
     <meta name="theme-color" content="#EAEAEA">
+    <meta name="generator" content={Astro.generator} />
     <Favicon />
     <link rel="canonical" href={canonical} />
     <link rel="preconnect" href="https://res.cloudinary.com" />
