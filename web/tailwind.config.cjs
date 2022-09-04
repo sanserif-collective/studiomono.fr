@@ -92,6 +92,22 @@ module.exports = {
       spacing: {
         'custom-space': 'var(--custom-space)',
         'custom-space-double': 'calc(var(--custom-space) * 2)'
+      },
+      keyframes: {
+        loading: {
+          '0%, 100%': {
+            clipPath: 'inset(0 0% 0 0%)'
+          },
+          '50%': {
+            clipPath: 'inset(0 0% 0 100%)'
+          },
+          '66%': {
+            clipPath: 'inset(0 100% 0 0%)'
+          }
+        }
+      },
+      animation: {
+        loading: 'loading 1.75s linear infinite'
       }
     }
   },

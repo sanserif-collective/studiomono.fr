@@ -2,6 +2,7 @@
 import FontFaces from 'components/FontFaces.astro'
 import Footer from 'components/Footer.astro'
 import Header from 'components/Header.astro'
+import Sprite from 'components/Sprite.astro'
 import { getGlobal } from 'queries/getGlobal'
 import { app } from 'src/app'
 import type { Shared } from 'types/shared'
@@ -119,6 +120,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site)
       style="transform: scaleX(0)"
       data-loading-shutter
     />
+
+    <div
+      class:list={[
+        'h-screen w-screen fixed inset-0 bg-black pointer-events-none text-gray',
+        'grid place-content-center'
+      ]}
+      data-loader
+    >
+      <div class="overflow-y-hidden">
+        <div class="flex items-center text-2xl space-x-4 sm:text-xl" data-loader-logo>
+          <Sprite id="sanserif" class="h-[1em]" />
+          <div class="grid place-items-center h-[0.25em] w-[0.25em] bg-gray rounded-full sm:hidden">
+            <div class="h-full w-full bg-[color:#C3C3C3] rounded-full scale-x-100 animate-loading" />
+          </div>
+          <span class="variation-normal sm:hidden">Collective</span>
+        </div>
+      </div>
+    </div>
   </body>
 
 </html>
