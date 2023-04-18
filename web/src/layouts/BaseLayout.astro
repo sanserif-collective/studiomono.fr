@@ -74,12 +74,8 @@ const thumbnail = pageThumbnail ?? appThumbnail
     <link rel="preconnect" href="https://res.cloudinary.com" />
     <slot name="preload" />
     <FontFaces />
-    <script
-      async
-      defer
-      data-website-id="4b446dce-d97f-4333-9337-4cea1080bdd0"
-      src="https://analytics.sanserif.be/umami.js"
-    />
+    <link rel="preconnect" href="https://plausible.dhcp24.easypanel.host">
+    <script defer data-domain="sanserif.be" src="https://plausible.dhcp24.easypanel.host/js/script.js" />
   </head>
 
   <body
