@@ -23,5 +23,5 @@ export default ({ env }) => ({
         expiresIn: '30d'
       }
     }
-  }
+  },
 })
