@@ -5,6 +5,8 @@ import FullscreenImage from 'components/project/FullscreenImage.astro'
 import ImageAndText from 'components/project/ImageAndText.astro'
 import ThreeImages from 'components/project/ThreeImages.astro'
 import TwoImagesAndOneText from 'components/project/TwoImagesAndOneText.astro'
+import CenteredVerticalImage from 'components/project/CenteredVerticalImage.astro'
+import TwoImagesVertical from 'components/project/TwoImagesVertical.astro'
 import type { Shared } from 'types/shared'
 
 type Props = {
@@ -31,6 +33,12 @@ const { layouts } = Astro.props as Props
       )}
       {__typename === 'ComponentProjectThreeImages' && (
         <ThreeImages layout={layout as Shared.Project.Subject.Components.ThreeImages} />
+      )}
+      {__typename === 'ComponentProjectTwoImagesVertical' && (
+        <TwoImagesVertical layout={layout as Shared.Project.Subject.Components.TwoImagesVertical} />
+      )}
+      {__typename === 'ComponentProjectCenteredVerticalImage' && (
+        <CenteredVerticalImage layout={layout as Shared.Project.Subject.Components.CenteredVerticalImage} />
       )}
     </>
   ))}

@@ -1,0 +1,24 @@
+---
+import Image from 'components/Image.astro'
+import { cloudinary } from 'src/cloudinary'
+import type { Shared } from 'types/shared'
+
+type Props = {
+  layout: Shared.Project.Subject.Components.CenteredImage
+}
+
+const { layout } = Astro.props as Props
+
+const image = cloudinary.image(layout.image.data.attributes.provider_metadata.public_id)
+---
+
+<sanserif-skew class="row-start-2 row-end-12 grid place-content-center">
+  <parallax-wrapper>
+    <Image
+      src={image.toURL()}
+      width={840}
+      height={1200}
+      class="w-[60vh] portrait:w-[60vw]"
+    />
+  </parallax-wrapper>
+</sanserif-skew>

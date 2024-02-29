@@ -38,7 +38,7 @@ const {
 ---
 
 <Tag class:list={['relative', className, classList]} {...rest}>
-  <svg viewBox={`0 0 ${width} ${height}`}></svg>
+  <svg viewBox={`0 0 ${width} ${height}`} />
   <img
     src={src}
     alt={alt}
@@ -46,8 +46,7 @@ const {
     width={width}
     loading={loading}
     decoding={decoding}
-    {/* @ts-ignore */}
     fetchpriority={priority}
     class:list={['absolute inset-0 h-full w-full', fits[fit]]}
-  >
+  />
 </Tag>

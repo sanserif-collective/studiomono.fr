@@ -55,7 +55,9 @@ export namespace Shared {
         'ComponentProjectFullscreenImage' |
         'ComponentProjectImageAndText' |
         'ComponentProjectThreeImages' |
-        'ComponentProjectTwoImagesAndOneText'
+        'ComponentProjectTwoImagesAndOneText' |
+        'ComponentProjectTwoImagesVertical' |
+        'ComponentProjectCenteredVerticalImage'
 
       export type Set = {
         __typename: Layouts
@@ -71,7 +73,7 @@ export namespace Shared {
         }
 
         export type ImageAndText = {
-          text: string
+          text?: string
           image: Strapi.Image
         }
 
@@ -82,9 +84,18 @@ export namespace Shared {
         }
 
         export type TwoImagesAndOneText = {
-          text: string
+          text?: string
           image1: Strapi.Image
           image2: Strapi.Image
+        }
+
+        export type TwoImagesVertical = {
+          image1: Strapi.Image
+          image2: Strapi.Image
+        }
+
+        export type CenteredVerticalImage = {
+          image: Strapi.Image
         }
       }
     }

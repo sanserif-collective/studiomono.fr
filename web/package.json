@@ -1,7 +1,5 @@
 {
-  "name": "sanserif.be/web",
-  "version": "1.0.0",
-  "private": true,
+  "name": "@sanserif.be/web",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -9,11 +7,11 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/sitemap": "^1.0.0",
-    "@astrojs/tailwind": "^1.0.0",
-    "@cloudinary/url-gen": "^1.8.6",
-    "astro": "1.1.5",
-    "env-var": "^7.1.1",
+    "@astrojs/sitemap": "^3.1.1",
+    "@astrojs/tailwind": "^5.1.0",
+    "@cloudinary/url-gen": "^1.18.0",
+    "astro": "4.4.6",
+    "env-var": "^7.4.1",
     "graphql-request": "^5.0.0"
   },
   "dependencies": {

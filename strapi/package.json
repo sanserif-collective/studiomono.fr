@@ -1,7 +1,5 @@
 {
-  "name": "sanserif-strapi",
-  "version": "1.0.0",
-  "private": true,
+  "name": "@sanserif.be/strapi",
   "scripts": {
     "dev": "strapi develop",
     "start": "strapi start",

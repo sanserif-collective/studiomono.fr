@@ -83,6 +83,19 @@ export const getProjects = () => strapi.request<Projects.Response>(
                   ...Image
                 }
               }
+              ...on ComponentProjectCenteredVerticalImage {
+                image {
+                  ...Image
+                }
+              }
+              ...on ComponentProjectTwoImagesVertical {
+                image1 {
+                  ...Image
+                }
+                image2 {
+                  ...Image
+                }
+              }
             }
             meta {
               title

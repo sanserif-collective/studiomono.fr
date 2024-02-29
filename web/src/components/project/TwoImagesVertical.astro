@@ -1,0 +1,36 @@
+---
+import Image from 'components/Image.astro'
+import { cloudinary } from 'src/cloudinary'
+import type { Shared } from 'types/shared'
+
+type Props = {
+  layout: Shared.Project.Subject.Components.TwoImagesAndOneText
+}
+
+const { layout } = Astro.props as Props
+
+const image1 = cloudinary.image(layout.image1.data.attributes.provider_metadata.public_id)
+const image2 = cloudinary.image(layout.image2.data.attributes.provider_metadata.public_id)
+---
+
+<sanserif-skew class="row-start-2 row-end-12 col-span-2 flex justify-center items-start">
+  <parallax-wrapper>
+    <Image
+      src={image1.toURL()}
+      width={400}
+      height={560}
+      class="w-[40vh] portrait:w-[50vw]"
+    />
+  </parallax-wrapper>
+</sanserif-skew>
+
+<sanserif-skew class="row-start-1 row-end-12 flex items-end portrait:justify-end">
+  <parallax-wrapper>
+    <Image
+      src={image2.toURL()}
+      width={400}
+      height={560}
+      class="w-[40vh] portrait:w-[50vw]"
+    />
+  </parallax-wrapper>
+</sanserif-skew>
