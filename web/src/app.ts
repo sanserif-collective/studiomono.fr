@@ -1,3 +1,3 @@
-import type { App } from 'types/app'
+import type { App } from 'types/app';
 
-export const app: App = {}
+export const app: App = {};

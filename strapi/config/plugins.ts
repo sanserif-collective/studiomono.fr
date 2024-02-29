@@ -5,23 +5,23 @@ export default ({ env }) => ({
       providerOptions: {
         cloud_name: env('CLOUDINARY_NAME'),
         api_key: env('CLOUDINARY_KEY'),
-        api_secret: env('CLOUDINARY_SECRET')
+        api_secret: env('CLOUDINARY_SECRET'),
       },
       actionOptions: {
         upload: {},
         uploadStream: {
-          folder: env('CLOUDINARY_FOLDER')
+          folder: env('CLOUDINARY_FOLDER'),
         },
-        delete: {}
-      }
-    }
+        delete: {},
+      },
+    },
   },
   'users-permissions': {
     config: {
       jwt: {
         jwtSecret: env('JWT_SECRET'),
-        expiresIn: '30d'
-      }
-    }
+        expiresIn: '30d',
+      },
+    },
   },
-})
+});

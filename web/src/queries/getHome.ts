@@ -1,9 +1,9 @@
-import { gql } from 'graphql-request'
-import { strapi } from 'strapi'
-import type { Home } from 'types/routes/home'
+import { gql } from 'graphql-request';
+import { strapi } from 'strapi';
+import type { Home } from 'types/routes/home';
 
-export const getHome = () => strapi.request<Home.Response>(
-  gql`
+export const getHome = () =>
+  strapi.request<Home.Response>(gql`
     fragment HomeProject on ProjectEntityResponse {
       data {
         attributes {
@@ -71,5 +71,4 @@ export const getHome = () => strapi.request<Home.Response>(
         }
       }
     }
-  `
-)
+  `);

@@ -34,5 +34,6 @@
       "env": ["src/env"],
       "strapi": ["src/strapi"]
     }
-  }
+  },
+  "include": ["./**/*.ts", "./**/*.astro"]
 }

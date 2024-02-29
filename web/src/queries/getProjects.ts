@@ -1,10 +1,10 @@
-import { gql } from 'graphql-request'
-import { app } from 'src/app'
-import { strapi } from 'strapi'
-import type { Projects } from 'types/routes/projects'
+import { gql } from 'graphql-request';
+import { app } from 'src/app';
+import { strapi } from 'strapi';
+import type { Projects } from 'types/routes/projects';
 
-export const getProjects = () => strapi.request<Projects.Response>(
-  gql`
+export const getProjects = () =>
+  strapi.request<Projects.Response>(gql`
     fragment Image on UploadFileEntityResponse {
       data {
         attributes {
@@ -47,23 +47,23 @@ export const getProjects = () => strapi.request<Projects.Response>(
             }
             subject {
               __typename
-              ...on ComponentProjectCenteredImage {
+              ... on ComponentProjectCenteredImage {
                 image {
                   ...Image
                 }
               }
-              ...on ComponentProjectFullscreenImage {
+              ... on ComponentProjectFullscreenImage {
                 image {
                   ...Image
                 }
               }
-              ...on ComponentProjectImageAndText {
+              ... on ComponentProjectImageAndText {
                 text
                 optionalImage: image {
                   ...Image
                 }
               }
-              ...on ComponentProjectThreeImages {
+              ... on ComponentProjectThreeImages {
                 image1 {
                   ...Image
                 }
@@ -74,7 +74,7 @@ export const getProjects = () => strapi.request<Projects.Response>(
                   ...Image
                 }
               }
-              ...on ComponentProjectTwoImagesAndOneText {
+              ... on ComponentProjectTwoImagesAndOneText {
                 text
                 optionalImage1: image1 {
                   ...Image
@@ -83,12 +83,12 @@ export const getProjects = () => strapi.request<Projects.Response>(
                   ...Image
                 }
               }
-              ...on ComponentProjectCenteredVerticalImage {
+              ... on ComponentProjectCenteredVerticalImage {
                 image {
                   ...Image
                 }
               }
-              ...on ComponentProjectTwoImagesVertical {
+              ... on ComponentProjectTwoImagesVertical {
                 image1 {
                   ...Image
                 }
@@ -96,7 +96,6 @@ export const getProjects = () => strapi.request<Projects.Response>(
                   ...Image
                 }
               }
-
             }
             meta {
               title
@@ -113,14 +112,13 @@ export const getProjects = () => strapi.request<Projects.Response>(
         }
       }
     }
-  `
-)
+  `);
 
 export const getAppProjects = async () => {
   if (!app.projects) {
-    const { projects } = await getProjects()
-    app.projects = projects.data
+    const { projects } = await getProjects();
+    app.projects = projects.data;
   }
 
-  return app.projects
-}
+  return app.projects;
+};

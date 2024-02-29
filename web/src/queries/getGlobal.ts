@@ -1,9 +1,9 @@
-import { gql } from 'graphql-request'
-import { strapi } from 'strapi'
-import type { Global } from 'types/routes/global'
+import { gql } from 'graphql-request';
+import { strapi } from 'strapi';
+import type { Global } from 'types/routes/global';
 
-export const getGlobal = () => strapi.request<Global.Response>(
-  gql`
+export const getGlobal = () =>
+  strapi.request<Global.Response>(gql`
     query Global {
       global {
         data {
@@ -53,5 +53,4 @@ export const getGlobal = () => strapi.request<Global.Response>(
         }
       }
     }
-  `
-)
+  `);

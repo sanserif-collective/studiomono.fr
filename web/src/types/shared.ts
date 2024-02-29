@@ -1,123 +1,123 @@
-import type { Strapi } from './strapi'
+import type { Strapi } from './strapi';
 
 export namespace Shared {
   export type Link = {
-    name: string
-    url: string
-  }
+    name: string;
+    url: string;
+  };
 
   export enum Routes {
     'home' = '/',
     'about' = '/about',
     'contact' = '/contact',
-    'projects' = '/projects'
+    'projects' = '/projects',
   }
 
   export type InternalLink = {
-    name: string
-    route: keyof typeof Routes
-  }
+    name: string;
+    route: keyof typeof Routes;
+  };
 
   export type LinkWithCaption = {
-    link: InternalLink
-    caption: string
-  }
+    link: InternalLink;
+    caption: string;
+  };
 
   export type Subservices = {
-    name: string
-  }
+    name: string;
+  };
 
   export type Service = Strapi.Attributes<{
-    name: string
-    subservices: Subservices[]
-  }>
+    name: string;
+    subservices: Subservices[];
+  }>;
 
   export type Member = Strapi.Attributes<{
-    name: string
-    role: string
-    image: Strapi.Image
-  }>
+    name: string;
+    role: string;
+    image: Strapi.Image;
+  }>;
 
   export namespace Project {
     export type Header = {
-      text: string
-      image: Strapi.Image
-    }
+      text: string;
+      image: Strapi.Image;
+    };
 
     export type Introduction = {
-      text: string
-      url: string
-    }
+      text: string;
+      url: string;
+    };
 
     export namespace Subject {
       export type Layouts =
-        'ComponentProjectCenteredImage' |
-        'ComponentProjectFullscreenImage' |
-        'ComponentProjectImageAndText' |
-        'ComponentProjectThreeImages' |
-        'ComponentProjectTwoImagesAndOneText' |
-        'ComponentProjectTwoImagesVertical' |
-        'ComponentProjectCenteredVerticalImage'
+        | 'ComponentProjectCenteredImage'
+        | 'ComponentProjectFullscreenImage'
+        | 'ComponentProjectImageAndText'
+        | 'ComponentProjectThreeImages'
+        | 'ComponentProjectTwoImagesAndOneText'
+        | 'ComponentProjectTwoImagesVertical'
+        | 'ComponentProjectCenteredVerticalImage';
 
       export type Set = {
-        __typename: Layouts
-      }
+        __typename: Layouts;
+      };
 
       export namespace Components {
         export type CenteredImage = {
-          image: Strapi.Image
-        }
+          image: Strapi.Image;
+        };
 
         export type FullscreenImage = {
-          image: Strapi.Image
-        }
+          image: Strapi.Image;
+        };
 
         export type ImageAndText = {
-          text?: string
-          optionalImage?: Strapi.Image
-        }
+          text?: string;
+          optionalImage?: Strapi.Image;
+        };
 
         export type ThreeImages = {
-          image1: Strapi.Image
-          image2: Strapi.Image
-          image3: Strapi.Image
-        }
+          image1: Strapi.Image;
+          image2: Strapi.Image;
+          image3: Strapi.Image;
+        };
 
         export type TwoImagesAndOneText = {
-          text?: string
-          optionalImage1?: Strapi.Image
-          optionalImage2?: Strapi.Image
-        }
+          text?: string;
+          optionalImage1?: Strapi.Image;
+          optionalImage2?: Strapi.Image;
+        };
 
         export type TwoImagesVertical = {
-          image1: Strapi.Image
-          image2: Strapi.Image
-        }
+          image1: Strapi.Image;
+          image2: Strapi.Image;
+        };
 
         export type CenteredVerticalImage = {
-          image: Strapi.Image
-        }
+          image: Strapi.Image;
+        };
       }
     }
 
     export type Components = {
-      slug: string
-      color: string
-      name: string
-      cover: Strapi.Image
-      header: Header
-      introduction: Introduction
-      subject: Subject.Set[]
-      services: Strapi.Data<Service[]>
-      meta: SEO.Meta
-    }
+      slug: string;
+      color: string;
+      name: string;
+      cover: Strapi.Image;
+      header: Header;
+      introduction: Introduction;
+      subject: Subject.Set[];
+      services: Strapi.Data<Service[]>;
+      meta: SEO.Meta;
+    };
   }
 
   export namespace SEO {
     export type Meta = {
-      title?: string
-      description?: string
-      thumbnail: Strapi.Image
-    }
+      title?: string;
+      description?: string;
+      thumbnail: Strapi.Image;
+    };
   }
 }

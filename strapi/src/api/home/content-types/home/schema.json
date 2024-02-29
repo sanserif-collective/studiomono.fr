@@ -21,11 +21,7 @@
     },
     "projects": {
       "type": "dynamiczone",
-      "components": [
-        "home.one-project",
-        "home.three-projects",
-        "home.two-projects"
-      ],
+      "components": ["home.one-project", "home.three-projects", "home.two-projects"],
       "required": true
     },
     "next": {

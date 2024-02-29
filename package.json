@@ -3,6 +3,11 @@
   "private": true,
   "scripts": {
     "start": "pnpm -r dev",
-    "build": "pnpm -r build"
+    "build": "pnpm -r build",
+    "prettify": "prettier . -w"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11"
   }
 }

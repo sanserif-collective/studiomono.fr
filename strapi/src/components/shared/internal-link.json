@@ -13,11 +13,7 @@
     },
     "route": {
       "type": "enumeration",
-      "enum": [
-        "home",
-        "about",
-        "contact"
-      ],
+      "enum": ["home", "about", "contact"],
       "required": true
     }
   }

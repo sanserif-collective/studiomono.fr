@@ -1,9 +1,9 @@
-import { gql } from 'graphql-request'
-import { strapi } from 'strapi'
-import type { About } from 'types/routes/about'
+import { gql } from 'graphql-request';
+import { strapi } from 'strapi';
+import type { About } from 'types/routes/about';
 
-export const getAbout = () => strapi.request<About.Response>(
-  gql`
+export const getAbout = () =>
+  strapi.request<About.Response>(gql`
     query About {
       about {
         data {
@@ -75,5 +75,4 @@ export const getAbout = () => strapi.request<About.Response>(
         }
       }
     }
-  `
-)
+  `);

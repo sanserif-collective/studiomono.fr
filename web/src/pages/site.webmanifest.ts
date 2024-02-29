@@ -1,14 +1,14 @@
-import { Resize } from '@cloudinary/url-gen/actions'
-import { app } from 'src/app'
-import { cloudinary } from 'src/cloudinary'
+import { Resize } from '@cloudinary/url-gen/actions';
+import { app } from 'src/app';
+import { cloudinary } from 'src/cloudinary';
 
 export const get = async () => {
   const favicon = cloudinary.image(
-    app.global?.favicon.main.data.attributes.provider_metadata.public_id
-  )
+    app.global?.favicon.main.data.attributes.provider_metadata.public_id,
+  );
 
-  const f192 = favicon.resize(Resize.thumbnail(192, 192)).format('png')
-  const f512 = favicon.resize(Resize.thumbnail(512, 512)).format('png')
+  const f192 = favicon.resize(Resize.thumbnail(192, 192)).format('png');
+  const f512 = favicon.resize(Resize.thumbnail(512, 512)).format('png');
 
   return {
     body: JSON.stringify({
@@ -24,26 +24,26 @@ export const get = async () => {
         {
           src: f192.toURL(),
           type: 'image/png',
-          sizes: '192x192'
-        },
-        {
-          src: f512.toURL(),
-          type: 'image/png',
-          sizes: '512x512'
-        },
-        {
-          src: f192.toURL(),
-          type: 'image/png',
           sizes: '192x192',
-          purpose: 'maskable'
         },
         {
           src: f512.toURL(),
           type: 'image/png',
           sizes: '512x512',
-          purpose: 'maskable'
-        }
-      ]
-    })
-  }
-}
+        },
+        {
+          src: f192.toURL(),
+          type: 'image/png',
+          sizes: '192x192',
+          purpose: 'maskable',
+        },
+        {
+          src: f512.toURL(),
+          type: 'image/png',
+          sizes: '512x512',
+          purpose: 'maskable',
+        },
+      ],
+    }),
+  };
+};
