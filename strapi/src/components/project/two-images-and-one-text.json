@@ -10,7 +10,6 @@
     "image1": {
       "type": "media",
       "multiple": false,
-      "required": true,
       "allowedTypes": [
         "images"
       ]
@@ -18,7 +17,6 @@
     "image2": {
       "type": "media",
       "multiple": false,
-      "required": true,
       "allowedTypes": [
         "images"
       ]

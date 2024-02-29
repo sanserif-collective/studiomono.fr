@@ -74,7 +74,7 @@ export namespace Shared {
 
         export type ImageAndText = {
           text?: string
-          image: Strapi.Image
+          image?: Strapi.Image
         }
 
         export type ThreeImages = {
@@ -85,8 +85,8 @@ export namespace Shared {
 
         export type TwoImagesAndOneText = {
           text?: string
-          image1: Strapi.Image
-          image2: Strapi.Image
+          image1?: Strapi.Image
+          image2?: Strapi.Image
         }
 
         export type TwoImagesVertical = {
