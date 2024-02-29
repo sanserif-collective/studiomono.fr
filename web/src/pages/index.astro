@@ -1,20 +1,17 @@
 ---
-import NextLink from 'components/NextLink.astro'
-import BaseLayout from 'layouts/BaseLayout.astro'
-import Header from 'sections/home/Header.astro'
-import Projects from 'sections/home/Projects.astro'
-import { getHome } from 'src/queries/getHome'
-import { route } from 'utilities/route'
+import NextLink from 'components/NextLink.astro';
+import BaseLayout from 'layouts/BaseLayout.astro';
+import Header from 'sections/home/Header.astro';
+import Projects from 'sections/home/Projects.astro';
+import { getHome } from 'src/queries/getHome';
+import { route } from 'utilities/route';
 
-const { home } = await getHome()
+const { home } = await getHome();
 ---
 
 <BaseLayout meta={home.data.attributes.meta}>
   <Header content={home.data.attributes.header} />
-  <Projects
-    text={home.data.attributes.header.text}
-    projects={home.data.attributes.projects}
-  />
+  <Projects text={home.data.attributes.header.text} projects={home.data.attributes.projects} />
   <NextLink
     url={route(home.data.attributes.next.link.route)}
     caption={home.data.attributes.next.caption}

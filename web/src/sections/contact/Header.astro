@@ -1,25 +1,21 @@
 ---
-import Container from 'components/Container.astro'
-import Text from 'components/Text.astro'
-import { app } from 'src/app'
-import type { Contact } from 'types/routes/contact'
+import Container from 'components/Container.astro';
+import Text from 'components/Text.astro';
+import { app } from 'src/app';
+import type { Contact } from 'types/routes/contact';
 
 type Props = {
-  content: Contact.Header
-}
+  content: Contact.Header;
+};
 
-const { content } = Astro.props as Props
+const { content }: Props = Astro.props;
 ---
 
-<Container
-  as="section"
-  class="sm:children:col-start-2 sm:children:col-end-12"
-  fullscreen={true}
->
+<Container as="section" class="sm:children:col-start-2 sm:children:col-end-12" fullscreen={true}>
   <header
     class:list={[
       'col-start-4 col-end-10 row-start-3 row-end-5 flex flex-col',
-      'justify-center space-y-4 text-center'
+      'justify-center space-y-4 text-center',
     ]}
   >
     <h1>{content.title}</h1>
@@ -29,16 +25,15 @@ const { content } = Astro.props as Props
   <footer
     class:list={[
       'grid place-content-center col-start-4 col-end-10 row-start-6',
-      'relative text-center row-end-12'
+      'relative text-center row-end-12',
     ]}
   >
     <svg
       viewBox="0 0 1 1"
       class:list={[
         'border absolute top-1/2 left-1/2 rounded-full border-black/10',
-        '-translate-x-1/2 -translate-y-1/2 h-full sm:h-auto sm:w-full'
-      ]}
-    />
+        '-translate-x-1/2 -translate-y-1/2 h-full sm:h-auto sm:w-full',
+      ]}></svg>
     <a href={`tel:${app.global?.informations.phone}`}>{app.global?.informations.phone}</a>
     <a href={`mailto:${app.global?.informations.email}`}>{app.global?.informations.email}</a>
     <small>{app.global?.informations.location}</small>

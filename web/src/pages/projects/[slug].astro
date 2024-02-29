@@ -1,72 +1,54 @@
 ---
-import NextLink from 'components/NextLink.astro'
-import BaseLayout from 'layouts/BaseLayout.astro'
-import { getAppProjects } from 'queries/getProjects'
-import Header from 'sections/project/Header.astro'
-import Introduction from 'sections/project/Introduction.astro'
-import Subjects from 'sections/project/Subjects.astro'
-import { app } from 'src/app'
-import type { Shared } from 'types/shared'
-import { route } from 'utilities/route'
+import NextLink from 'components/NextLink.astro';
+import BaseLayout from 'layouts/BaseLayout.astro';
+import { getAppProjects } from 'queries/getProjects';
+import Header from 'sections/project/Header.astro';
+import Introduction from 'sections/project/Introduction.astro';
+import Subjects from 'sections/project/Subjects.astro';
+import { app } from 'src/app';
+import type { Shared } from 'types/shared';
+import { route } from 'utilities/route';
 
 export const getStaticPaths = async () => {
-  const projects = await getAppProjects()
+  const projects = await getAppProjects();
 
   return projects.map(({ attributes }, index) => {
-    const next = index + 1 === projects.length
-      ? projects[0]
-      : projects[index + 1]
+    const next = index + 1 === projects.length ? projects[0] : projects[index + 1];
 
     const props: Props = {
       ...attributes,
       caption: next.attributes.name,
       link: {
         name: app.dictionary!.next,
-        url: route('projects', next.attributes.slug)
-      }
-    }
+        url: route('projects', next.attributes.slug),
+      },
+    };
 
     return {
       props,
       params: {
-        slug: attributes.slug
-      }
-    }
-  })
-}
+        slug: attributes.slug,
+      },
+    };
+  });
+};
 
 type Props = Shared.Project.Components & {
-  caption: string
-  link: Shared.Link
-}
+  caption: string;
+  link: Shared.Link;
+};
 
-const {
-  name,
-  header,
-  services,
-  introduction,
-  subject,
-  color,
-  caption,
-  link,
-  meta
-} = Astro.props as Props
+const { name, header, services, introduction, subject, color, caption, link, meta }: Props =
+  Astro.props;
 ---
 
 <BaseLayout meta={meta} namespace="project" data-color={color}>
   <article class="flex portrait:flex-col">
-    <Header
-      name={name}
-      content={header}
-      services={services.data}
-    />
+    <Header name={name} content={header} services={services.data} />
     <Introduction {...introduction} />
     <Subjects layouts={subject} />
   </article>
-  <NextLink
-    caption={caption}
-    url={link.url}
-  >
+  <NextLink caption={caption} url={link.url}>
     {link.name}
   </NextLink>
 </BaseLayout>

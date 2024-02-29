@@ -1,25 +1,19 @@
 ---
-import BaseLayout from 'layouts/BaseLayout.astro'
-import { getNotFound } from 'queries/getNotFound'
-import { getAppProjects } from 'queries/getProjects'
-import Main from 'sections/404/Main.astro'
-import { shuffle } from 'utilities/shuffle'
+import BaseLayout from 'layouts/BaseLayout.astro';
+import { getNotFound } from 'queries/getNotFound';
+import { getAppProjects } from 'queries/getProjects';
+import Main from 'sections/404/Main.astro';
+import { shuffle } from 'utilities/shuffle';
 
-const [projects, { notFound }] = await Promise.all([
-  getAppProjects(),
-  getNotFound()
-])
+const [projects, { notFound }] = await Promise.all([getAppProjects(), getNotFound()]);
 ---
 
 <BaseLayout
   enableFooter={false}
   meta={{
     title: notFound.data.attributes.title,
-    description: notFound.data.attributes.subtitle
+    description: notFound.data.attributes.subtitle,
   }}
 >
-  <Main
-    content={notFound.data.attributes}
-    projects={shuffle(projects)}
-  />
+  <Main content={notFound.data.attributes} projects={shuffle(projects)} />
 </BaseLayout>

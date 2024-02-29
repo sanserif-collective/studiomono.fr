@@ -1,87 +1,86 @@
 ---
-import { Resize } from '@cloudinary/url-gen/actions'
-import FontFaces from 'components/FontFaces.astro'
-import Footer from 'components/Footer.astro'
-import Header from 'components/Header.astro'
-import Sprite from 'components/Sprite.astro'
-import Favicon from 'components/Favicon.astro'
-import { getGlobal } from 'queries/getGlobal'
-import { app } from 'src/app'
-import { cloudinary } from 'src/cloudinary'
-import type { Shared } from 'types/shared'
+import { Resize } from '@cloudinary/url-gen/actions';
+import FontFaces from 'components/FontFaces.astro';
+import Footer from 'components/Footer.astro';
+import Header from 'components/Header.astro';
+import Sprite from 'components/Sprite.astro';
+import Favicon from 'components/Favicon.astro';
+import { getGlobal } from 'queries/getGlobal';
+import { app } from 'src/app';
+import { cloudinary } from 'src/cloudinary';
+import type { Shared } from 'types/shared';
 
 type Props = {
-  meta?: Shared.SEO.Meta
-  enableFooter?: boolean
-  namespace?: string
-  [name: string]: unknown
-}
+  meta?: Shared.SEO.Meta;
+  enableFooter?: boolean;
+  namespace?: string;
+  [name: string]: unknown;
+};
 
 if (!app.global || !app.dictionary) {
-  const { global, dictionary } = await getGlobal()
-  app.global = global.data.attributes
-  app.dictionary = dictionary.data.attributes
+  const { global, dictionary } = await getGlobal();
+  app.global = global.data.attributes;
+  app.dictionary = dictionary.data.attributes;
 }
 
-const {
-  meta,
-  enableFooter = true,
-  namespace = 'base',
-  ...rest
-} = Astro.props as Props
+const { meta, enableFooter = true, namespace = 'base', ...rest }: Props = Astro.props;
 
-const title = `${meta?.title ? `${meta.title} — ${app.global.meta.title}` : app.global.meta.title}`
-const description = meta?.description || app.global.meta.description
-const canonical = new URL(Astro.url.pathname, Astro.site)
+const title = `${meta?.title ? `${meta.title} — ${app.global.meta.title}` : app.global.meta.title}`;
+const description = meta?.description || app.global.meta.description;
+const canonical = new URL(Astro.url.pathname, Astro.site);
 
-const appThumbnail = cloudinary
-  .image(app.global.meta.thumbnail.data.attributes.provider_metadata.public_id)
-  .resize(Resize.thumbnail(1200, 630))
+const appThumbnail =
+  app.global.meta.thumbnail &&
+  cloudinary
+    .image(app.global.meta.thumbnail.data.attributes.provider_metadata.public_id)
+    .resize(Resize.thumbnail(1200, 630));
 
-const pageThumbnail = meta?.thumbnail && cloudinary
-  .image(meta?.thumbnail.data?.attributes.provider_metadata.public_id)
-  .resize(Resize.thumbnail(1200, 630))
+const pageThumbnail =
+  meta?.thumbnail &&
+  cloudinary
+    .image(meta?.thumbnail.data?.attributes.provider_metadata.public_id)
+    .resize(Resize.thumbnail(1200, 630));
 
-const thumbnail = pageThumbnail ?? appThumbnail
+const thumbnail = pageThumbnail ?? appThumbnail;
 ---
 
 <!doctype html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
-    <meta name="description" content={description}>
-    <meta name="author" content="Sanserif">
-    <meta property="og:site_name" content={title}>
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_GB">
-    <meta property="og:title" content={title}>
-    <meta property="og:description" content={description}>
-    <meta property="og:url" content={canonical}>
-    <meta property="og:image" content={thumbnail.toURL()}>
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content={title}>
-    <meta name="twitter:description" content={description}>
-    <meta name="twitter:image" content={thumbnail.toURL()}>
-    <meta name="theme-color" content="#EAEAEA">
+    <meta name="description" content={description} />
+    <meta name="author" content="Sanserif" />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={thumbnail?.toURL()} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={thumbnail?.toURL()} />
+    <meta name="theme-color" content="#EAEAEA" />
     <meta name="generator" content={Astro.generator} />
     <Favicon />
     <link rel="canonical" href={canonical} />
     <link rel="preconnect" href="https://res.cloudinary.com" />
     <slot name="preload" />
     <FontFaces />
-    <link rel="preconnect" href="https://plausible.sanserif.be">
-    <script defer data-domain="sanserif.be" src="https://plausible.sanserif.be/js/script.js" />
+    <link rel="preconnect" href="https://plausible.sanserif.be" />
+    <script defer data-domain="sanserif.be" src="https://plausible.sanserif.be/js/script.js"
+    ></script>
   </head>
 
   <body
     class:list={[
       'overflow-hidden antialiased [text-rendering:optimizeLegibility] text-black',
-      'bg-gray font-body uppercase variation-medium text-base cursor-none sm:relative'
+      'bg-gray font-body uppercase variation-medium text-base cursor-none sm:relative',
     ]}
   >
     <div data-asscroll-container data-barba="wrapper">
@@ -105,42 +104,38 @@ const thumbnail = pageThumbnail ?? appThumbnail
 
       <sanserif-progress-bar
         class="origin-left fixed h-2 bg-[color:var(--progress-color)] inset-x-0 bottom-0"
-        style="transform: scaleX(0)"
-      />
+        style="transform: scaleX(0)"></sanserif-progress-bar>
     </div>
 
     <sanserif-cursor
       class:list={[
         'pointer-events-none fixed border border-[color:var(--cursor-color)]',
         'rounded-full h-4 w-4 is-hover:border-[color:var(--cursor-color-hover)]',
-        'transition-colors sm:hidden'
-      ]}
-    />
+        'transition-colors sm:hidden',
+      ]}></sanserif-cursor>
 
-    <sanserif-cursor
-      class="pointer-events-none fixed sm:hidden"
-      speed="0.01"
-      data-cursor-scale
-    >
+    <sanserif-cursor class="pointer-events-none fixed sm:hidden" speed="0.01" data-cursor-scale>
       <div
         class:list={[
           'bg-[color:var(--cursor-color)] transition-[background-color,transform]',
           'transform-gpu rounded-full h-[0.175rem] w-[0.175rem]',
-          'is-hover:bg-[color:var(--cursor-color-hover)] is-hover:scale-[3]'
+          'is-hover:bg-[color:var(--cursor-color-hover)] is-hover:scale-[3]',
         ]}
-      />
+      >
+      </div>
     </sanserif-cursor>
 
     <div
       class="h-screen w-screen fixed inset-0 bg-black pointer-events-none"
       style="transform: scaleX(0)"
       data-loading-shutter
-    />
+    >
+    </div>
 
     <div
       class:list={[
         'h-screen w-screen fixed inset-0 bg-black pointer-events-none text-gray',
-        'grid place-content-center'
+        'grid place-content-center',
       ]}
       data-loader
     >
@@ -148,57 +143,56 @@ const thumbnail = pageThumbnail ?? appThumbnail
         <div class="flex items-center text-2xl space-x-4 sm:text-xl" data-loader-logo>
           <Sprite id="sanserif" class="h-[1em]" />
           <div class="grid place-items-center h-[0.25em] w-[0.25em] bg-gray rounded-full sm:hidden">
-            <div class="h-full w-full bg-[color:#C3C3C3] rounded-full scale-x-100 animate-loading" />
+            <div class="h-full w-full bg-[color:#C3C3C3] rounded-full scale-x-100 animate-loading">
+            </div>
           </div>
           <span class="variation-normal sm:hidden">Collective</span>
         </div>
       </div>
     </div>
+    <script>
+      import { gsap, ScrollTrigger } from 'gsap/all';
+      import { createApp } from 'scripts/app';
+      import { Cursor } from 'scripts/components/Cursor';
+      import { Marquee } from 'scripts/components/Marquee';
+      import { Menu } from 'scripts/components/Menu';
+      import { MenuToggle } from 'scripts/components/MenuToggle';
+      import { NextLink } from 'scripts/components/NextLink';
+      import { ProgressBar } from 'scripts/components/ProgressBar';
+      import { Services } from 'scripts/components/Services';
+      import { Skew } from 'scripts/components/Skew';
+      import { Team } from 'scripts/components/Team';
+      import { asscroll } from 'scripts/plugins/asscroll';
+      import { barba } from 'scripts/plugins/barba';
+      import { clickables } from 'scripts/plugins/clickables';
+      import portrait from 'scripts/plugins/portrait';
+      import { refs } from 'scripts/plugins/refs';
+
+      const app = createApp({
+        before() {
+          // GSAP plugins
+          gsap.registerPlugin(ScrollTrigger);
+        },
+        after() {
+          // Web Components
+          customElements.define('sanserif-menu-toggle', MenuToggle);
+          customElements.define('sanserif-menu', Menu);
+          customElements.define('sanserif-next-link', NextLink);
+          customElements.define('sanserif-skew', Skew);
+          customElements.define('sanserif-marquee', Marquee);
+          customElements.define('sanserif-progress-bar', ProgressBar);
+          customElements.define('sanserif-services', Services);
+          customElements.define('sanserif-team', Team);
+          customElements.define('sanserif-cursor', Cursor);
+        },
+      });
+
+      // App plugins
+      app.use(barba);
+      app.use(portrait);
+      app.use(asscroll);
+      app.use(clickables);
+      app.use(refs);
+    </script>
   </body>
-
 </html>
-
-<script>
-  import { gsap,ScrollTrigger } from 'gsap/all'
-  import { createApp } from 'scripts/app'
-  import { Cursor } from 'scripts/components/Cursor'
-  import { Marquee } from 'scripts/components/Marquee'
-  import { Menu } from 'scripts/components/Menu'
-  import { MenuToggle } from 'scripts/components/MenuToggle'
-  import { NextLink } from 'scripts/components/NextLink'
-  import { ProgressBar } from 'scripts/components/ProgressBar'
-  import { Services } from 'scripts/components/Services'
-  import { Skew } from 'scripts/components/Skew'
-  import { Team } from 'scripts/components/Team'
-  import { asscroll } from 'scripts/plugins/asscroll'
-  import { barba } from 'scripts/plugins/barba'
-  import { clickables } from 'scripts/plugins/clickables'
-  import portrait from 'scripts/plugins/portrait'
-  import { refs } from 'scripts/plugins/refs'
-
-  const app = createApp({
-    before() {
-      // GSAP plugins
-      gsap.registerPlugin(ScrollTrigger)
-    },
-    after() {
-      // Web Components
-      customElements.define('sanserif-menu-toggle', MenuToggle)
-      customElements.define('sanserif-menu', Menu)
-      customElements.define('sanserif-next-link', NextLink)
-      customElements.define('sanserif-skew', Skew)
-      customElements.define('sanserif-marquee', Marquee)
-      customElements.define('sanserif-progress-bar', ProgressBar)
-      customElements.define('sanserif-services', Services)
-      customElements.define('sanserif-team', Team)
-      customElements.define('sanserif-cursor', Cursor)
-    }
-  })
-
-  // App plugins
-  app.use(barba)
-  app.use(portrait)
-  app.use(asscroll)
-  app.use(clickables)
-  app.use(refs)
-</script>

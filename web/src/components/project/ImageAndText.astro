@@ -1,35 +1,41 @@
 ---
-import Image from 'components/Image.astro'
-import Text from 'components/Text.astro'
-import { cloudinary } from 'src/cloudinary'
-import type { Shared } from 'types/shared'
+import Image from 'components/Image.astro';
+import Text from 'components/Text.astro';
+import { cloudinary } from 'src/cloudinary';
+import type { Shared } from 'types/shared';
 
 type Props = {
-  layout: Shared.Project.Subject.Components.ImageAndText
-}
+  layout: Shared.Project.Subject.Components.ImageAndText;
+};
 
-const { layout } = Astro.props as Props
+const { layout }: Props = Astro.props;
 
-const image = layout.optionalImage?.data ? cloudinary.image(layout.optionalImage.data.attributes.provider_metadata.public_id) : null
+const image = layout.optionalImage?.data
+  ? cloudinary.image(layout.optionalImage.data.attributes.provider_metadata.public_id)
+  : null;
 ---
 
-{image && (
-  <sanserif-skew class="row-start-2 row-end-7 flex justify-between portrait:justify-end">
-    <parallax-wrapper>
-      <Image
-        src={image.toURL()}
-        width={1200}
-        height={840}
-        class="ml-[10vw] w-[50vh] portrait:ml-0 portrait:w-[60vw]"
-      />
-    </parallax-wrapper>
-  </sanserif-skew>
-)}
+{
+  image && (
+    <sanserif-skew class="row-start-2 row-end-7 flex justify-between portrait:justify-end">
+      <parallax-wrapper>
+        <Image
+          src={image.toURL()}
+          width={1200}
+          height={840}
+          class="ml-[10vw] w-[50vh] portrait:ml-0 portrait:w-[60vw]"
+        />
+      </parallax-wrapper>
+    </sanserif-skew>
+  )
+}
 
-{layout.text && (
-  <parallax-wrapper class="row-start-7 row-end-10">
-    <div class=" flex items-end">
-      <Text class="max-w-xl">{layout.text}</Text>
-    </div>
-  </parallax-wrapper>
-)}
+{
+  layout.text && (
+    <parallax-wrapper class="row-start-7 row-end-10">
+      <div class=" flex items-end">
+        <Text class="max-w-xl">{layout.text}</Text>
+      </div>
+    </parallax-wrapper>
+  )
+}

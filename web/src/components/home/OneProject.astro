@@ -1,18 +1,18 @@
 ---
-import ProjectCard from 'components/ProjectCard.astro'
-import type { Home } from 'types/routes/home'
+import ProjectCard from 'components/ProjectCard.astro';
+import type { Home } from 'types/routes/home';
 
 type Props = {
-  projects: Home.Projects.Components.OneProject
-}
+  projects: Home.Projects.Components.OneProject;
+};
 
-const { projects } = Astro.props as Props
+const { projects }: Props = Astro.props;
 ---
 
 <article
   class:list={[
     'items-center row-start-5 row-end-12 px-custom-space portrait:col-start-2',
-    'portrait:col-end-12 portrait:px-0 portrait:justify-center'
+    'portrait:col-end-12 portrait:px-0 portrait:justify-center',
   ]}
 >
   <ProjectCard

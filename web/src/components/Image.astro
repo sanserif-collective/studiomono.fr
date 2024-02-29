@@ -1,25 +1,15 @@
 ---
-import type { AstroBuiltinAttributes } from 'astro'
+import type { HTMLAttributes, HTMLTag, Polymorphic } from 'astro/types';
 
-type Props = {
-  width: number
-  height: number
-  as?: string
-  src?: string
-  alt?: string | undefined
-  class?: string
-  'class:list'?: AstroBuiltinAttributes['class:list']
-  loading?: 'eager' | 'lazy' | undefined
-  priority?: 'high' | 'low' | 'auto'
-  decoding?: 'async' | 'sync' | 'auto'
-  fit?: keyof typeof fits
-  [name: string]: unknown
-}
+type Props<Tag extends HTMLTag> = HTMLAttributes<'img'> &
+  Polymorphic<{ as: Tag }> & {
+    fit?: keyof typeof fits;
+  };
 
 const fits = {
-  'cover': 'object-cover',
-  'container': 'object-contain'
-}
+  cover: 'object-cover',
+  container: 'object-contain',
+};
 
 const {
   src,
@@ -31,14 +21,14 @@ const {
   class: className,
   'class:list': classList,
   loading = 'lazy',
-  priority = 'auto',
+  fetchpriority = 'auto',
   decoding = 'async',
-  ...rest
-} = Astro.props as Props
+  ...props
+}: Props<'div'> = Astro.props;
 ---
 
-<Tag class:list={['relative', className, classList]} {...rest}>
-  <svg viewBox={`0 0 ${width} ${height}`} />
+<Tag class:list={['relative', className, classList]} {...props}>
+  <svg viewBox={`0 0 ${width} ${height}`}></svg>
   <img
     src={src}
     alt={alt}
@@ -46,7 +36,7 @@ const {
     width={width}
     loading={loading}
     decoding={decoding}
-    fetchpriority={priority}
+    fetchpriority={fetchpriority}
     class:list={['absolute inset-0 h-full w-full', fits[fit]]}
   />
 </Tag>

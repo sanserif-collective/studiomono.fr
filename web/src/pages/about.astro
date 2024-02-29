@@ -1,21 +1,18 @@
 ---
-import NextLink from 'components/NextLink.astro'
-import BaseLayout from 'layouts/BaseLayout.astro'
-import { getAbout } from 'queries/getAbout'
-import Expertise from 'sections/about/Expertise.astro'
-import Header from 'sections/about/Header.astro'
-import Team from 'sections/about/Team.astro'
-import { route } from 'utilities/route'
+import NextLink from 'components/NextLink.astro';
+import BaseLayout from 'layouts/BaseLayout.astro';
+import { getAbout } from 'queries/getAbout';
+import Expertise from 'sections/about/Expertise.astro';
+import Header from 'sections/about/Header.astro';
+import Team from 'sections/about/Team.astro';
+import { route } from 'utilities/route';
 
-const { about, services, members } = await getAbout()
+const { about, services, members } = await getAbout();
 ---
 
 <BaseLayout meta={about.data.attributes.meta}>
   <Header content={about.data.attributes.header} />
-  <Expertise
-    title={about.data.attributes.services.title}
-    services={services.data}
-  />
+  <Expertise title={about.data.attributes.services.title} services={services.data} />
   <Team
     title={about.data.attributes.team.title}
     subtitle={about.data.attributes.team.subtitle}

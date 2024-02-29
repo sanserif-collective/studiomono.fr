@@ -1,61 +1,71 @@
 ---
-import Container from 'components/Container.astro'
-import Image from 'components/Image.astro'
-import Text from 'components/Text.astro'
-import { cloudinary } from 'src/cloudinary'
-import type { Shared } from 'types/shared'
+import Container from 'components/Container.astro';
+import Image from 'components/Image.astro';
+import Text from 'components/Text.astro';
+import { cloudinary } from 'src/cloudinary';
+import type { Shared } from 'types/shared';
 
 type Props = {
-  title: string
-  subtitle: string
-  members: Shared.Member[]
-}
+  title: string;
+  subtitle: string;
+  members: Shared.Member[];
+};
 
-const { title, subtitle, members } = Astro.props as Props
+const { title, subtitle, members }: Props = Astro.props;
 ---
 
 <Container class="portrait:mt-40">
-  <header class="w-[50vw] row-span-full grid place-content-center portrait:row-auto portrait:col-start-2 portrait:col-end-12 portrait:w-auto portrait:place-content-start">
+  <header
+    class="w-[50vw] row-span-full grid place-content-center portrait:row-auto portrait:col-start-2 portrait:col-end-12 portrait:w-auto portrait:place-content-start"
+  >
     {subtitle}
     <sanserif-skew>
       <Text size="3xl" as="h2" class="max-w-[3em] mt-8">{title}</Text>
     </sanserif-skew>
   </header>
 
-  <sanserif-team class="row-start-5 row-end-12 flex flex-col justify-between portrait:row-auto portrait:col-start-2 portrait:col-end-12 portrait:mt-40">
+  <sanserif-team
+    class="row-start-5 row-end-12 flex flex-col justify-between portrait:row-auto portrait:col-start-2 portrait:col-end-12 portrait:mt-40"
+  >
     <div class="portrait:hidden">
       <sanserif-skew data-member-names class="inline-grid">
-        {members.map(({ attributes }) => (
-          <div class="row-start-1 col-start-1 flex relative" data-member-name>
-            <Text
-              as="h3"
-              size="2xl"
-            >
-              {attributes.name}
-            </Text>
-            <Text as="h4" class="ml-8">({attributes.role})</Text>
-          </div>
-        ))}
+        {
+          members.map(({ attributes }) => (
+            <div class="row-start-1 col-start-1 flex relative" data-member-name>
+              <Text as="h3" size="2xl">
+                {attributes.name}
+              </Text>
+              <Text as="h4" class="ml-8">
+                ({attributes.role})
+              </Text>
+            </div>
+          ))
+        }
       </sanserif-skew>
     </div>
-    <div class="flex items-end space-x-8 portrait:flex-col portrait:items-center portrait:space-x-0 portrait:space-y-8">
-      {members.map(({ attributes }) => {
-        const image = cloudinary.image(attributes.image.data.attributes.provider_metadata.public_id)
+    <div
+      class="flex items-end space-x-8 portrait:flex-col portrait:items-center portrait:space-x-0 portrait:space-y-8"
+    >
+      {
+        members.map(({ attributes }) => {
+          const image = cloudinary.image(
+            attributes.image.data.attributes.provider_metadata.public_id,
+          );
 
-        return (
-          <sanserif-skew class="w-[25vh] flex justify-center overflow-hidden portrait:w-[50vmin]">
-            <Image
-              data-member-image
-              class="w-[20vh] portrait:!w-full"
-              alt={attributes.name}
-              src={image.toURL()}
-              height={290}
-              width={210}
-            />
-          </sanserif-skew>
-        )
-      })}
+          return (
+            <sanserif-skew class="w-[25vh] flex justify-center overflow-hidden portrait:w-[50vmin]">
+              <Image
+                data-member-image
+                class="w-[20vh] portrait:!w-full"
+                alt={attributes.name}
+                src={image.toURL()}
+                height={290}
+                width={210}
+              />
+            </sanserif-skew>
+          );
+        })
+      }
     </div>
   </sanserif-team>
-
 </Container>

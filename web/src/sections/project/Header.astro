@@ -1,35 +1,30 @@
 ---
-import Container from 'components/Container.astro'
-import Image from 'components/Image.astro'
-import Text from 'components/Text.astro'
-import { cloudinary } from 'src/cloudinary'
-import type { Shared } from 'types/shared'
+import Container from 'components/Container.astro';
+import Image from 'components/Image.astro';
+import Text from 'components/Text.astro';
+import { cloudinary } from 'src/cloudinary';
+import type { Shared } from 'types/shared';
 
 type Props = {
-  name: string
-  content: Shared.Project.Header
-  services: Shared.Service[]
-}
+  name: string;
+  content: Shared.Project.Header;
+  services: Shared.Service[];
+};
 
-const { content, name, services } = Astro.props as Props
+const { content, name, services }: Props = Astro.props;
 
-const image = cloudinary.image(content.image.data.attributes.provider_metadata.public_id)
+const image = cloudinary.image(content.image.data.attributes.provider_metadata.public_id);
 ---
 
 <Container
   as="header"
   class:list={[
     'portrait:children:row-auto portrait:children:col-start-2 portrait:children:col-end-12',
-    'portrait:children:pl-0 portrait:space-y-custom-space-double'
+    'portrait:children:pl-0 portrait:space-y-custom-space-double',
   ]}
 >
   <sanserif-skew class="flex items-end row-start-3 row-end-12 mt-custom-space-double">
-    <Image
-      src={image.toURL()}
-      height={630}
-      width={460}
-      class="w-[50vh] portrait:w-[50vw]"
-    />
+    <Image src={image.toURL()} height={630} width={460} class="w-[50vh] portrait:w-[50vw]" />
   </sanserif-skew>
   <sanserif-skew class="pl-custom-space row-start-5">
     <Text as="h1" size="3xl">{name}</Text>
@@ -37,11 +32,15 @@ const image = cloudinary.image(content.image.data.attributes.provider_metadata.p
   <div class="row-start-8 pl-[25vw]">
     <Text class="max-w-lg">{content.text}</Text>
   </div>
-  {services.length ? (
-    <ul class="row-start-11 pl-custom-space flex items-end space-x-2">
-      {services.map(({ attributes }) => (
-        <li class="before:content-['—'] first:before:hidden before:mr-2">{attributes.name}</li>
-      ))}
-    </ul>
-  ) : ''}
+  {
+    services.length ? (
+      <ul class="row-start-11 pl-custom-space flex items-end space-x-2">
+        {services.map(({ attributes }) => (
+          <li class="before:content-['—'] first:before:hidden before:mr-2">{attributes.name}</li>
+        ))}
+      </ul>
+    ) : (
+      ''
+    )
+  }
 </Container>

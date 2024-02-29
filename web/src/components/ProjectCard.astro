@@ -1,21 +1,21 @@
 ---
-import type { AstroBuiltinAttributes } from 'astro'
-import Image from 'components/Image.astro'
-import { cloudinary } from 'src/cloudinary'
-import type { Shared } from 'types/shared'
-import { route } from 'utilities/route'
-import MarqueeItem from './MarqueeItem.astro'
-import Text from './Text.astro'
+import type { AstroBuiltinAttributes } from 'astro';
+import Image from 'components/Image.astro';
+import { cloudinary } from 'src/cloudinary';
+import type { Shared } from 'types/shared';
+import { route } from 'utilities/route';
+import MarqueeItem from './MarqueeItem.astro';
+import Text from './Text.astro';
 
 type Props = {
-  width: number
-  height: number
-  loading?: 'eager' | 'lazy'
-  project: Shared.Project.Components
-  'class:list'?: AstroBuiltinAttributes['class:list']
-  class?: string
-  [name: string]: unknown
-}
+  width: number;
+  height: number;
+  loading?: 'eager' | 'lazy';
+  project: Shared.Project.Components;
+  'class:list'?: AstroBuiltinAttributes['class:list'];
+  class?: string;
+  [name: string]: unknown;
+};
 
 const {
   width,
@@ -25,9 +25,9 @@ const {
   'class:list': classList,
   class: className,
   ...rest
-} = Astro.props as Props
+}: Props = Astro.props;
 
-const image = cloudinary.image(project.cover.data.attributes.provider_metadata.public_id)
+const image = cloudinary.image(project.cover.data.attributes.provider_metadata.public_id);
 ---
 
 <div class:list={[classList, className]} {...rest}>
@@ -35,7 +35,7 @@ const image = cloudinary.image(project.cover.data.attributes.provider_metadata.p
     <sanserif-skew
       class:list={[
         'relative group overflow-hidden transition-[clip-path]',
-        '[clip-path:inset(0)] hover:[clip-path:inset(0.75rem)] bg-gray'
+        '[clip-path:inset(0)] hover:[clip-path:inset(0.75rem)] bg-gray',
       ]}
     >
       <Text
@@ -43,28 +43,27 @@ const image = cloudinary.image(project.cover.data.attributes.provider_metadata.p
         size="xl"
         class:list={[
           'h-full flex justify-center absolute top-1/2 -translate-y-1/2 z-10',
-          'w-full items-center overflow-hidden variation-light'
+          'w-full items-center overflow-hidden variation-light',
         ]}
         playonhover
         delaybeforepause="1"
         role="heading"
         aria-level="3"
       >
-        {Array.from(
-          { length: 10 },
-          () => (
+        {
+          Array.from({ length: 10 }, () => (
             <div class="overflow-y-hidden flex-shrink-0">
               <MarqueeItem
                 class:list={[
                   'translate-y-full transform-gpu transition-transform',
-                  'group-hover:translate-y-0'
+                  'group-hover:translate-y-0',
                 ]}
               >
                 {project.name}
               </MarqueeItem>
             </div>
-          )
-        )}
+          ))
+        }
       </Text>
       <Image
         width={width}
@@ -74,7 +73,7 @@ const image = cloudinary.image(project.cover.data.attributes.provider_metadata.p
         src={image.toURL()}
         class:list={[
           'block transform-gpu transition-[opacity,transform]',
-          'group-hover:scale-[102.5%] group-hover:opacity-70'
+          'group-hover:scale-[102.5%] group-hover:opacity-70',
         ]}
       />
     </sanserif-skew>

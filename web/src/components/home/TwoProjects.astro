@@ -1,36 +1,26 @@
 ---
-import ProjectCard from 'components/ProjectCard.astro'
-import type { Home } from 'types/routes/home'
+import ProjectCard from 'components/ProjectCard.astro';
+import type { Home } from 'types/routes/home';
 
 type Props = {
-  projects: Home.Projects.Components.TwoProjects
-}
+  projects: Home.Projects.Components.TwoProjects;
+};
 
-const { projects } = Astro.props as Props
+const { projects }: Props = Astro.props;
 
-const project1 = projects.project1.data.attributes
-const project2 = projects.project2.data.attributes
+const project1 = projects.project1.data.attributes;
+const project2 = projects.project2.data.attributes;
 ---
 
 <article class="row-start-2 row-end-6 portrait:col-start-2 portrait:col-span-6">
-  <ProjectCard
-    class="w-[21.5vh] max-w-sm"
-    width={230}
-    height={300}
-    project={project1}
-  />
+  <ProjectCard class="w-[21.5vh] max-w-sm" width={230} height={300} project={project1} />
 </article>
 
 <article
   class:list={[
     'items-end row-start-6 row-end-12 pl-10 mb-10 portrait:col-start-3',
-    'portrait:col-end-12 portrait:pl-0 portrait:mb-0 portrait:justify-end'
+    'portrait:col-end-12 portrait:pl-0 portrait:mb-0 portrait:justify-end',
   ]}
 >
-  <ProjectCard
-    class="w-[30.5vh] max-w-xl"
-    width={310}
-    height={410}
-    project={project2}
-  />
+  <ProjectCard class="w-[30.5vh] max-w-xl" width={310} height={410} project={project2} />
 </article>

@@ -2,7 +2,7 @@ import { Resize } from '@cloudinary/url-gen/actions';
 import { app } from 'src/app';
 import { cloudinary } from 'src/cloudinary';
 
-export const get = async () => {
+export const GET = async () => {
   const favicon = cloudinary.image(
     app.global?.favicon.main.data.attributes.provider_metadata.public_id,
   );
@@ -10,8 +10,8 @@ export const get = async () => {
   const f192 = favicon.resize(Resize.thumbnail(192, 192)).format('png');
   const f512 = favicon.resize(Resize.thumbnail(512, 512)).format('png');
 
-  return {
-    body: JSON.stringify({
+  return new Response(
+    JSON.stringify({
       name: app.global?.meta.title,
       short_name: app.global?.meta.title,
       description: app.global?.meta.description,
@@ -45,5 +45,5 @@ export const get = async () => {
         },
       ],
     }),
-  };
+  );
 };

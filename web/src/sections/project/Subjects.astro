@@ -1,45 +1,55 @@
 ---
-import Container from 'components/Container.astro'
-import CenteredImage from 'components/project/CenteredImage.astro'
-import FullscreenImage from 'components/project/FullscreenImage.astro'
-import ImageAndText from 'components/project/ImageAndText.astro'
-import ThreeImages from 'components/project/ThreeImages.astro'
-import TwoImagesAndOneText from 'components/project/TwoImagesAndOneText.astro'
-import CenteredVerticalImage from 'components/project/CenteredVerticalImage.astro'
-import TwoImagesVertical from 'components/project/TwoImagesVertical.astro'
-import type { Shared } from 'types/shared'
+import Container from 'components/Container.astro';
+import CenteredImage from 'components/project/CenteredImage.astro';
+import FullscreenImage from 'components/project/FullscreenImage.astro';
+import ImageAndText from 'components/project/ImageAndText.astro';
+import ThreeImages from 'components/project/ThreeImages.astro';
+import TwoImagesAndOneText from 'components/project/TwoImagesAndOneText.astro';
+import CenteredVerticalImage from 'components/project/CenteredVerticalImage.astro';
+import TwoImagesVertical from 'components/project/TwoImagesVertical.astro';
+import type { Shared } from 'types/shared';
 
 type Props = {
-  layouts: Shared.Project.Subject.Set[]
-}
+  layouts: Shared.Project.Subject.Set[];
+};
 
-const { layouts } = Astro.props as Props
+const { layouts }: Props = Astro.props;
 ---
 
-<Container class="space-x-custom-space-double justify-start portrait:children:row-auto portrait:children:col-start-2 portrait:children:col-end-12 portrait:space-x-0 portrait:space-y-custom-space-double">
-  {layouts.map(({ __typename, ...layout }) => (
-    <>
-      {__typename === 'ComponentProjectFullscreenImage' && (
-        <FullscreenImage layout={layout as Shared.Project.Subject.Components.FullscreenImage} />
-      )}
-      {__typename === 'ComponentProjectCenteredImage' && (
-        <CenteredImage layout={layout as Shared.Project.Subject.Components.CenteredImage} />
-      )}
-      {__typename === 'ComponentProjectImageAndText' && (
-        <ImageAndText layout={layout as Shared.Project.Subject.Components.ImageAndText} />
-      )}
-      {__typename === 'ComponentProjectTwoImagesAndOneText' && (
-        <TwoImagesAndOneText layout={layout as Shared.Project.Subject.Components.TwoImagesAndOneText} />
-      )}
-      {__typename === 'ComponentProjectThreeImages' && (
-        <ThreeImages layout={layout as Shared.Project.Subject.Components.ThreeImages} />
-      )}
-      {__typename === 'ComponentProjectTwoImagesVertical' && (
-        <TwoImagesVertical layout={layout as Shared.Project.Subject.Components.TwoImagesVertical} />
-      )}
-      {__typename === 'ComponentProjectCenteredVerticalImage' && (
-        <CenteredVerticalImage layout={layout as Shared.Project.Subject.Components.CenteredVerticalImage} />
-      )}
-    </>
-  ))}
+<Container
+  class="space-x-custom-space-double justify-start portrait:children:row-auto portrait:children:col-start-2 portrait:children:col-end-12 portrait:space-x-0 portrait:space-y-custom-space-double"
+>
+  {
+    layouts.map(({ __typename, ...layout }) => (
+      <>
+        {__typename === 'ComponentProjectFullscreenImage' && (
+          <FullscreenImage layout={layout as Shared.Project.Subject.Components.FullscreenImage} />
+        )}
+        {__typename === 'ComponentProjectCenteredImage' && (
+          <CenteredImage layout={layout as Shared.Project.Subject.Components.CenteredImage} />
+        )}
+        {__typename === 'ComponentProjectImageAndText' && (
+          <ImageAndText layout={layout as Shared.Project.Subject.Components.ImageAndText} />
+        )}
+        {__typename === 'ComponentProjectTwoImagesAndOneText' && (
+          <TwoImagesAndOneText
+            layout={layout as Shared.Project.Subject.Components.TwoImagesAndOneText}
+          />
+        )}
+        {__typename === 'ComponentProjectThreeImages' && (
+          <ThreeImages layout={layout as Shared.Project.Subject.Components.ThreeImages} />
+        )}
+        {__typename === 'ComponentProjectTwoImagesVertical' && (
+          <TwoImagesVertical
+            layout={layout as Shared.Project.Subject.Components.TwoImagesVertical}
+          />
+        )}
+        {__typename === 'ComponentProjectCenteredVerticalImage' && (
+          <CenteredVerticalImage
+            layout={layout as Shared.Project.Subject.Components.CenteredVerticalImage}
+          />
+        )}
+      </>
+    ))
+  }
 </Container>

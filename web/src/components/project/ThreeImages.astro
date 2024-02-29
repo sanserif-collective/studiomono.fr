@@ -1,20 +1,23 @@
 ---
-import Image from 'components/Image.astro'
-import { cloudinary } from 'src/cloudinary'
-import type { Shared } from 'types/shared'
+import Image from 'components/Image.astro';
+import { cloudinary } from 'src/cloudinary';
+import type { Shared } from 'types/shared';
 
 type Props = {
-  layout: Shared.Project.Subject.Components.ThreeImages
-}
+  layout: Shared.Project.Subject.Components.ThreeImages;
+};
 
-const { layout } = Astro.props as Props
+const { layout }: Props = Astro.props;
 
-const image1 = cloudinary.image(layout.image1.data.attributes.provider_metadata.public_id)
-const image2 = cloudinary.image(layout.image2.data.attributes.provider_metadata.public_id)
-const image3 = cloudinary.image(layout.image3.data.attributes.provider_metadata.public_id)
+const image1 = cloudinary.image(layout.image1.data.attributes.provider_metadata.public_id);
+const image2 = cloudinary.image(layout.image2.data.attributes.provider_metadata.public_id);
+const image3 = cloudinary.image(layout.image3.data.attributes.provider_metadata.public_id);
 ---
 
-<sanserif-skew class="row-start-2 row-end-12 grid gap-[3vh] [&~[data-builder='three-images']]:!ml-[3vh]" data-builder="three-images">
+<sanserif-skew
+  class="row-start-2 row-end-12 grid gap-[3vh] [&~[data-builder='three-images']]:!ml-[3vh]"
+  data-builder="three-images"
+>
   <div class="flex items-start">
     <parallax-wrapper class="h-full">
       <Image

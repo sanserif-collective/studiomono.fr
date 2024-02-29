@@ -1,20 +1,20 @@
 ---
-import Container from 'components/Container.astro'
-import Text from 'components/Text.astro'
-import type { Shared } from 'types/shared'
+import Container from 'components/Container.astro';
+import Text from 'components/Text.astro';
+import type { Shared } from 'types/shared';
 
 type Props = {
-  title: string
-  services: Shared.Service[]
-}
+  title: string;
+  services: Shared.Service[];
+};
 
-const { title, services } = Astro.props as Props
+const { title, services }: Props = Astro.props;
 ---
 
 <Container
   class:list={[
     'ml-20 gap-x-40 portrait:ml-0 portrait:gap-x-0 portrait:children:row-auto',
-    'portrait:children:col-start-2 portrait:children:col-end-12 portrait:mt-40'
+    'portrait:children:col-start-2 portrait:children:col-end-12 portrait:mt-40',
   ]}
 >
   <div class="row-start-8 flex items-end">
@@ -24,32 +24,34 @@ const { title, services } = Astro.props as Props
     <div
       class:list={[
         'flex space-x-40 portrait:flex-col portrait:space-x-0',
-        'portrait:w-full portrait:space-y-72'
+        'portrait:w-full portrait:space-y-72',
       ]}
     >
-      {services.map(({ attributes }) => (
-        <div class="relative">
-          <sanserif-skew>
-            <Text
-              size="5xl"
-              as="h3"
-              class:list={[
-                'translate-x-[-5vh] translate-y-[0.125em] portrait:translate-x-0',
-                'portrait:translate-y-0 portrait:text-4xl'
-              ]}
-            >
-              {attributes.name}
-            </Text>
-          </sanserif-skew>
-          <sanserif-services class="absolute top-full mt-[10vh] portrait:text-right portrait:relative">
-            <div>
-              {attributes.subservices.map(({ name }) => (
-                <h4>{name}</h4>
-              ))}
-            </div>
-          </sanserif-services>
-        </div>
-      ))}
+      {
+        services.map(({ attributes }) => (
+          <div class="relative">
+            <sanserif-skew>
+              <Text
+                size="5xl"
+                as="h3"
+                class:list={[
+                  'translate-x-[-5vh] translate-y-[0.125em] portrait:translate-x-0',
+                  'portrait:translate-y-0 portrait:text-4xl',
+                ]}
+              >
+                {attributes.name}
+              </Text>
+            </sanserif-skew>
+            <sanserif-services class="absolute top-full mt-[10vh] portrait:text-right portrait:relative">
+              <div>
+                {attributes.subservices.map(({ name }) => (
+                  <h4>{name}</h4>
+                ))}
+              </div>
+            </sanserif-services>
+          </div>
+        ))
+      }
     </div>
   </div>
 </Container>

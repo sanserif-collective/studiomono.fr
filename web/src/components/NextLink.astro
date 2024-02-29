@@ -1,42 +1,38 @@
 ---
-import Sprite from 'components/Sprite.astro'
-import Text from 'components/Text.astro'
+import Sprite from 'components/Sprite.astro';
+import Text from 'components/Text.astro';
 
 type Props = {
-  url: string
-  caption: string
-}
+  url: string;
+  caption: string;
+};
 
-const { url, caption } = Astro.props as Props
+const { url, caption }: Props = Astro.props;
 ---
 
 <footer
   class:list={[
     'grid place-content-center w-[calc(100vw_-_var(--custom-space))]',
-    'portrait:w-auto'
+    'portrait:w-auto',
   ]}
 >
   <sanserif-next-link class="grid place-content-center mt-14 portrait:py-[10vh]">
     <a href={url} class="block">
       <Text as="strong" size="3xl" class="relative">
         <div class="overflow-hidden grid text-center">
-          {Array.from(
-            { length: 2 },
-            () => (
-              <sanserif-skew
-                class="row-start-1 col-start-1 max-w-[6em]"
-                data-split
-              >
+          {
+            Array.from({ length: 2 }, () => (
+              <sanserif-skew class="row-start-1 col-start-1 max-w-[6em]" data-split>
                 <slot />
               </sanserif-skew>
-            )
-          )}
+            ))
+          }
         </div>
       </Text>
       <small
         class:list={[
           'mt-8 transition-all duration-500 ease-in-out flex',
-          'items-center justify-center'
+          'items-center justify-center',
         ]}
       >
         {caption}

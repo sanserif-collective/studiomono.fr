@@ -1,15 +1,15 @@
 ---
-import Image from 'components/Image.astro'
-import { cloudinary } from 'src/cloudinary'
-import type { Shared } from 'types/shared'
+import Image from 'components/Image.astro';
+import { cloudinary } from 'src/cloudinary';
+import type { Shared } from 'types/shared';
 
 type Props = {
-  layout: Shared.Project.Subject.Components.FullscreenImage
-}
+  layout: Shared.Project.Subject.Components.FullscreenImage;
+};
 
-const { layout } = Astro.props as Props
+const { layout }: Props = Astro.props;
 
-const image = cloudinary.image(layout.image.data.attributes.provider_metadata.public_id)
+const image = cloudinary.image(layout.image.data.attributes.provider_metadata.public_id);
 ---
 
 <sanserif-skew class="grid place-content-center row-start-2 row-end-12">

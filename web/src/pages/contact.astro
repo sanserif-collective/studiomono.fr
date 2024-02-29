@@ -1,9 +1,9 @@
 ---
-import Header from 'sections/contact/Header.astro'
-import BaseLayout from 'layouts/BaseLayout.astro'
-import { getContact } from 'queries/getContact'
+import Header from 'sections/contact/Header.astro';
+import BaseLayout from 'layouts/BaseLayout.astro';
+import { getContact } from 'queries/getContact';
 
-const { contact } = await getContact()
+const { contact } = await getContact();
 ---
 
 <BaseLayout meta={contact.data.attributes.meta} enableFooter={false}>

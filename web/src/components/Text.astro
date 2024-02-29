@@ -1,34 +1,30 @@
 ---
-import type { AstroBuiltinAttributes } from 'astro'
+import type { HTMLAttributes, HTMLTag, Polymorphic } from 'astro/types';
 
-type Props = {
-  as?: string
-  class?: string
-  'class:list'?: AstroBuiltinAttributes['class:list']
-  href?: string
-  size?: keyof typeof sizes
-  [x: string]: unknown
-}
+type Props<Tag extends HTMLTag> = HTMLAttributes<'p'> &
+  Polymorphic<{ as: Tag }> & {
+    size?: keyof typeof sizes;
+  };
 
 const sizes = {
-  'base': 'text-base',
-  'lg': 'text-lg variation-normal',
-  'xl': 'text-xl',
+  base: 'text-base',
+  lg: 'text-lg variation-normal',
+  xl: 'text-xl',
   '2xl': 'text-2xl variation-light',
   '3xl': 'text-3xl variation-light',
   '4xl': 'text-4xl variation-light',
-  '5xl': 'text-5xl variation-light'
-}
+  '5xl': 'text-5xl variation-light',
+};
 
 const {
   as: Tag = 'p',
   class: className,
   'class:list': classList,
   size = 'base',
-  ...rest
-} = Astro.props as Props
+  ...props
+}: Props<'p'> = Astro.props;
 ---
 
-<Tag class:list={[sizes[size], className, classList]} {...rest}>
+<Tag class:list={[sizes[size], className, classList]} {...props}>
   <slot />
 </Tag>

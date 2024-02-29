@@ -1,8 +1,8 @@
 ---
-import Text from 'components/Text.astro'
-import { app } from 'src/app'
-import { route } from 'utilities/route'
-import MarqueeItem from './MarqueeItem.astro'
+import Text from 'components/Text.astro';
+import { app } from 'src/app';
+import { route } from 'utilities/route';
+import MarqueeItem from './MarqueeItem.astro';
 ---
 
 <sanserif-menu
@@ -10,34 +10,35 @@ import MarqueeItem from './MarqueeItem.astro'
   style="display: none"
 >
   <nav class="text-center max-w-xl">
-    {app.global?.menu.links.map((link, index) => (
-      <Text
-        as="a"
-        size="2xl"
-        class:list={[
-          'transition-opacity block overflow-hidden',
-          route(link.route) !== Astro.url.pathname && 'opacity-25 hover:opacity-50'
-        ]}
-        href={route(link.route)}
-        data-nav-link
-      >
-        <sanserif-marquee
-          class="flex transition-opacity justify-center"
-          direction={index % 2 === 0 ? -100 : 100}
-          pauseonhover={true}
+    {
+      app.global?.menu.links.map((link, index) => (
+        <Text
+          as="a"
+          size="2xl"
+          class:list={[
+            'transition-opacity block overflow-hidden',
+            route(link.route) !== Astro.url.pathname && 'opacity-25 hover:opacity-50',
+          ]}
+          href={route(link.route)}
+          data-nav-link
         >
-          {Array.from(
-            { length: 10 },
-            () => <MarqueeItem>{link.name}</MarqueeItem>
-          )}
-        </sanserif-marquee>
-      </Text>
-    ))}
+          <sanserif-marquee
+            class="flex transition-opacity justify-center"
+            direction={index % 2 === 0 ? -100 : 100}
+            pauseonhover={true}
+          >
+            {Array.from({ length: 10 }, () => (
+              <MarqueeItem>{link.name}</MarqueeItem>
+            ))}
+          </sanserif-marquee>
+        </Text>
+      ))
+    }
   </nav>
   <div
     class:list={[
       'variation-normal absolute inset-x-custom-space bottom-custom-space flex',
-      'space-x-4 items-end justify-between sm:flex-col sm:items-center sm:space-x-0'
+      'space-x-4 items-end justify-between sm:flex-col sm:items-center sm:space-x-0',
     ]}
   >
     <div class="overflow-y-hidden">
@@ -45,20 +46,12 @@ import MarqueeItem from './MarqueeItem.astro'
     </div>
     <div class="text-center">
       <div class="overflow-y-hidden">
-        <a
-          class="block"
-          href={`mailto:${app.global?.informations.email}`}
-          data-nav-small
-        >
+        <a class="block" href={`mailto:${app.global?.informations.email}`} data-nav-small>
           {app.global?.informations.email}
         </a>
       </div>
       <div class="overflow-y-hidden">
-        <a
-          class="block"
-          href={`tel:${app.global?.informations.phone}`}
-          data-nav-small
-        >
+        <a class="block" href={`tel:${app.global?.informations.phone}`} data-nav-small>
           {app.global?.informations.phone}
         </a>
       </div>

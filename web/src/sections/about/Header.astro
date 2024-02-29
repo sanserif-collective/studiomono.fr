@@ -1,17 +1,17 @@
 ---
-import Container from 'components/Container.astro'
-import Image from 'components/Image.astro'
-import Sprite from 'components/Sprite.astro'
-import Text from 'components/Text.astro'
-import { cloudinary } from 'src/cloudinary'
-import type { About } from 'types/routes/about'
+import Container from 'components/Container.astro';
+import Image from 'components/Image.astro';
+import Sprite from 'components/Sprite.astro';
+import Text from 'components/Text.astro';
+import { cloudinary } from 'src/cloudinary';
+import type { About } from 'types/routes/about';
 
 type Props = {
-  content: About.Header
-}
+  content: About.Header;
+};
 
-const { content } = Astro.props as Props
-const image = cloudinary.image(content.image.data.attributes.provider_metadata.public_id)
+const { content }: Props = Astro.props;
+const image = cloudinary.image(content.image.data.attributes.provider_metadata.public_id);
 ---
 
 <Container fullscreen={true} as="header">
@@ -26,7 +26,7 @@ const image = cloudinary.image(content.image.data.attributes.provider_metadata.p
   <div
     class:list={[
       'col-start-6 col-end-12 row-start-4 row-end-9 flex justify-end',
-      'portrait:row-start-6 portrait:col-start-2'
+      'portrait:row-start-6 portrait:col-start-2',
     ]}
   >
     <sanserif-skew>
@@ -42,7 +42,7 @@ const image = cloudinary.image(content.image.data.attributes.provider_metadata.p
   <div
     class:list={[
       'flex justify-end items-center col-start-8 col-end-12 row-start-10',
-      'portrait:items-end portrait:row-start-12 portrait:text-right'
+      'portrait:items-end portrait:row-start-12 portrait:text-right',
     ]}
   >
     <Text as="h2" size="lg">{content.subtitle}</Text>
