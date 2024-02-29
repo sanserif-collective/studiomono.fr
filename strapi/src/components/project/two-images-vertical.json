@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_project_two_images_and_one_texts",
+  "collectionName": "components_project_two_images_verticals",
   "info": {
-    "displayName": "Two Images & One Text",
+    "displayName": "Two Images Vertical",
     "icon": "align-justify",
     "description": ""
   },
@@ -22,9 +22,6 @@
       "allowedTypes": [
         "images"
       ]
-    },
-    "text": {
-      "type": "text"
     }
   }
 }

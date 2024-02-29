@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_project_image_and_texts",
+  "collectionName": "components_project_centered_vertical_images",
   "info": {
-    "displayName": "Image & Text",
+    "displayName": "Centered Vertical Image",
     "icon": "align-justify"
   },
   "options": {},
@@ -13,9 +13,6 @@
       "type": "media",
       "multiple": false,
       "required": true
-    },
-    "text": {
-      "type": "text"
     }
   }
 }
