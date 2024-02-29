@@ -7,18 +7,23 @@ type Props = {
 };
 
 const { projects }: Props = Astro.props;
+const project = projects.project.data.attributes;
 ---
 
-<article
-  class:list={[
-    'items-center row-start-5 row-end-12 px-custom-space portrait:col-start-2',
-    'portrait:col-end-12 portrait:px-0 portrait:justify-center',
-  ]}
->
-  <ProjectCard
-    class="w-[69vh] max-w-5xl portrait:w-[80vw]"
-    width={620}
-    height={410}
-    project={projects.project.data.attributes}
-  />
-</article>
+{
+  project && (
+    <article
+      class:list={[
+        'items-center row-start-5 row-end-12 px-custom-space portrait:col-start-2',
+        'portrait:col-end-12 portrait:px-0 portrait:justify-center',
+      ]}
+    >
+      <ProjectCard
+        class="w-[69vh] max-w-5xl portrait:w-[80vw]"
+        width={620}
+        height={410}
+        project={project}
+      />
+    </article>
+  )
+}
