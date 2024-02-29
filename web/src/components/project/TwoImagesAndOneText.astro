@@ -10,8 +10,8 @@ type Props = {
 
 const { layout } = Astro.props as Props
 
-const image1 = layout.image1 ? cloudinary.image(layout.image1.data.attributes.provider_metadata.public_id) : null
-const image2 = layout.image2 ? cloudinary.image(layout.image2.data.attributes.provider_metadata.public_id) : null
+const image1 = layout.optionalImage1?.data ? cloudinary.image(layout.optionalImage1.data.attributes.provider_metadata.public_id) : null
+const image2 = layout.optionalImage2?.data ? cloudinary.image(layout.optionalImage2.data.attributes.provider_metadata.public_id) : null
 ---
 
 {image1 && (

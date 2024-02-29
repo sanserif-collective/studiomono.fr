@@ -14,7 +14,7 @@ export const getProjects = () => strapi.request<Projects.Response>(
     }
 
     query Projects {
-      projects {
+      projects(pagination: { pageSize: 25 }) {
         data {
           attributes {
             slug
@@ -49,17 +49,17 @@ export const getProjects = () => strapi.request<Projects.Response>(
               __typename
               ...on ComponentProjectCenteredImage {
                 image {
-                  ... Image
+                  ...Image
                 }
               }
               ...on ComponentProjectFullscreenImage {
                 image {
-                  ... Image
+                  ...Image
                 }
               }
               ...on ComponentProjectImageAndText {
                 text
-                image {
+                optionalImage: image {
                   ...Image
                 }
               }
@@ -76,10 +76,10 @@ export const getProjects = () => strapi.request<Projects.Response>(
               }
               ...on ComponentProjectTwoImagesAndOneText {
                 text
-                image1 {
+                optionalImage1: image1 {
                   ...Image
                 }
-                image2 {
+                optionalImage2: image2 {
                   ...Image
                 }
               }
@@ -96,6 +96,7 @@ export const getProjects = () => strapi.request<Projects.Response>(
                   ...Image
                 }
               }
+
             }
             meta {
               title
