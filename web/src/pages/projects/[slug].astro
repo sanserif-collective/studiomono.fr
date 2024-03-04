@@ -6,40 +6,16 @@ import Header from 'sections/project/Header.astro';
 import Introduction from 'sections/project/Introduction.astro';
 import Subjects from 'sections/project/Subjects.astro';
 import { app } from 'src/app';
-import type { Shared } from 'types/shared';
 import { route } from 'utilities/route';
 
-export const getStaticPaths = async () => {
-  const projects = await getAppProjects();
+const { slug } = Astro.params;
 
-  return projects.map(({ attributes }, index) => {
-    const next = index + 1 === projects.length ? projects[0] : projects[index + 1];
+const projects = await getAppProjects();
+const project = projects.find((project) => project.attributes.slug === slug);
+const index = projects.findIndex((project) => project.attributes.slug === slug);
 
-    const props: Props = {
-      ...attributes,
-      caption: next.attributes.name,
-      link: {
-        name: app.dictionary!.next,
-        url: route('projects', next.attributes.slug),
-      },
-    };
-
-    return {
-      props,
-      params: {
-        slug: attributes.slug,
-      },
-    };
-  });
-};
-
-type Props = Shared.Project.Components & {
-  caption: string;
-  link: Shared.Link;
-};
-
-const { name, header, services, introduction, subject, color, caption, link, meta }: Props =
-  Astro.props;
+const next = index + 1 === projects.length ? projects[0] : projects[index + 1];
+const { name, header, services, introduction, subject, color, meta } = project!.attributes;
 ---
 
 <BaseLayout meta={meta} namespace="project" data-color={color}>
@@ -48,7 +24,7 @@ const { name, header, services, introduction, subject, color, caption, link, met
     <Introduction {...introduction} />
     <Subjects layouts={subject} />
   </article>
-  <NextLink caption={caption} url={link.url}>
-    {link.name}
+  <NextLink caption={next.attributes.name} url={route('projects', next.attributes.slug)}>
+    {app.dictionary?.next}
   </NextLink>
 </BaseLayout>
