@@ -1,7 +1,6 @@
 ---
 import Image from 'components/Image.astro';
 import Text from 'components/Text.astro';
-import { cloudinary } from 'src/cloudinary';
 import type { Shared } from 'types/shared';
 
 type Props = {
@@ -10,19 +9,15 @@ type Props = {
 
 const { layout }: Props = Astro.props;
 
-const image1 = layout.optionalImage1?.data
-  ? cloudinary.image(layout.optionalImage1.data.attributes.provider_metadata.public_id)
-  : null;
-const image2 = layout.optionalImage2?.data
-  ? cloudinary.image(layout.optionalImage2.data.attributes.provider_metadata.public_id)
-  : null;
+const image1 = layout.optionalImage1?.data ? layout.optionalImage1.data.attributes.url : null;
+const image2 = layout.optionalImage2?.data ? layout.optionalImage2.data.attributes.url : null;
 ---
 
 {
   image1 && (
     <sanserif-skew class="row-start-2 row-end-7 col-span-2 flex justify-center items-start">
       <parallax-wrapper>
-        <Image src={image1.toURL()} width={600} height={400} class="w-[50vh] portrait:w-[60vw]" />
+        <Image src={image1} width={600} height={400} class="w-[50vh] portrait:w-[60vw]" />
       </parallax-wrapper>
     </sanserif-skew>
   )
@@ -40,7 +35,7 @@ const image2 = layout.optionalImage2?.data
   image2 && (
     <sanserif-skew class="row-start-7 row-end-12 flex items-end portrait:justify-end">
       <parallax-wrapper>
-        <Image src={image2.toURL()} width={560} height={340} class="w-[50vh] portrait:w-[60vw]" />
+        <Image src={image2} width={560} height={340} class="w-[50vh] portrait:w-[60vw]" />
       </parallax-wrapper>
     </sanserif-skew>
   )

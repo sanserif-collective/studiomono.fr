@@ -1,6 +1,5 @@
 ---
 import Image from 'components/Image.astro';
-import { cloudinary } from 'src/cloudinary';
 import type { Shared } from 'types/shared';
 
 type Props = {
@@ -8,14 +7,17 @@ type Props = {
 };
 
 const { layout }: Props = Astro.props;
-
-const image = cloudinary.image(layout.image.data.attributes.provider_metadata.public_id);
 ---
 
 <sanserif-skew
   class:list={['row-start-5 row-end-11 flex justify-center items-center', 'portrait:justify-start']}
 >
   <parallax-wrapper>
-    <Image src={image.toURL()} width={1200} height={840} class="w-[50vh] portrait:w-[60vw]" />
+    <Image
+      src={layout.image.data.attributes.url}
+      width={1200}
+      height={840}
+      class="w-[50vh] portrait:w-[60vw]"
+    />
   </parallax-wrapper>
 </sanserif-skew>

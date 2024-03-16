@@ -1,4 +1,4 @@
-export default [
+export default ({ env }) => [
   'strapi::errors',
   'strapi::security',
   'strapi::cors',
@@ -16,8 +16,8 @@ export default [
         useDefaults: true,
         directives: {
           'connect-src': ["'self'", 'https:'],
-          'img-src': ["'self'", 'data:', 'blob:', 'dl.airtable.com', 'res.cloudinary.com'],
-          'media-src': ["'self'", 'data:', 'blob:', 'dl.airtable.com', 'res.cloudinary.com'],
+          'img-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io', env('CDN_URL')],
+          'media-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io', env('CDN_URL')],
           upgradeInsecureRequests: null,
         },
       },

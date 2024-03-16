@@ -1,17 +1,20 @@
 export default ({ env }) => ({
   upload: {
     config: {
-      provider: 'cloudinary',
+      provider: 'aws-s3',
       providerOptions: {
-        cloud_name: env('CLOUDINARY_NAME'),
-        api_key: env('CLOUDINARY_KEY'),
-        api_secret: env('CLOUDINARY_SECRET'),
+        baseUrl: env('CDN_URL'),
+        accessKeyId: env('R2_ACCESS_KEY_ID'),
+        secretAccessKey: env('R2_ACCESS_SECRET'),
+        endpoint: env('R2_ENDPOINT'),
+        region: 'auto',
+        params: {
+          Bucket: env('R2_BUCKET'),
+        },
       },
       actionOptions: {
         upload: {},
-        uploadStream: {
-          folder: env('CLOUDINARY_FOLDER'),
-        },
+        uploadStream: {},
         delete: {},
       },
     },

@@ -3,7 +3,6 @@ import Container from 'components/Container.astro';
 import Image from 'components/Image.astro';
 import Sprite from 'components/Sprite.astro';
 import Text from 'components/Text.astro';
-import { cloudinary } from 'src/cloudinary';
 import type { About } from 'types/routes/about';
 
 type Props = {
@@ -11,7 +10,6 @@ type Props = {
 };
 
 const { content }: Props = Astro.props;
-const image = cloudinary.image(content.image.data.attributes.provider_metadata.public_id);
 ---
 
 <Container fullscreen={true} as="header">
@@ -31,7 +29,7 @@ const image = cloudinary.image(content.image.data.attributes.provider_metadata.p
   >
     <sanserif-skew>
       <Image
-        src={image.toURL()}
+        src={content.image.data.attributes.url}
         alt={content.image.data.attributes.alternativeText}
         width={680}
         height={420}

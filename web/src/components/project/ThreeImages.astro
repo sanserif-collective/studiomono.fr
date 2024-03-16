@@ -1,6 +1,5 @@
 ---
 import Image from 'components/Image.astro';
-import { cloudinary } from 'src/cloudinary';
 import type { Shared } from 'types/shared';
 
 type Props = {
@@ -8,10 +7,6 @@ type Props = {
 };
 
 const { layout }: Props = Astro.props;
-
-const image1 = cloudinary.image(layout.image1.data.attributes.provider_metadata.public_id);
-const image2 = cloudinary.image(layout.image2.data.attributes.provider_metadata.public_id);
-const image3 = cloudinary.image(layout.image3.data.attributes.provider_metadata.public_id);
 ---
 
 <sanserif-skew
@@ -21,7 +16,7 @@ const image3 = cloudinary.image(layout.image3.data.attributes.provider_metadata.
   <div class="flex items-start">
     <parallax-wrapper class="h-full">
       <Image
-        src={image1.toURL()}
+        src={layout.image1.data.attributes.url}
         width={600}
         height={400}
         class="h-full w-[36vh] portrait:w-[50vw]"
@@ -32,7 +27,7 @@ const image3 = cloudinary.image(layout.image3.data.attributes.provider_metadata.
   <div class="flex items-center portrait:justify-center">
     <parallax-wrapper class="h-full">
       <Image
-        src={image2.toURL()}
+        src={layout.image2.data.attributes.url}
         width={600}
         height={400}
         class="h-full w-[36vh] portrait:w-[50vw]"
@@ -43,7 +38,7 @@ const image3 = cloudinary.image(layout.image3.data.attributes.provider_metadata.
   <div class="flex items-end portrait:justify-end">
     <parallax-wrapper class="h-full">
       <Image
-        src={image3.toURL()}
+        src={layout.image3.data.attributes.url}
         width={560}
         height={340}
         class="h-full w-[36vh] portrait:w-[50vw]"

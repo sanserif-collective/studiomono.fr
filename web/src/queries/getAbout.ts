@@ -15,8 +15,8 @@ export const getAbout = () =>
               image {
                 data {
                   attributes {
-                    provider_metadata
                     alternativeText
+                    url
                   }
                 }
               }
@@ -41,7 +41,7 @@ export const getAbout = () =>
               thumbnail {
                 data {
                   attributes {
-                    provider_metadata
+                    url
                   }
                 }
               }
@@ -67,7 +67,7 @@ export const getAbout = () =>
             image {
               data {
                 attributes {
-                  provider_metadata
+                  url
                 }
               }
             }

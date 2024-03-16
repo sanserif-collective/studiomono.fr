@@ -2,7 +2,6 @@
 import Container from 'components/Container.astro';
 import Image from 'components/Image.astro';
 import Text from 'components/Text.astro';
-import { cloudinary } from 'src/cloudinary';
 import type { Shared } from 'types/shared';
 
 type Props = {
@@ -47,24 +46,18 @@ const { title, subtitle, members }: Props = Astro.props;
       class="flex items-end space-x-8 portrait:flex-col portrait:items-center portrait:space-x-0 portrait:space-y-8"
     >
       {
-        members.map(({ attributes }) => {
-          const image = cloudinary.image(
-            attributes.image.data.attributes.provider_metadata.public_id,
-          );
-
-          return (
-            <sanserif-skew class="w-[25vh] flex justify-center overflow-hidden portrait:w-[50vmin]">
-              <Image
-                data-member-image
-                class="w-[20vh] portrait:!w-full"
-                alt={attributes.name}
-                src={image.toURL()}
-                height={290}
-                width={210}
-              />
-            </sanserif-skew>
-          );
-        })
+        members.map(({ attributes }) => (
+          <sanserif-skew class="w-[25vh] flex justify-center overflow-hidden portrait:w-[50vmin]">
+            <Image
+              data-member-image
+              class="w-[20vh] portrait:!w-full"
+              alt={attributes.name}
+              src={attributes.image.data.attributes.url}
+              height={290}
+              width={210}
+            />
+          </sanserif-skew>
+        ))
       }
     </div>
   </sanserif-team>
