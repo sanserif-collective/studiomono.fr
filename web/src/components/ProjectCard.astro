@@ -1,7 +1,6 @@
 ---
 import type { AstroBuiltinAttributes } from 'astro';
 import Image from 'components/Image.astro';
-import { cloudinary } from 'src/cloudinary';
 import type { Shared } from 'types/shared';
 import { route } from 'utilities/route';
 import MarqueeItem from './MarqueeItem.astro';
@@ -26,8 +25,6 @@ const {
   class: className,
   ...rest
 }: Props = Astro.props;
-
-const image = cloudinary.image(project.cover.data.attributes.provider_metadata.public_id);
 ---
 
 <div class:list={[classList, className]} {...rest}>
@@ -70,7 +67,7 @@ const image = cloudinary.image(project.cover.data.attributes.provider_metadata.p
         height={height}
         loading={loading}
         alt={project.name}
-        src={image.toURL()}
+        src={project.cover.data.attributes.url}
         class:list={[
           'block transform-gpu transition-[opacity,transform]',
           'group-hover:scale-[102.5%] group-hover:opacity-70',

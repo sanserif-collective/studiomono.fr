@@ -2,7 +2,6 @@
 import Container from 'components/Container.astro';
 import Image from 'components/Image.astro';
 import Text from 'components/Text.astro';
-import { cloudinary } from 'src/cloudinary';
 import type { Shared } from 'types/shared';
 
 type Props = {
@@ -12,8 +11,6 @@ type Props = {
 };
 
 const { content, name, services }: Props = Astro.props;
-
-const image = cloudinary.image(content.image.data.attributes.provider_metadata.public_id);
 ---
 
 <Container
@@ -24,7 +21,12 @@ const image = cloudinary.image(content.image.data.attributes.provider_metadata.p
   ]}
 >
   <sanserif-skew class="flex items-end row-start-3 row-end-12 mt-custom-space-double">
-    <Image src={image.toURL()} height={630} width={460} class="w-[50vh] portrait:w-[50vw]" />
+    <Image
+      src={content.image.data.attributes.url}
+      height={630}
+      width={460}
+      class="w-[50vh] portrait:w-[50vw]"
+    />
   </sanserif-skew>
   <sanserif-skew class="pl-custom-space row-start-5">
     <Text as="h1" size="3xl">{name}</Text>

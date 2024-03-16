@@ -24,7 +24,7 @@ export const getGlobal = () =>
                 data {
                   attributes {
                     mime
-                    provider_metadata
+                    url
                   }
                 }
               }
@@ -35,7 +35,7 @@ export const getGlobal = () =>
               thumbnail {
                 data {
                   attributes {
-                    provider_metadata
+                    url
                   }
                 }
               }

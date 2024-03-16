@@ -19,7 +19,7 @@ export const getContact = () =>
               thumbnail {
                 data {
                   attributes {
-                    provider_metadata
+                    url
                   }
                 }
               }

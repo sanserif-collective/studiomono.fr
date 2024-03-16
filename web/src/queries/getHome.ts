@@ -12,7 +12,7 @@ export const getHome = () =>
           cover {
             data {
               attributes {
-                provider_metadata
+                url
               }
             }
           }

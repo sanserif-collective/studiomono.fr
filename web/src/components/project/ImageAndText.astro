@@ -1,7 +1,6 @@
 ---
 import Image from 'components/Image.astro';
 import Text from 'components/Text.astro';
-import { cloudinary } from 'src/cloudinary';
 import type { Shared } from 'types/shared';
 
 type Props = {
@@ -10,9 +9,7 @@ type Props = {
 
 const { layout }: Props = Astro.props;
 
-const image = layout.optionalImage?.data
-  ? cloudinary.image(layout.optionalImage.data.attributes.provider_metadata.public_id)
-  : null;
+const image = layout.optionalImage?.data ? layout.optionalImage.data.attributes.url : null;
 ---
 
 {
@@ -20,7 +17,7 @@ const image = layout.optionalImage?.data
     <sanserif-skew class="row-start-2 row-end-7 flex justify-between portrait:justify-end">
       <parallax-wrapper>
         <Image
-          src={image.toURL()}
+          src={image}
           width={1200}
           height={840}
           class="ml-[10vw] w-[50vh] portrait:ml-0 portrait:w-[60vw]"

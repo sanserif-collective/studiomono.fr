@@ -8,7 +8,7 @@ export const getProjects = () =>
     fragment Image on UploadFileEntityResponse {
       data {
         attributes {
-          provider_metadata
+          url
         }
       }
     }
@@ -24,7 +24,7 @@ export const getProjects = () =>
               data {
                 attributes {
                   alternativeText
-                  provider_metadata
+                  url
                 }
               }
             }
@@ -103,7 +103,7 @@ export const getProjects = () =>
               thumbnail {
                 data {
                   attributes {
-                    provider_metadata
+                    url
                   }
                 }
               }
