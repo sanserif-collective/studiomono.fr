@@ -7,6 +7,7 @@ import Favicon from 'components/Favicon.astro';
 import { getGlobal } from 'queries/getGlobal';
 import { app } from 'src/app';
 import type { Shared } from 'types/shared';
+import { PLAUSIBLE_URL, NODE_ENV, BASE_URL } from 'env';
 
 type Props = {
   meta?: Shared.SEO.Meta;
@@ -25,7 +26,9 @@ const { meta, enableFooter = true, namespace = 'base', ...rest }: Props = Astro.
 
 const title = `${meta?.title ? `${meta.title} — ${app.global.meta.title}` : app.global.meta.title}`;
 const description = meta?.description || app.global.meta.description;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+
+const canonical = new URL(Astro.url.pathname, BASE_URL).toString();
+const plausible = new URL('js/script.js', PLAUSIBLE_URL).toString();
 
 const appThumbnail = app.global.meta.thumbnail && app.global.meta.thumbnail.data.attributes.url;
 
@@ -61,9 +64,14 @@ const thumbnail = pageThumbnail ?? appThumbnail;
     <link rel="canonical" href={canonical} />
     <slot name="preload" />
     <FontFaces />
-    <link rel="preconnect" href="https://plausible.sanserif.be" />
-    <script defer data-domain="sanserif.be" src="https://plausible.sanserif.be/js/script.js"
-    ></script>
+    {
+      NODE_ENV === 'production' && (
+        <>
+          <link rel="preconnect" href={PLAUSIBLE_URL} />
+          <script defer data-domain={canonical} src={plausible} />
+        </>
+      )
+    }
   </head>
 
   <body
