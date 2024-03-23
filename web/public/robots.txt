@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://sanserif.be/sitemap-index.xml
+Sitemap: https://studiomono.fr/sitemap-index.xml

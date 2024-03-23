@@ -1,5 +1,5 @@
 {
-  "name": "@sanserif.be/strapi",
+  "name": "@studiomono.fr/strapi",
   "scripts": {
     "dev": "strapi develop",
     "start": "strapi start",
