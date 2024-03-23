@@ -7,7 +7,7 @@ import Favicon from 'components/Favicon.astro';
 import { getGlobal } from 'queries/getGlobal';
 import { app } from 'src/app';
 import type { Shared } from 'types/shared';
-import { PLAUSIBLE_URL, NODE_ENV, BASE_URL } from 'env';
+import { PLAUSIBLE_DOMAIN, PLAUSIBLE_URL, BASE_URL } from 'env';
 
 type Props = {
   meta?: Shared.SEO.Meta;
@@ -65,10 +65,10 @@ const thumbnail = pageThumbnail ?? appThumbnail;
     <slot name="preload" />
     <FontFaces />
     {
-      NODE_ENV === 'production' && (
+      PLAUSIBLE_DOMAIN && (
         <>
           <link rel="preconnect" href={PLAUSIBLE_URL} />
-          <script defer data-domain={canonical} src={plausible} />
+          <script defer data-domain={PLAUSIBLE_DOMAIN} src={plausible} />
         </>
       )
     }
