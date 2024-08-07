@@ -92,3 +92,6 @@ exports
 build
 .strapi-updater.json
 .strapi/
+
+# astro
+.astro/
