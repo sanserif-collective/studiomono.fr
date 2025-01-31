@@ -1,0 +1,33 @@
+volumes:
+  database-data:
+  storage-data:
+
+services:
+  workspace:
+    container_name: sanserif-workspace
+    image: node:20-alpine
+    command: sleep infinity
+    expose:
+      - "1337"
+      - "4321"
+    volumes:
+      - ../.:/workspace:cached
+
+  database:
+    container_name: sanserif-database
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - database-data:/var/lib/postgresql/data
+
+  storage:
+    container_name: sanserif-storage
+    image: localstack/localstack
+    environment:
+      SERVICES: s3
+      PERSISTENCE: 1
+    volumes:
+      - storage-data:/var/lib/localstack

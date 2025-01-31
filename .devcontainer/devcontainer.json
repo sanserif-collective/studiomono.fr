@@ -1,0 +1,23 @@
+{
+  "name": "sanserif.be",
+  "dockerComposeFile": "compose.yaml",
+  "service": "workspace",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "onCreateCommand": {
+    "alpine": "apk add git openssh caddy curl",
+    "node": "npm i -g pnpm && pnpm i"
+  },
+  "postCreateCommand": "curl -X PUT http://storage:4566/sanserif",
+  "postStartCommand": "caddy start --config .devcontainer/Caddyfile",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",
+        "bradlc.vscode-tailwindcss",
+        "GraphQL.vscode-graphql",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}

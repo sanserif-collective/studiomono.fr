@@ -7,19 +7,23 @@ export default defineConfig({
   integrations: [tailwind(), sitemap()],
   site: 'https://sanserif.be',
   output: 'server',
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: false,
+    }
+  }),
   experimental: {
     env: {
       schema: {
         BASE_URL: envField.string({
           context: 'server',
           access: 'public',
-          default: 'http://localhost:4321',
+          default: 'http://127.0.0.1:4321',
         }),
         STRAPI_URL: envField.string({
           context: 'server',
           access: 'secret',
-          default: 'http://localhost:1337/graphql',
+          default: 'http://strapi:1337/graphql',
         }),
         PLAUSIBLE_DOMAIN: envField.string({
           context: 'server',
@@ -29,9 +33,12 @@ export default defineConfig({
         PLAUSIBLE_URL: envField.string({
           context: 'server',
           access: 'public',
-          default: 'http://localhost:4321',
+          default: 'http://127.0.0.1:4321',
         }),
       },
     },
+  },
+  server: {
+    host: true
   },
 });

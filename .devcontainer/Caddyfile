@@ -1,0 +1,3 @@
+:4566 {
+  reverse_proxy storage:4566
+}

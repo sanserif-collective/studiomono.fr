@@ -2,7 +2,7 @@
   "name": "sanserif.be",
   "private": true,
   "scripts": {
-    "start": "pnpm -r dev",
+    "dev": "pnpm -r dev",
     "build": "pnpm -r build",
     "prettify": "prettier . -w"
   },
