@@ -8,8 +8,8 @@ services:
     image: node:20-alpine
     command: sleep infinity
     expose:
-      - "1337"
-      - "4321"
+      - '1337'
+      - '4321'
     volumes:
       - ../.:/workspace:cached
 

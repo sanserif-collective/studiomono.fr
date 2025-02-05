@@ -10,7 +10,7 @@ export default defineConfig({
   adapter: cloudflare({
     platformProxy: {
       enabled: false,
-    }
+    },
   }),
   experimental: {
     env: {
@@ -39,6 +39,6 @@ export default defineConfig({
     },
   },
   server: {
-    host: true
+    host: true,
   },
 });
