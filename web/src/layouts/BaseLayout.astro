@@ -28,7 +28,6 @@ const title = `${meta?.title ? `${meta.title} — ${app?.global?.meta.title}` : 
 const description = meta?.description || app?.global?.meta.description;
 
 const canonical = new URL(Astro.url.pathname, BASE_URL).toString();
-const plausible = new URL('js/script.js', PLAUSIBLE_URL).toString();
 
 const appThumbnail = app.global?.meta.thumbnail && app?.global.meta.thumbnail.data.attributes.url;
 
@@ -68,7 +67,7 @@ const thumbnail = pageThumbnail ?? appThumbnail;
       PLAUSIBLE_DOMAIN && (
         <>
           <link rel="preconnect" href={PLAUSIBLE_URL} />
-          <script defer data-domain={PLAUSIBLE_DOMAIN} src={plausible} />
+          <script defer data-domain={PLAUSIBLE_DOMAIN} src={new URL('js/script.js', PLAUSIBLE_URL).toString()} />
         </>
       )
     }

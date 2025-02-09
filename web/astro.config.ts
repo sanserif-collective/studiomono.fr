@@ -18,12 +18,10 @@ export default defineConfig({
         BASE_URL: envField.string({
           context: 'server',
           access: 'public',
-          default: 'http://127.0.0.1:4321',
         }),
         STRAPI_URL: envField.string({
           context: 'server',
           access: 'secret',
-          default: 'http://strapi:1337/graphql',
         }),
         PLAUSIBLE_DOMAIN: envField.string({
           context: 'server',
@@ -33,7 +31,7 @@ export default defineConfig({
         PLAUSIBLE_URL: envField.string({
           context: 'server',
           access: 'public',
-          default: 'http://127.0.0.1:4321',
+          optional: true,
         }),
       },
     },

@@ -1,40 +1,48 @@
+name: sanserif
+
 volumes:
-  strapi-database-data:
+  strapi-db-data:
+    name: ${COMPOSE_PROJECT_NAME}-strapi-db-data
 
 networks:
-  reverse-proxy:
+  default:
+    name: ${COMPOSE_PROJECT_NAME}-net
+  backup-scheduler-net:
     external: true
-    name: ${REVERSE_PROXY_NETWORK}
+  cloudflared-net:
+    external: true
 
 services:
-  strapi-database:
-    image: postgres:14-alpine
+  strapi-db:
+    container_name: ${COMPOSE_PROJECT_NAME}-strapi-db
+    image: postgres:15-alpine
     restart: always
     environment:
       POSTGRES_DB: ${DATABASE_NAME}
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
-      - strapi-database-data:/var/lib/postgresql/data
+      - strapi-db-data:/var/lib/postgresql/data
     networks:
       - default
-      - reverse-proxy
+      - backup-scheduler-net
     healthcheck:
       test: pg_isready -U ${DATABASE_USERNAME} -d ${DATABASE_NAME}
 
-  strapi:
+  strapi-app:
+    container_name: ${COMPOSE_PROJECT_NAME}-strapi-app
     build: .
     restart: always
     env_file: strapi/.env
     environment:
-      DATABASE_HOST: strapi-database
+      DATABASE_HOST: strapi-db
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
     depends_on:
-      - strapi-database
+      - strapi-db
     networks:
       - default
-      - reverse-proxy
+      - cloudflared-net
     healthcheck:
       test: wget -qO- http://127.0.0.1:1337

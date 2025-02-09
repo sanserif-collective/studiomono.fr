@@ -8,7 +8,7 @@
     "alpine": "apk add git openssh caddy curl",
     "node": "npm i -g pnpm && pnpm i"
   },
-  "postCreateCommand": "curl -X PUT http://storage:4566/sanserif",
+  "postCreateCommand": "curl -X PUT http://s3:4566/strapi",
   "postStartCommand": "caddy start --config .devcontainer/Caddyfile",
   "customizations": {
     "vscode": {

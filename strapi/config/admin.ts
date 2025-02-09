@@ -5,4 +5,9 @@ export default ({ env }) => ({
       salt: env('API_TOKEN_SALT'),
     },
   },
+  transfer: {
+    token: {
+      salt: env('TRANSFER_TOKEN_SALT'),
+    }
+  }
 });
