@@ -1,3 +1,7 @@
 :4566 {
   reverse_proxy s3:4566
 }
+
+:1080 {
+  reverse_proxy mailer:1080
+}

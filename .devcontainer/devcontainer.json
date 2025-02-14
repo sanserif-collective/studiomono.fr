@@ -5,8 +5,8 @@
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
   "onCreateCommand": {
-    "alpine": "apk add git openssh caddy curl",
-    "node": "npm i -g pnpm && pnpm i"
+    "apk": "apk add git openssh caddy curl",
+    "npm": "npm i -g pnpm && pnpm i"
   },
   "postCreateCommand": "curl -X PUT http://s3:4566/strapi",
   "postStartCommand": "caddy start --config .devcontainer/Caddyfile",
@@ -17,7 +17,14 @@
         "bradlc.vscode-tailwindcss",
         "GraphQL.vscode-graphql",
         "esbenp.prettier-vscode"
-      ]
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "always"
+        }
+      }
     }
   }
 }

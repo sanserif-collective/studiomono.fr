@@ -67,7 +67,11 @@ const thumbnail = pageThumbnail ?? appThumbnail;
       PLAUSIBLE_DOMAIN && (
         <>
           <link rel="preconnect" href={PLAUSIBLE_URL} />
-          <script defer data-domain={PLAUSIBLE_DOMAIN} src={new URL('js/script.js', PLAUSIBLE_URL).toString()} />
+          <script
+            defer
+            data-domain={PLAUSIBLE_DOMAIN}
+            src={new URL('js/script.js', PLAUSIBLE_URL).toString()}
+          />
         </>
       )
     }

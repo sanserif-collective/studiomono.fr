@@ -20,6 +20,10 @@ services:
     volumes:
       - s3-data:/var/lib/localstack
 
+  mailer:
+    container_name: ${COMPOSE_PROJECT_NAME}-mailer
+    image: maildev/maildev
+
   strapi-db:
     container_name: ${COMPOSE_PROJECT_NAME}-strapi-db
     image: postgres:15-alpine
@@ -37,5 +41,6 @@ services:
     depends_on:
       - s3
       - strapi-db
+      - mailer
     volumes:
       - ../.:/workspace:cached
