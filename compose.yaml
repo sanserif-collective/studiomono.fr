@@ -1,4 +1,4 @@
-name: sanserif
+name: studiomono
 
 volumes:
   strapi-db-data:

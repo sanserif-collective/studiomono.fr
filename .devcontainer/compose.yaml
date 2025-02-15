@@ -1,4 +1,4 @@
-name: sanserif-devcontainer
+name: studiomono-devcontainer
 
 networks:
   default:
