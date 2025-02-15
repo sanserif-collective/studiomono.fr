@@ -1,5 +1,4 @@
 import { gql } from 'graphql-request';
-import { app } from 'src/app';
 import { strapi } from 'strapi';
 import type { Projects } from 'types/routes/projects';
 
@@ -113,12 +112,3 @@ export const getProjects = () =>
       }
     }
   `);
-
-export const getAppProjects = async () => {
-  if (!app.projects) {
-    const { projects } = await getProjects();
-    app.projects = projects.data;
-  }
-
-  return app.projects;
-};

@@ -1,0 +1,46 @@
+name: sanserif-devcontainer
+
+networks:
+  default:
+    name: ${COMPOSE_PROJECT_NAME}-net
+
+volumes:
+  s3-data:
+    name: ${COMPOSE_PROJECT_NAME}-s3-data
+  strapi-db-data:
+    name: ${COMPOSE_PROJECT_NAME}-strapi-db-data
+
+services:
+  s3:
+    container_name: ${COMPOSE_PROJECT_NAME}-s3
+    image: localstack/localstack
+    environment:
+      SERVICES: s3
+      PERSISTENCE: 1
+    volumes:
+      - s3-data:/var/lib/localstack
+
+  mailer:
+    container_name: ${COMPOSE_PROJECT_NAME}-mailer
+    image: maildev/maildev
+
+  strapi-db:
+    container_name: ${COMPOSE_PROJECT_NAME}-strapi-db
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - strapi-db-data:/var/lib/postgresql/data
+
+  workspace:
+    container_name: ${COMPOSE_PROJECT_NAME}-workspace
+    image: node:20-alpine
+    command: sleep infinity
+    depends_on:
+      - s3
+      - strapi-db
+      - mailer
+    volumes:
+      - ../.:/workspace:cached

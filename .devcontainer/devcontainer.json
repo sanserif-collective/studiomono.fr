@@ -1,0 +1,30 @@
+{
+  "name": "sanserif.be",
+  "dockerComposeFile": "compose.yaml",
+  "service": "workspace",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "onCreateCommand": {
+    "apk": "apk add git openssh caddy curl",
+    "npm": "npm i -g pnpm && pnpm i"
+  },
+  "postCreateCommand": "curl -X PUT http://s3:4566/strapi",
+  "postStartCommand": "caddy start --config .devcontainer/Caddyfile",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",
+        "bradlc.vscode-tailwindcss",
+        "GraphQL.vscode-graphql",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "always"
+        }
+      }
+    }
+  }
+}

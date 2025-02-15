@@ -3,19 +3,37 @@ export default ({ env }) => ({
     config: {
       provider: 'aws-s3',
       providerOptions: {
-        baseUrl: env('CDN_URL'),
-        accessKeyId: env('R2_ACCESS_KEY_ID'),
-        secretAccessKey: env('R2_ACCESS_SECRET'),
-        endpoint: env('R2_ENDPOINT'),
-        region: 'auto',
+        baseUrl: env('S3_BASE_URL'),
+        accessKeyId: env('S3_ACCESS_KEY_ID'),
+        secretAccessKey: env('S3_ACCESS_SECRET'),
+        endpoint: env('S3_ENDPOINT'),
+        region: env('S3_REGION'),
+        forcePathStyle: env.bool('S3_FORCE_PATH_STYLE'),
         params: {
-          Bucket: env('R2_BUCKET'),
+          Bucket: env('S3_BUCKET_NAME'),
         },
       },
       actionOptions: {
         upload: {},
         uploadStream: {},
         delete: {},
+      },
+    },
+  },
+  email: {
+    config: {
+      provider: 'nodemailer',
+      providerOptions: {
+        host: env('SMTP_HOST'),
+        port: env.int('SMTP_PORT'),
+        auth: {
+          user: env('SMTP_USERNAME'),
+          pass: env('SMTP_PASSWORD'),
+        },
+      },
+      settings: {
+        defaultFrom: env('MAILER_EMAIL'),
+        defaultReplyTo: env('MAILER_EMAIL'),
       },
     },
   },
