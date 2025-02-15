@@ -1,7 +1,7 @@
 ---
 import NextLink from 'components/NextLink.astro';
 import BaseLayout from 'layouts/BaseLayout.astro';
-import { getAppProjects } from 'queries/getProjects';
+import { getProjects } from 'queries/getProjects';
 import Header from 'sections/project/Header.astro';
 import Introduction from 'sections/project/Introduction.astro';
 import Subjects from 'sections/project/Subjects.astro';
@@ -10,11 +10,11 @@ import { route } from 'utilities/route';
 
 const { slug } = Astro.params;
 
-const projects = await getAppProjects();
-const project = projects.find((project) => project.attributes.slug === slug);
-const index = projects.findIndex((project) => project.attributes.slug === slug);
+const { projects } = await getProjects();
+const project = projects.data.find((project) => project.attributes.slug === slug);
+const index = projects.data.findIndex((project) => project.attributes.slug === slug);
 
-const next = index + 1 === projects.length ? projects[0] : projects[index + 1];
+const next = index + 1 === projects.data.length ? projects.data[0] : projects.data[index + 1];
 const { name, header, services, introduction, subject, color, meta } = project!.attributes;
 ---
 

@@ -1,10 +1,9 @@
 import tailwind from '@astrojs/tailwind';
 import { defineConfig, envField } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  integrations: [tailwind(), sitemap()],
+  integrations: [tailwind()],
   output: 'server',
   adapter: cloudflare({
     platformProxy: {
