@@ -162,7 +162,7 @@ const config: Config = {
             'font-variation-settings': value,
           }),
         },
-        { values: theme<Record<string, string>>('fontVariation') },
+        { values: theme('fontVariation') },
       );
 
       matchUtilities(
@@ -171,7 +171,7 @@ const config: Config = {
             'writing-mode': value,
           }),
         },
-        { values: theme<Record<string, string>>('writingMode') },
+        { values: theme('writingMode') },
       );
 
       addVariant('children', '& > *');

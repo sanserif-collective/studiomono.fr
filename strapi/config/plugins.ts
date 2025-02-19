@@ -29,7 +29,7 @@ export default ({ env }) => ({
       provider: 'nodemailer',
       providerOptions: {
         host: env('SMTP_HOST'),
-        port: env.int('SMTP_PORT'),
+        port: env.int('SMTP_PORT', 587),
         auth: {
           user: env('SMTP_USERNAME'),
           pass: env('SMTP_PASSWORD'),
