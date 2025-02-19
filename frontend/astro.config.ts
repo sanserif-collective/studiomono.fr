@@ -18,6 +18,10 @@ export default defineConfig({
       }),
       STRAPI_URL: envField.string({
         context: 'server',
+        access: 'public',
+      }),
+      STRAPI_TOKEN: envField.string({
+        context: 'server',
         access: 'secret',
       }),
       PLAUSIBLE_DOMAIN: envField.string({

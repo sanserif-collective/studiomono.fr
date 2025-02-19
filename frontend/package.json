@@ -1,5 +1,5 @@
 {
-  "name": "@sanserif.be/web",
+  "name": "@sanserif.be/frontend",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

@@ -1,7 +1,5 @@
 export default ({ env }) => [
   'strapi::errors',
-  'strapi::security',
-  'strapi::cors',
   'strapi::poweredBy',
   'strapi::logger',
   'strapi::query',
@@ -10,14 +8,20 @@ export default ({ env }) => [
   'strapi::favicon',
   'strapi::public',
   {
+    name: 'strapi::cors',
+    config: {
+      origin: env.array('ALLOWED_ORIGINS'),
+    },
+  },
+  {
     name: 'strapi::security',
     config: {
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
           'connect-src': ["'self'", 'https:'],
-          'img-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io', env('S3_ROOT_PATH')],
-          'media-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io', env('S3_ROOT_PATH')],
+          'img-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io', env('MEDIA_DOMAIN')],
+          'media-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io', env('MEDIA_DOMAIN')],
           upgradeInsecureRequests: null,
         },
       },
