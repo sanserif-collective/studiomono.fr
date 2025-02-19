@@ -8,7 +8,6 @@
     "apk": "apk add git openssh caddy curl",
     "npm": "npm i -g pnpm && pnpm i"
   },
-  "postCreateCommand": "curl -X PUT http://s3:4566/strapi-media",
   "postStartCommand": "caddy start --config .devcontainer/Caddyfile",
   "customizations": {
     "vscode": {

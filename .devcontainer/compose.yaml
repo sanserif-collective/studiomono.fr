@@ -12,13 +12,14 @@ volumes:
 
 services:
   s3:
+    image: minio/minio
     container_name: ${COMPOSE_PROJECT_NAME}-s3
-    image: localstack/localstack
     environment:
-      SERVICES: s3
-      PERSISTENCE: 1
+      MINIO_ROOT_USER: root
+      MINIO_ROOT_PASSWORD: root1234
+    command: server /data --console-address :9001
     volumes:
-      - s3-data:/var/lib/localstack
+      - s3-data:/data
 
   mailer:
     container_name: ${COMPOSE_PROJECT_NAME}-mailer
@@ -28,9 +29,9 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}-strapi-db
     image: postgres:15-alpine
     environment:
-      POSTGRES_USER: strapi
+      POSTGRES_DB: strapi
+      POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: root
     volumes:
       - strapi-db-data:/var/lib/postgresql/data
 

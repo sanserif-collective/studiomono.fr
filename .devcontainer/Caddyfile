@@ -1,5 +1,9 @@
-:4566 {
-  reverse_proxy s3:4566
+:9001 {
+  reverse_proxy s3:9001
+}
+
+:9000 {
+  reverse_proxy s3:9000
 }
 
 :1080 {
