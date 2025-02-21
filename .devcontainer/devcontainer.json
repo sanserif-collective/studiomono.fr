@@ -5,7 +5,7 @@
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
   "onCreateCommand": {
-    "apk": "apk add git openssh caddy curl",
+    "apk": "apk add git openssh caddy",
     "npm": "npm i -g pnpm && pnpm i"
   },
   "postStartCommand": "caddy start --config .devcontainer/Caddyfile",
