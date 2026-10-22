@@ -21,9 +21,12 @@ devenv shell -- pnpm install
 devenv up
 ```
 
-The root `.env` contains the shared local infrastructure settings (database,
-S3/MinIO, SMTP for Mailpit). App-specific secrets stay in `apps/*/.env`. devenv
-loads the root `.env` into the shell, and Compose passes it to Strapi as well.
+The root `.env` only holds the shared infrastructure settings Compose needs
+(project name and database). Everything Strapi-specific (secrets, S3/MinIO
+credentials, Mailpit SMTP and the email sender) stays in `apps/strapi/.env`,
+while the frontend reads `apps/frontend/.env`. devenv loads the root `.env` into
+the shell, and Compose passes both the root and Strapi env files to the Strapi
+container.
 
 `devenv up` starts:
 
@@ -80,9 +83,10 @@ docker compose up -d
 Production environment files are expected at `.env`, `apps/strapi/.env` and
 `apps/frontend/.env`. Compose passes both the root `.env` and the Strapi `.env`
 to the Strapi container, with the app file taking precedence. Database
-variables are named `DATABASE_*` in the root `.env`. The frontend `STRAPI_URL`
-is read from `apps/frontend/.env`; when running the frontend in Docker, point it
-to a unique Strapi hostname (for example the container name
+variables are named `DATABASE_*` in the root `.env`; the other Strapi settings
+(object storage, email and secrets) live in `apps/strapi/.env`. The frontend
+`STRAPI_URL` is read from `apps/frontend/.env`; when running the frontend in
+Docker, point it to a unique Strapi hostname (for example the container name
 `http://sanserif-strapi-app:1337/graphql`) or to its public URL.
 
 ### Email
@@ -97,10 +101,11 @@ Cloudflare dashboard, and `apps/strapi/.env` must define:
 - `CLOUDFLARE_EMAIL_API_TOKEN` — an API token with the **Email Sending: Edit**
   permission.
 
-`MAILER_EMAIL` (from the root `.env`) sets the sender address and must use the
-onboarded domain. Locally, Strapi defaults to the nodemailer provider pointing
-at Mailpit because `NODE_ENV` is not `production`. Set `EMAIL_PROVIDER` to
-`cloudflare` or `nodemailer` to override the choice explicitly.
+`MAILER_EMAIL` (from `apps/strapi/.env`) sets the sender address and must use
+the onboarded domain. Locally, Strapi defaults to the nodemailer provider
+pointing at Mailpit because `NODE_ENV` is not `production`. Set
+`EMAIL_PROVIDER` to `cloudflare` or `nodemailer` to override the choice
+explicitly.
 
 Compose also expects the external networks `cloudflared-net` and
 `backup-scheduler-net` to exist.
