@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 100,
+  "singleQuote": true,
+  "semi": true,
+  "trailingComma": "all",
+  "astro": true,
+  "sortTailwindcss": {
+    "config": "apps/frontend/tailwind.config.ts"
+  },
+  "sortPackageJson": false,
+  "ignorePatterns": ["**/dist/**", "**/build/**", "**/.astro/**"]
+}

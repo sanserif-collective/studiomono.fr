@@ -18,31 +18,117 @@ services:
     image: postgres:15-alpine
     restart: always
     environment:
-      POSTGRES_DB: ${STRAPI_DATABASE_NAME}
-      POSTGRES_USER: ${STRAPI_DATABASE_USERNAME}
-      POSTGRES_PASSWORD: ${STRAPI_DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
       - strapi-db-data:/var/lib/postgresql/data
     networks:
       - default
       - backup-scheduler-net
     healthcheck:
-      test: pg_isready -U ${STRAPI_DATABASE_USERNAME} -d ${STRAPI_DATABASE_NAME}
+      test: pg_isready -U ${DATABASE_USERNAME} -d ${DATABASE_NAME}
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   strapi-app:
     container_name: ${COMPOSE_PROJECT_NAME}-strapi-app
-    build: .
+    build:
+      context: .
+      dockerfile: apps/strapi/Dockerfile
     restart: always
-    env_file: strapi/.env
+    env_file:
+      - .env
+      - apps/strapi/.env
     environment:
       DATABASE_HOST: strapi-db
-      DATABASE_NAME: ${STRAPI_DATABASE_NAME}
-      DATABASE_USERNAME: ${STRAPI_DATABASE_USERNAME}
-      DATABASE_PASSWORD: ${STRAPI_DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
     depends_on:
-      - strapi-db
+      strapi-db:
+        condition: service_healthy
     networks:
       - default
       - cloudflared-net
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp
     healthcheck:
-      test: wget -qO- http://127.0.0.1:1337
+      test:
+        - CMD
+        - /nodejs/bin/node
+        - -e
+        - "fetch('http://127.0.0.1:1337/_health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  frontend:
+    container_name: ${COMPOSE_PROJECT_NAME}-frontend
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+    restart: always
+    env_file: apps/frontend/.env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 4321
+    depends_on:
+      strapi-app:
+        condition: service_healthy
+    networks:
+      - default
+      - cloudflared-net
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /app/.astro
+    healthcheck:
+      test:
+        - CMD
+        - /nodejs/bin/node
+        - -e
+        - "fetch('http://127.0.0.1:4321/robots.txt').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  signature:
+    container_name: ${COMPOSE_PROJECT_NAME}-signature
+    build:
+      context: .
+      dockerfile: apps/signature/Dockerfile
+    restart: always
+    environment:
+      PORT: 3000
+    networks:
+      - default
+      - cloudflared-net
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test:
+        - CMD
+        - /nodejs/bin/node
+        - -e
+        - "fetch('http://127.0.0.1:3000/').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s

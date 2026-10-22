@@ -1,0 +1,36 @@
+---
+import Image from 'components/Image.astro';
+import Text from 'components/Text.astro';
+import type { Shared } from 'types/shared';
+
+type Props = {
+  layout: Shared.Project.Subject.Components.TwoImagesAndOneText;
+};
+
+const { layout }: Props = Astro.props;
+
+const image1 = layout.optionalImage1?.data ? layout.optionalImage1.data.attributes.url : null;
+const image2 = layout.optionalImage2?.data ? layout.optionalImage2.data.attributes.url : null;
+---
+
+{image1 && (
+  <sanserif-skew class="col-span-2 row-start-2 row-end-7 flex items-start justify-center">
+    <parallax-wrapper>
+      <Image src={image1} width={600} height={400} class="w-[50vh] portrait:w-[60vw]" />
+    </parallax-wrapper>
+  </sanserif-skew>
+)}
+
+{layout.text && (
+  <parallax-wrapper class="row-start-7 row-end-12 flex items-center">
+    <Text class="max-w-md">{layout.text}</Text>
+  </parallax-wrapper>
+)}
+
+{image2 && (
+  <sanserif-skew class="row-start-7 row-end-12 flex items-end portrait:justify-end">
+    <parallax-wrapper>
+      <Image src={image2} width={560} height={340} class="w-[50vh] portrait:w-[60vw]" />
+    </parallax-wrapper>
+  </sanserif-skew>
+)}

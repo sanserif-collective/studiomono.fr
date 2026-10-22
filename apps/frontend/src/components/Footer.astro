@@ -1,0 +1,16 @@
+---
+import { app } from 'src/app';
+---
+
+<footer
+  class:list={[
+    'border-left flex w-custom-space flex-shrink-0 items-center justify-between',
+    'h-screen rotate-180 border-r py-custom-space writing-v-rl portrait:writing-h-tb',
+    'portrait:h-auto portrait:w-screen portrait:rotate-0 portrait:px-custom-space',
+    'portrait:border-r-0 portrait:border-t',
+  ]}
+  data-footer
+>
+  <small>{app.global?.informations.location}</small>
+  <small>{app.dictionary?.rights}</small>
+</footer>

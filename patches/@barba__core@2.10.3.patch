@@ -1,0 +1,13 @@
+diff --git a/package.json b/package.json
+index 3b473aaf92a20c360744e4b3ee4a23db11f0a920..faa1ccd64353cf372caee342b98dbe5f5a3e9254 100644
+--- a/package.json
++++ b/package.json
+@@ -11,7 +11,7 @@
+   "unpkg": "dist/barba.umd.js",
+   "module": "dist/barba.mjs",
+   "source": "src/index.ts",
+-  "types": "dist/core/src/typings",
++  "types": "dist/src/index.d.ts",
+   "mangle": {
+     "regex": "^_"
+   },
