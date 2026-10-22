@@ -11,7 +11,6 @@ FROM base AS deps
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json .npmrc ./
 COPY patches patches
 COPY apps/frontend/package.json apps/frontend/package.json
-COPY apps/signature/package.json apps/signature/package.json
 COPY apps/strapi/package.json apps/strapi/package.json
 RUN --mount=type=cache,id=pnpm-frontend,target=/pnpm/store \
     --mount=type=cache,id=corepack-frontend,target=/root/.cache/node/corepack \

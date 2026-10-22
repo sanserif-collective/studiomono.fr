@@ -66,8 +66,4 @@
   processes.frontend = {
     exec = "pnpm --filter @studiomono.fr/frontend dev";
   };
-
-  processes.signature = {
-    exec = "pnpm --filter @sanserif.be/signature dev";
-  };
 }

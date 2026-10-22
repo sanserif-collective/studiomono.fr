@@ -12,7 +12,6 @@ COPY pnpm-lock.yaml pnpm-workspace.yaml package.json .npmrc ./
 COPY patches patches
 COPY apps/strapi/package.json apps/strapi/package.json
 COPY apps/frontend/package.json apps/frontend/package.json
-COPY apps/signature/package.json apps/signature/package.json
 RUN --mount=type=cache,id=pnpm-strapi,target=/pnpm/store \
     --mount=type=cache,id=corepack-strapi,target=/root/.cache/node/corepack \
     pnpm config set store-dir /pnpm/store --global && \
