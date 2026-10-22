@@ -224,7 +224,7 @@ const buildPayload = (options: SendOptions, settings: Settings) => {
   return payload;
 };
 
-export default {
+const cloudflareProvider = {
   provider: 'cloudflare',
   name: 'Cloudflare Email Service',
 
@@ -273,3 +273,7 @@ export default {
     };
   },
 };
+
+// Strapi requires providers through CommonJS (`require(...)` then `.init`), so
+// the provider must be the module export itself rather than a `default` key.
+export = cloudflareProvider;
