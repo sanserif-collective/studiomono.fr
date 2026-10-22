@@ -1,5 +1,6 @@
 # build output
 dist/
+dist-server/
 
 # environment variables
 .env
@@ -93,6 +94,10 @@ exports
 build
 .strapi-updater.json
 .strapi/
+apps/strapi/types/
 
 # astro
 .astro/
+
+# devenv
+.devenv/

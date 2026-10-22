@@ -1,0 +1,33 @@
+---
+import Container from 'components/Container.astro';
+import Sprite from 'components/Sprite.astro';
+import { app } from 'src/app';
+import type { Shared } from 'types/shared';
+
+type Props = Shared.Project.Introduction;
+
+const { url, text }: Props = Astro.props;
+---
+
+<Container>
+  <div
+    class:list={[
+      'row-start-2 row-end-12 flex flex-col justify-end pl-[10vw]',
+      'portrait:col-start-2 portrait:row-auto portrait:pl-0 portrait:pt-custom-space-double',
+      'portrait:col-end-12 portrait:flex-col-reverse portrait:justify-start',
+    ]}
+  >
+    {url && (
+      <a
+        class="ml-[20vw] flex text-lg portrait:ml-0 portrait:mt-custom-space"
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {app.dictionary?.website}
+        <Sprite id="arrow" class="ml-2 mt-0.5 h-[1em] w-[1em] -rotate-45" />
+      </a>
+    )}
+    <p class="mt-32 max-w-5xl text-xl variation-semibold portrait:mt-0">{text}</p>
+  </div>
+</Container>

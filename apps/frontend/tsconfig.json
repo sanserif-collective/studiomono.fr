@@ -1,0 +1,20 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "paths": {
+      "layouts/*": ["./src/layouts/*"],
+      "components/*": ["./src/components/*"],
+      "sections/*": ["./src/sections/*"],
+      "types/*": ["./src/types/*"],
+      "queries/*": ["./src/queries/*"],
+      "scripts/*": ["./src/scripts/*"],
+      "src/*": ["./src/*"],
+      "utilities/*": ["./src/utilities/*"],
+      "env": ["./src/env"],
+      "strapi": ["./src/strapi"]
+    }
+  },
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
+}

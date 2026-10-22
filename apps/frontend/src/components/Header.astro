@@ -1,0 +1,40 @@
+---
+import Sprite from 'components/Sprite.astro';
+import { route } from 'utilities/route';
+import Menu from './Menu.astro';
+---
+
+<header
+  class:list={[
+    'fixed inset-x-custom-space top-custom-space z-50',
+    'text-[color:var(--header-color)] transition-colors duration-300',
+  ]}
+>
+  <a href={route('home')} class="absolute left-0 z-50 h-4 w-20" aria-label="Go to homepage">
+    <Sprite id="sanserif" class="h-full w-full" />
+  </a>
+  <sanserif-menu-toggle
+    role="button"
+    aria-label="Toggle menu"
+    class:list={[
+      'group absolute right-0 z-50 h-6 w-6 children:block children:w-full',
+      'children:absolute children:inset-x-0 children:h-[2px] children:bg-current',
+    ]}
+  >
+    <span
+      class:list={[
+        'top-2 transform-gpu transition-transform group-open:rotate-45',
+        'group-open:translate-y-[0.19rem] group-hover:translate-x-1',
+        'group-hover:group-open:translate-x-0',
+      ]}
+    ></span>
+    <span
+      class:list={[
+        'bottom-2 transform-gpu transition-transform group-open:-rotate-45',
+        'group-open:translate-y-[-0.19rem] group-hover:-translate-x-1',
+        'group-hover:group-open:translate-x-0',
+      ]}
+    ></span>
+  </sanserif-menu-toggle>
+  <Menu />
+</header>

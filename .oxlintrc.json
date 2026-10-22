@@ -1,0 +1,36 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "import"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "ignorePatterns": [
+    "**/dist/**",
+    "**/build/**",
+    "**/.astro/**",
+    "**/node_modules/**",
+    "**/*.example.*"
+  ],
+  "overrides": [
+    {
+      "files": ["**/env.d.ts"],
+      "rules": {
+        "typescript/triple-slash-reference": "off"
+      }
+    },
+    {
+      "files": ["apps/strapi/**/*.ts"],
+      "env": {
+        "node": true
+      }
+    },
+    {
+      "files": ["apps/frontend/**/*.ts"],
+      "env": {
+        "browser": true,
+        "node": true
+      }
+    }
+  ]
+}

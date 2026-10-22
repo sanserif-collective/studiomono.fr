@@ -1,0 +1,48 @@
+---
+import Container from 'components/Container.astro';
+import Image from 'components/Image.astro';
+import Text from 'components/Text.astro';
+import type { Shared } from 'types/shared';
+
+type Props = {
+  name: string;
+  content: Shared.Project.Header;
+  services: Shared.Service[];
+};
+
+const { content, name, services }: Props = Astro.props;
+---
+
+<Container
+  as="header"
+  class:list={[
+    'portrait:children:col-start-2 portrait:children:col-end-12 portrait:children:row-auto',
+    'portrait:space-y-custom-space-double portrait:children:pl-0',
+  ]}
+>
+  <sanserif-skew class="row-start-3 row-end-12 mt-custom-space-double flex items-end">
+    <Image
+      src={content.image.data.attributes.url}
+      height={630}
+      width={460}
+      class="w-[50vh] portrait:w-[50vw]"
+    />
+  </sanserif-skew>
+  <sanserif-skew class="row-start-5 pl-custom-space">
+    <Text as="h1" size="3xl">
+      {name}
+    </Text>
+  </sanserif-skew>
+  <div class="row-start-8 pl-[25vw]">
+    <Text class="max-w-lg">{content.text}</Text>
+  </div>
+  {services.length ? (
+    <ul class="row-start-11 flex items-end space-x-2 pl-custom-space">
+      {services.map(({ attributes }) => (
+        <li class="before:mr-2 before:content-['—'] first:before:hidden">{attributes.name}</li>
+      ))}
+    </ul>
+  ) : (
+    ''
+  )}
+</Container>

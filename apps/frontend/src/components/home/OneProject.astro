@@ -1,0 +1,27 @@
+---
+import ProjectCard from 'components/ProjectCard.astro';
+import type { Home } from 'types/routes/home';
+
+type Props = {
+  projects: Home.Projects.Components.OneProject;
+};
+
+const { projects }: Props = Astro.props;
+const project = projects.project.data.attributes;
+---
+
+{project && (
+  <article
+    class:list={[
+      'row-start-5 row-end-12 items-center px-custom-space portrait:col-start-2',
+      'portrait:col-end-12 portrait:justify-center portrait:px-0',
+    ]}
+  >
+    <ProjectCard
+      class="w-[69vh] max-w-5xl portrait:w-[80vw]"
+      width={620}
+      height={410}
+      project={project}
+    />
+  </article>
+)}

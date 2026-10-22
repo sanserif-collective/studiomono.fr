@@ -1,3 +1,13 @@
 packages:
-  - strapi
-  - frontend
+  - apps/*
+
+allowBuilds:
+  '@apollo/protobufjs': true
+  '@strapi/strapi': true
+  '@swc/core': true
+  core-js-pure: true
+  esbuild: true
+  sharp: true
+
+patchedDependencies:
+  '@barba/core@2.10.3': patches/@barba__core@2.10.3.patch

@@ -1,0 +1,8 @@
+inputs:
+  nixpkgs:
+    url: github:cachix/devenv-nixpkgs/rolling
+
+# MinIO is only used for local S3-compatible development.
+nixpkgs:
+  permitted_insecure_packages:
+    - minio-2025-10-15T17-29-55Z

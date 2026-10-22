@@ -1,0 +1,31 @@
+---
+import type { HTMLAttributes, HTMLTag, Polymorphic } from 'astro/types';
+
+type Props<Tag extends HTMLTag> = HTMLAttributes<'section'> &
+  Polymorphic<{ as: Tag }> & {
+    fullscreen?: boolean;
+  };
+
+const {
+  as: Tag = 'section',
+  class: className,
+  'class:list': classList,
+  fullscreen,
+}: Props<'section'> = Astro.props;
+---
+
+<Tag
+  class:list={[
+    'grid h-screen flex-shrink-0 grid-rows-[var(--grid)]',
+    className,
+    classList,
+    fullscreen
+      ? 'w-screen grid-cols-[var(--grid)] portrait:py-custom-space'
+      : [
+          'px-custom-space portrait:px-0 portrait:py-custom-space',
+          'portrait:h-auto portrait:grid-cols-[var(--grid)] portrait:grid-rows-none',
+        ],
+  ]}
+>
+  <slot />
+</Tag>

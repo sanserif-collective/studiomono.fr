@@ -1,0 +1,47 @@
+---
+import ProjectCard from 'components/ProjectCard.astro';
+import type { Home } from 'types/routes/home';
+
+type Props = {
+  projects: Home.Projects.Components.ThreeProjects;
+};
+
+const { projects }: Props = Astro.props;
+
+const project1 = projects.project1.data?.attributes;
+const project2 = projects.project2.data?.attributes;
+const project3 = projects.project3.data?.attributes;
+---
+
+{project1 && (
+  <article
+    class:list={[
+      'row-start-8 row-end-12 items-end portrait:items-start',
+      'portrait:col-span-8 portrait:col-start-2',
+    ]}
+  >
+    <ProjectCard class="w-[24.5vh] max-w-md" width={220} height={300} project={project1} />
+  </article>
+)}
+
+{project2 && (
+  <article
+    class:list={[
+      'row-start-9 row-end-12 mb-10 items-end pl-custom-space portrait:pl-0',
+      'portrait:col-span-6 portrait:col-start-3 portrait:mb-0',
+    ]}
+  >
+    <ProjectCard class="w-[16vh] max-w-xs" width={142} height={188} project={project2} />
+  </article>
+)}
+
+{project3 && (
+  <article
+    class:list={[
+      'row-start-2 row-end-8 portrait:col-span-9 portrait:col-end-12',
+      'portrait:justify-end',
+    ]}
+  >
+    <ProjectCard class="w-[34.5vh] max-w-xl" width={310} height={410} project={project3} />
+  </article>
+)}
