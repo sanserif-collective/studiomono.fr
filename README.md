@@ -22,8 +22,8 @@ devenv up
 ```
 
 The root `.env` contains the shared local infrastructure settings (database,
-S3/MinIO, SMTP). App-specific secrets stay in `apps/*/.env`. devenv loads the
-root `.env` into the shell, and Compose passes it to Strapi as well.
+S3/MinIO, SMTP for Mailpit). App-specific secrets stay in `apps/*/.env`. devenv
+loads the root `.env` into the shell, and Compose passes it to Strapi as well.
 
 `devenv up` starts:
 
@@ -84,6 +84,23 @@ variables are named `DATABASE_*` in the root `.env`. The frontend `STRAPI_URL`
 is read from `apps/frontend/.env`; when running the frontend in Docker, point it
 to a unique Strapi hostname (for example the container name
 `http://sanserif-strapi-app:1337/graphql`) or to its public URL.
+
+### Email
+
+In production Strapi sends emails through the
+[Cloudflare Email Service](https://developers.cloudflare.com/email-service/)
+REST API over HTTPS, so no outbound SMTP access is needed (Hetzner blocks ports
+25 and 465). The sending domain must be onboarded for Email Sending in the
+Cloudflare dashboard, and `apps/strapi/.env` must define:
+
+- `CLOUDFLARE_ACCOUNT_ID` — the Cloudflare account ID.
+- `CLOUDFLARE_EMAIL_API_TOKEN` — an API token with the **Email Sending: Edit**
+  permission.
+
+`MAILER_EMAIL` (from the root `.env`) sets the sender address and must use the
+onboarded domain. Locally, Strapi defaults to the nodemailer provider pointing
+at Mailpit because `NODE_ENV` is not `production`. Set `EMAIL_PROVIDER` to
+`cloudflare` or `nodemailer` to override the choice explicitly.
 
 Compose also expects the external networks `cloudflared-net` and
 `backup-scheduler-net` to exist.
